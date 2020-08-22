@@ -1,0 +1,56 @@
+baseURL = "https://yaapb.projektemacher.org/""
+title = "My New Hugo Site"
+languageCode = "en"
+publishDir = "docs"
+canonifyurls = true
+languagecode = "en"
+defaultcontentlanguage = "en"
+disablePathToLower = true
+
+[params]
+author = "Christian Mahnke"
+keywords = ""
+description = ""
+linkTumblr = true
+
+[menu]
+    [[menu.main]]
+        name = "Home"
+        weight = 1
+        url = "/"
+
+    [[menu.main]]
+        name = "My cameras"
+        weight = 2
+        url = "cameras/"
+
+    [[menu.main]]
+        name = "links"
+        weight = 3
+        url = "links/"
+
+    [[menu.main]]
+        name = "Special categories"
+        weight = 4
+        url = "special-categories/"
+
+    [[menu.main]]
+        name = "About"
+        weight = 5
+        url = "about/"
+
+[markup.goldmark.renderer]
+    unsafe= true
+
+[module]
+    [[module.mounts]]
+        source = "assets/scss"
+        target = "assets/scss"
+
+    [[module.mounts]]
+        source = "node_modules/jquery/dist"
+        target = "assets/js/jquery"
+
+    [[module.mounts]]
+        source = "static"
+        target = "static"

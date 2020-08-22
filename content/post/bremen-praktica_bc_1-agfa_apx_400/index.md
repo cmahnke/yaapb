@@ -4,7 +4,7 @@ tags:
 - Bremen
 - Praktica BC 1
 - Agfa APX 400
-title: no title
+
 tumblr_url: https://yaapb.tumblr.com/post/141728390306
 ---
- ![](/tumblr_files/tumblr_o4nqg8hDwX1v9quwwo1_1280.jpg)  
+{{< figure src="tumblr_o4nqg8hDwX1v9quwwo1_1280.jpg" >}} 

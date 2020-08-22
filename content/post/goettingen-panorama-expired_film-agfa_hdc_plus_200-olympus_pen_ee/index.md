@@ -9,7 +9,7 @@ tags:
 title: composed from three images
 tumblr_url: https://yaapb.tumblr.com/post/184480008451/composed-from-three-images
 ---
- ![](/tumblr_files/tumblr_pqmfbyaMuw1v9quwwo1_1280.jpg)  
+{{< figure src="tumblr_pqmfbyaMuw1v9quwwo1_1280.jpg" >}} 
 
 Composed from three images.
 

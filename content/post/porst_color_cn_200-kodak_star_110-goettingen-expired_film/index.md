@@ -5,7 +5,7 @@ tags:
 - Kodak Star 110
 - Göttingen
 - Expired Film
-title: no title
+
 tumblr_url: https://yaapb.tumblr.com/post/163215112366
 ---
- ![](/tumblr_files/tumblr_otea969sio1v9quwwo1_1280.jpg)  
+{{< figure src="tumblr_otea969sio1v9quwwo1_1280.jpg" >}} 

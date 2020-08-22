@@ -6,7 +6,7 @@ tags:
 - Praktica BC 1
 - Campus
 - Cherry blossom
-title: no title
+
 tumblr_url: https://yaapb.tumblr.com/post/161550329376
 ---
- ![](/tumblr_files/tumblr_or6sx1F2ei1v9quwwo1_1280.jpg)  
+{{< figure src="tumblr_or6sx1F2ei1v9quwwo1_1280.jpg" >}} 
