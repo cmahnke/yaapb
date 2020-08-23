@@ -16,7 +16,7 @@ jobs:
 
       - name: Setup dependencies
         run: |
-          sudo apt-get install libtiff5 imagemagick tidy xmllint xmlstarlet
+          sudo apt-get install libtiff5 imagemagick tidy libxml2-utils xmlstarlet
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
