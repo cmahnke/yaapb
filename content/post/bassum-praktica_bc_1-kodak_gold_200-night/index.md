@@ -5,10 +5,10 @@ tags:
 - Praktica BC 1
 - Kodak Gold 200
 - Night
-
+alias:
+- 139870694131
 tumblr_url: https://yaapb.tumblr.com/post/139870694131
 ---
-{{< figure src="tumblr_o30swg7LOK1v9quwwo1_1280.jpg" >}} 
-{{< figure src="tumblr_o30swg7LOK1v9quwwo2_1280.jpg" >}} 
-{{< figure src="tumblr_o30swg7LOK1v9quwwo3_1280.jpg" >}} 
-  
+{{< figure src="tumblr_o30swg7LOK1v9quwwo1_1280.jpg" >}}
+{{< figure src="tumblr_o30swg7LOK1v9quwwo2_1280.jpg" >}}
+{{< figure src="tumblr_o30swg7LOK1v9quwwo3_1280.jpg" >}}

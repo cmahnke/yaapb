@@ -1,3 +1,6 @@
+Yet another analog photo blog
+=============================
+
 # Add a new post
 
 The following will create a new draft
@@ -5,6 +8,15 @@ The following will create a new draft
 ```
 hugo new post/post-title/index.md
 ```
+
+# Setup for local (offine) development
+
+Run the following script to generate assets
+
+```
+./scripts/setup.sh
+```
+
 
 # Tumblr import to Jekyll
 
@@ -18,15 +30,6 @@ hugo new post/post-title/index.md
       "rewrite_urls"   => false   # whether to write pages that redirect from the old Tumblr paths to the new Jekyll paths
     })'
 ```
-
-# Initializing generated files for offline usage
-
-```
-yarn
-yarn logo
-./scripts/setup.sh
-```
-
 
 # Starting hugo
 

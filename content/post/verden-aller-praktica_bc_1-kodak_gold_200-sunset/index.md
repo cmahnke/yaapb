@@ -6,9 +6,11 @@ tags:
 - Praktica BC 1
 - Kodak Gold 200
 - Sunset
-
+source: Film 4
+alias:
+- 139870618446
 tumblr_url: https://yaapb.tumblr.com/post/139870618446
+resources:
+- src: "035_32a.jpg"
+- src: "033_30a.jpg"
 ---
-{{< figure src="tumblr_o30su3HSoD1v9quwwo1_1280.jpg" >}} 
-{{< figure src="tumblr_o30su3HSoD1v9quwwo2_1280.jpg" >}} 
-  

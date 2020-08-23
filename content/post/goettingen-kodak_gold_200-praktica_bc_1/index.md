@@ -4,7 +4,8 @@ tags:
 - Göttingen
 - Kodak Gold 200
 - Praktica BC 1
-
+alias:
+- 161550571536
 tumblr_url: https://yaapb.tumblr.com/post/161550571536
 ---
-{{< figure src="tumblr_or6tkaXpEv1v9quwwo1_1280.jpg" >}} 
+{{< figure src="tumblr_or6tkaXpEv1v9quwwo1_1280.jpg" >}}

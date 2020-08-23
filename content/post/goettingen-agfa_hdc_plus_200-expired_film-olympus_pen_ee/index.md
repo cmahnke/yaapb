@@ -6,7 +6,8 @@ tags:
 - Expired Film
 - Olympus Pen EE
 - Featured
-
+alias:
+- 184479761171
 tumblr_url: https://yaapb.tumblr.com/post/184479761171
 ---
-{{< figure src="tumblr_pqmej8qMgt1v9quwwo1_1280.jpg" >}} 
+{{< figure src="tumblr_pqmej8qMgt1v9quwwo1_1280.jpg" >}}

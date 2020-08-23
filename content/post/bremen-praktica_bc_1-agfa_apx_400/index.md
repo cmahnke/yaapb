@@ -4,7 +4,10 @@ tags:
 - Bremen
 - Praktica BC 1
 - Agfa APX 400
-
+alias:
+- 141728390306
+source: Film 6
 tumblr_url: https://yaapb.tumblr.com/post/141728390306
+resources:
+- src: "0027.jpg"
 ---
-{{< figure src="tumblr_o4nqg8hDwX1v9quwwo1_1280.jpg" >}} 

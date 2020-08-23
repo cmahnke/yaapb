@@ -1,5 +1,5 @@
-baseURL = "https://yaapb.projektemacher.org/""
-title = "My New Hugo Site"
+baseURL = "https://yaapb.projektemacher.org/"
+title = "Yet another analog photo blog"
 languageCode = "en"
 publishDir = "docs"
 canonifyurls = true
@@ -54,3 +54,19 @@ linkTumblr = true
     [[module.mounts]]
         source = "static"
         target = "static"
+
+    [[module.mounts]]
+        source = "node_modules/lightgallery/dist/js"
+        target = "assets/js/lightgallery"
+
+    [[module.mounts]]
+        source = "node_modules/lightgallery/dist/css"
+        target = "assets/css/lightgallery"
+
+    [[module.mounts]]
+        source = "node_modules/lightgallery/dist/fonts"
+        target = "static/fonts/lightgallery"
+
+    [[module.mounts]]
+        source = "node_modules/lightgallery/dist/img"
+        target = "static/images/lightgallery"

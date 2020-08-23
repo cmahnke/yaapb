@@ -4,11 +4,13 @@ tags:
 - Bassum
 - Praktica BC 1
 - Agfa APX 400
-
+alias:
+- 141728732106
+source: Film 6
 tumblr_url: https://yaapb.tumblr.com/post/141728732106
+resources:
+- src: "0003.jpg"
+- src: "0008.jpg"
+- src: "0016.jpg"
+- src: "0004.jpg"
 ---
-{{< figure src="tumblr_o4nqshE46l1v9quwwo1_1280.jpg" >}} 
-{{< figure src="tumblr_o4nqshE46l1v9quwwo2_1280.jpg" >}} 
-{{< figure src="tumblr_o4nqshE46l1v9quwwo3_1280.jpg" >}} 
-{{< figure src="tumblr_o4nqshE46l1v9quwwo4_1280.jpg" >}} 
-  

@@ -5,11 +5,11 @@ tags:
 - Kodak Gold 200
 - X-Pro
 - Praktica BC 1
-
+alias:
+- 141479440981
 tumblr_url: https://yaapb.tumblr.com/post/141479440981
 ---
-{{< figure src="tumblr_o4fna0W5go1v9quwwo1_1280.jpg" >}} 
-{{< figure src="tumblr_o4fna0W5go1v9quwwo2_1280.jpg" >}} 
-{{< figure src="tumblr_o4fna0W5go1v9quwwo3_1280.jpg" >}} 
-{{< figure src="tumblr_o4fna0W5go1v9quwwo4_1280.jpg" >}} 
-  
+{{< figure src="tumblr_o4fna0W5go1v9quwwo1_1280.jpg" >}}
+{{< figure src="tumblr_o4fna0W5go1v9quwwo2_1280.jpg" >}}
+{{< figure src="tumblr_o4fna0W5go1v9quwwo3_1280.jpg" >}}
+{{< figure src="tumblr_o4fna0W5go1v9quwwo4_1280.jpg" >}}

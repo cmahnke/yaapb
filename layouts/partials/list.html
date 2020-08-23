@@ -1,0 +1,21 @@
+{{ $pages := .Pages }}
+{{ if .IsHome }}
+    {{ $pages = .Site.RegularPages }}
+{{ end }}
+{{ $paginator := .Paginate (where $pages "Params.displayinlist" "!=" false) -}}
+{{- range $paginator.Pages -}}
+    {{ partial "page.html" . }}
+{{ end }}
+
+{{ if or ($paginator.HasPrev) ($paginator.HasNext) -}}
+<div class="pagination" id="pagination-pages">
+  <div class="pagination-links">
+    {{ if $paginator.HasPrev }}
+      <a class="pagination-newer" href="{{ $paginator.Prev.URL }}">&#x25C0; Newer</a>
+    {{ end }}
+    {{ if $paginator.HasNext }}
+      <a class="pagination-older" href="{{ $paginator.Next.URL }}">Older &#x25B6;</a>
+    {{ end }}
+  </div>
+</div>
+{{- end }}

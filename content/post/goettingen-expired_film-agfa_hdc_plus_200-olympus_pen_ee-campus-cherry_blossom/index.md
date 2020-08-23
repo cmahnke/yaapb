@@ -7,7 +7,8 @@ tags:
 - Olympus Pen EE
 - Campus
 - Cherry blossom
-
+alias:
+- 184479856016
 tumblr_url: https://yaapb.tumblr.com/post/184479856016
 ---
-{{< figure src="tumblr_pqmeuaknjx1v9quwwo1_1280.jpg" >}} 
+{{< figure src="tumblr_pqmeuaknjx1v9quwwo1_1280.jpg" >}}

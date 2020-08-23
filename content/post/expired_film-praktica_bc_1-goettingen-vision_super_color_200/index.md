@@ -5,7 +5,8 @@ tags:
 - Praktica BC 1
 - Göttingen
 - Vision Super Color 200
-
+alias:
+- 170876240196
 tumblr_url: https://yaapb.tumblr.com/post/170876240196
 ---
-{{< figure src="tumblr_p45j3lW4u71v9quwwo1_1280.jpg" >}} 
+{{< figure src="tumblr_p45j3lW4u71v9quwwo1_1280.jpg" >}}

@@ -5,7 +5,10 @@ tags:
 - Expired Film
 - Lomographic ActionSampler
 - Göttingen
-
+alias:
+- 162326637961
+source: Film 12 edited
 tumblr_url: https://yaapb.tumblr.com/post/162326637961
+resources:
+- src: "img0.jpg"
 ---
-{{< figure src="tumblr_os7ztqRFt31v9quwwo1_1280.jpg" >}} 

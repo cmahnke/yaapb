@@ -6,12 +6,14 @@ tags:
 - Lomographic ActionSampler
 - AGFA Vista Plus 200
 - Expired Film
-
+source: Film 12 edited
+alias:
+- 162326657811
 tumblr_url: https://yaapb.tumblr.com/post/162326657811
+resources:
+- src: "img35.jpg"
+- src: "img5.jpg"
+- src: "img7.jpg"
+- src: "img9.jpg"
+- src: "img8.jpg"
 ---
-{{< figure src="tumblr_os7zvteQYP1v9quwwo1_1280.jpg" >}} 
-{{< figure src="tumblr_os7zvteQYP1v9quwwo2_1280.jpg" >}} 
-{{< figure src="tumblr_os7zvteQYP1v9quwwo3_1280.jpg" >}} 
-{{< figure src="tumblr_os7zvteQYP1v9quwwo4_1280.jpg" >}} 
-{{< figure src="tumblr_os7zvteQYP1v9quwwo5_1280.jpg" >}} 
-  

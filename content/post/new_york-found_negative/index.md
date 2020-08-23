@@ -3,15 +3,16 @@ date: "2017-07-03T16:59:30Z"
 tags:
 - New York
 - Found Negative
-title: ill introduce a new category found negatives
+title: "A new category: Found negatives"
+alias:
+- 162551930266
 tumblr_url: https://yaapb.tumblr.com/post/162551930266/ill-introduce-a-new-category-found-negatives
+resources:
+- src: "16.jpg"
+- src: "12.jpg"
+- src: "14.jpg"
+- src: "15.jpg"
+- src: "13.jpg"
 ---
-{{< figure src="tumblr_osirdwZz7Q1v9quwwo1_1280.jpg" >}} 
-{{< figure src="tumblr_osirdwZz7Q1v9quwwo2_1280.jpg" >}} 
-{{< figure src="tumblr_osirdwZz7Q1v9quwwo3_1280.jpg" >}} 
-{{< figure src="tumblr_osirdwZz7Q1v9quwwo4_1280.jpg" >}} 
-{{< figure src="tumblr_osirdwZz7Q1v9quwwo5_1280.jpg" >}} 
-  
 
-I’ll introduce a new category: Found negatives!
-
+A new category: Found negatives!
