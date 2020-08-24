@@ -1,7 +1,9 @@
-/* Start with stuff from Tumblr theme */
 $color-header-foreground: #211f1f !default;
 $font-body-font: Inconsolata, Helvetica, Arial, sans-serif !default;
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Playfair+Display:wght@400;700&display=swap');
+
+@import "icons";
+
+/* Start with stuff from Tumblr theme */
 
 .carousel {
   position: relative;
@@ -172,7 +174,7 @@ html.backgroundsize.generatedcontent #posts-wrap .post.photo .photo-permalink:af
 
 body {
   font-family: $font-body-font;
-  //font-family: "helvetica neue",sans-serif;
+  /* font-family: "helvetica neue",sans-serif; */
   overflow-x: hidden;
   font-size: 12px;
   line-height: 1.6em;
@@ -1679,8 +1681,8 @@ a {
   background: #211f1f;
   color: #fffcf5;
 }
+
 /* Own additions */
-//body { font-family: 'Inconsolata', sanserif;}
 
 h1#title {
   color: #BF0D0D;
