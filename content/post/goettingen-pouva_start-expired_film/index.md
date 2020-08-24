@@ -6,7 +6,9 @@ tags:
 - Expired Film
 alias:
 - 152604403051
+source: Film 9
+resources:
+- src: "image0000006A.jpg"
+- src: "image0000008A.jpg"
 tumblr_url: https://yaapb.tumblr.com/post/152604403051
 ---
-{{< figure src="tumblr_ofz5v8Oa9l1v9quwwo1_1280.jpg" >}}
-{{< figure src="tumblr_ofz5v8Oa9l1v9quwwo2_1280.jpg" >}}

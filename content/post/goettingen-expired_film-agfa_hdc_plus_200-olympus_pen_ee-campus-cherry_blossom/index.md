@@ -9,6 +9,8 @@ tags:
 - Cherry blossom
 alias:
 - 184479856016
+source: Film 17
+resources:
+- src: "012_3A.JPG"
 tumblr_url: https://yaapb.tumblr.com/post/184479856016
 ---
-{{< figure src="tumblr_pqmeuaknjx1v9quwwo1_1280.jpg" >}}

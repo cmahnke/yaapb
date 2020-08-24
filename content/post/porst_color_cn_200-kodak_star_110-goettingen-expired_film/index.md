@@ -5,8 +5,10 @@ tags:
 - Kodak Star 110
 - Göttingen
 - Expired Film
+source: Film 13
 alias:
 - 163215112366
+resources:
+- src: "02.jpg"
 tumblr_url: https://yaapb.tumblr.com/post/163215112366
 ---
-{{< figure src="tumblr_otea969sio1v9quwwo1_1280.jpg" >}}

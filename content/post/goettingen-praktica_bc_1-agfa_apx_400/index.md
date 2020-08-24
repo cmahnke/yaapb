@@ -5,9 +5,11 @@ tags:
 - Praktica BC 1
 - Agfa APX 400
 - featured
+source: Film 6
 alias:
 - 141728336751
+resources:
+- src: "image0010.jpg"
+- src: "image0011.jpg"
 tumblr_url: https://yaapb.tumblr.com/post/141728336751
 ---
-{{< figure src="tumblr_o4nqei2LCj1v9quwwo1_1280.jpg" >}}
-{{< figure src="tumblr_o4nqei2LCj1v9quwwo2_1280.jpg" >}}

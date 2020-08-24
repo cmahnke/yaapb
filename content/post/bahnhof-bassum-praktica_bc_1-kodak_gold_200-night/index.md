@@ -16,6 +16,3 @@ resources:
 - src: "009_6a.jpg"
 - src: "007_4a.jpg"
 ---
-{{< figure src="tumblr_o30sy3p4oc1v9quwwo1_1280.jpg" >}}
-{{< figure src="tumblr_o30sy3p4oc1v9quwwo2_1280.jpg" >}}
-{{< figure src="tumblr_o30sy3p4oc1v9quwwo3_1280.jpg" >}}

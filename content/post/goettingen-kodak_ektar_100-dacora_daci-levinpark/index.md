@@ -5,9 +5,11 @@ tags:
 - Kodak Ektar 100
 - Dacora Daci
 - Levinpark
+source: Scan
 alias:
 - 162551876031
 tumblr_url: https://yaapb.tumblr.com/post/162551876031
+resources:
+- src: "07.jpg"
+- src: "09.jpg"
 ---
-{{< figure src="tumblr_osir7d7SiQ1v9quwwo1_1280.jpg" >}}
-{{< figure src="tumblr_osir7d7SiQ1v9quwwo2_1280.jpg" >}}

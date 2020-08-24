@@ -6,9 +6,11 @@ tags:
 - Vision Super Color 200
 - Practika BC 1
 - Levinpark
+source: Film 16
 alias:
 - 170876204636
+resources:
+- src: "image0014_14A.jpg"
+- src: "image0011_11A.jpg"
 tumblr_url: https://yaapb.tumblr.com/post/170876204636
 ---
-{{< figure src="tumblr_p45iz8w7cW1v9quwwo1_1280.jpg" >}}
-{{< figure src="tumblr_p45iz8w7cW1v9quwwo2_r1_1280.jpg" >}}

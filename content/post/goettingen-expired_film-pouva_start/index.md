@@ -5,9 +5,11 @@ tags:
 - Pouva Start
 - Expired Film
 - Featured
+source: Film 9
 alias:
 - 152604404336
+resources:
+- src: "image0000001A.jpg"
+- src: "image0000002A.jpg"
 tumblr_url: https://yaapb.tumblr.com/post/152604404336
 ---
-{{< figure src="tumblr_ofz5rpetid1v9quwwo1_1280.jpg" >}}
-{{< figure src="tumblr_ofz5rpetid1v9quwwo2_1280.jpg" >}}

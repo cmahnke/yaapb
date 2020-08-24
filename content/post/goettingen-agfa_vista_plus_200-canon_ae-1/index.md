@@ -6,6 +6,8 @@ tags:
 - Canon AE-1
 alias:
 - 184937513586
+source: Film 18
+resources:
+- src: "0010.jpg"
 tumblr_url: https://yaapb.tumblr.com/post/184937513586
 ---
-{{< figure src="tumblr_prn0x8YgS91v9quwwo1_1280.jpg" >}}

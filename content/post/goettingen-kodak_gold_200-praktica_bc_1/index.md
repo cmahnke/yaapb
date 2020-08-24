@@ -6,6 +6,8 @@ tags:
 - Praktica BC 1
 alias:
 - 161550571536
+source: Film 10
+resources:
+- src: "030_26A.JPG"
 tumblr_url: https://yaapb.tumblr.com/post/161550571536
 ---
-{{< figure src="tumblr_or6tkaXpEv1v9quwwo1_1280.jpg" >}}

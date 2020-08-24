@@ -8,5 +8,7 @@ tags:
 alias:
 - 170876240196
 tumblr_url: https://yaapb.tumblr.com/post/170876240196
+source: Film 16
+resources:
+- src: "image0029_32A.jpg"
 ---
-{{< figure src="tumblr_p45j3lW4u71v9quwwo1_1280.jpg" >}}

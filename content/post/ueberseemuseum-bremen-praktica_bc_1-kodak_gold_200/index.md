@@ -5,8 +5,10 @@ tags:
 - Bremen
 - Praktica BC 1
 - Kodak Gold 200
+source: Film 2
+resources:
+- src: "024_21.jpg"
 alias:
 - 139870781596
 tumblr_url: https://yaapb.tumblr.com/post/139870781596
 ---
-{{< figure src="tumblr_o30sz4hqZt1v9quwwo1_1280.jpg" >}}

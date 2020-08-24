@@ -1,5 +1,6 @@
 ---
 date: "2019-04-27T14:54:44Z"
+source: Film 17
 tags:
 - Göttingen
 - Agfa HDC Plus 200
@@ -9,5 +10,6 @@ tags:
 alias:
 - 184479761171
 tumblr_url: https://yaapb.tumblr.com/post/184479761171
+resources:
+- src: "036_15A.jpg"
 ---
-{{< figure src="tumblr_pqmej8qMgt1v9quwwo1_1280.jpg" >}}
