@@ -27,12 +27,14 @@
     {{ end -}}
 
     {{- $jqueryLib := resources.Get "js/jquery/jquery.js" -}}
+    {{- $masonryLib := resources.Get "js/masonry/masonry.pkgd.js" -}}
+
     {{- $js := slice -}}
     {{- if $lightgallery -}}
         {{- $lightgalleryLib := resources.Get "js/lightgallery/lightgallery-all.js" }}
-        {{- $js = slice $jqueryLib $lightgalleryLib | resources.Concat "js/concated.js" | minify | fingerprint -}}
+        {{- $js = slice $jqueryLib $masonryLib $lightgalleryLib | resources.Concat "js/concated.js" | minify | fingerprint -}}
     {{- else -}}
-        {{- $js = slice $jqueryLib | resources.Concat "js/concated.js" | minify | fingerprint -}}
+        {{- $js = slice $jqueryLib $masonryLib | resources.Concat "js/concated.js" | minify | fingerprint -}}
     {{- end }}
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 

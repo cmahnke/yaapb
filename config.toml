@@ -71,3 +71,7 @@ stylesheets = ["https://fonts.googleapis.com/css2?family=Inconsolata&family=Play
     [[module.mounts]]
         source = "node_modules/lightgallery/dist/img"
         target = "static/images/lightgallery"
+
+    [[module.mounts]]
+        source = "node_modules/masonry-layout/dist"
+        target = "assets/js/masonry"

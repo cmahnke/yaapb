@@ -6,6 +6,7 @@
   "dependencies": {
     "jquery": "^3.5.1",
     "jquery-ui": "^1.12.1",
-    "lightgallery": "^1.7.3"
+    "lightgallery": "^1.7.3",
+    "masonry-layout": "^4.2.2"
   }
 }
