@@ -49,6 +49,10 @@ stylesheets = ["https://fonts.googleapis.com/css2?family=Inconsolata&family=Play
         target = "assets/scss"
 
     [[module.mounts]]
+        source = "assets/js"
+        target = "assets/js"
+
+    [[module.mounts]]
         source = "node_modules/jquery/dist"
         target = "assets/js/jquery"
 
