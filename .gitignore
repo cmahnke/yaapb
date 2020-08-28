@@ -2,3 +2,4 @@ node_modules
 docs
 resources
 static/images/favicon*
+yarn-error.log

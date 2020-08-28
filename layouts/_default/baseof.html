@@ -21,35 +21,21 @@
       <link rel="canonical" href="{{ .Permalink }}">
     {{- end -}}
 
-    {{- $lightgallery := false -}}
-    {{- if (resources.Get "js/lightgallery/lightgallery-all.js") -}}
-        {{- $lightgallery = true -}}
-    {{ end -}}
+    {{ $defines := dict "process.env.NODE_ENV" `"production"` }}
+    {{ $opts := dict "targetPath" "js/main.js" "defines" $defines "minify" false }}
+    {{ $theme := resources.Get "js/main.js" | js.Build $opts }}
 
-    {{- $jqueryLib := resources.Get "js/jquery/jquery.js" -}}
-    {{- $masonryLib := resources.Get "js/masonry/masonry.pkgd.js" -}}
-    {{- $paperStacksLib := resources.Get "js/paperstacks_theme.js" -}}
+    {{- $js := slice $theme | resources.Concat "js/concated.js" | minify | fingerprint -}}
 
-    {{- $js := slice -}}
-    {{- if $lightgallery -}}
-        {{- $lightgalleryLib := resources.Get "js/lightgallery/lightgallery-all.js" }}
-        {{- $js = slice $jqueryLib $masonryLib $lightgalleryLib $paperStacksLib | resources.Concat "js/concated.js" | minify | fingerprint -}}
-    {{- else -}}
-        {{- $js = slice $jqueryLib $masonryLib $paperStacksLib | resources.Concat "js/concated.js" | minify | fingerprint -}}
-    {{- end }}
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 
     {{ $options := (dict "targetPath" "base.css" "outputStyle" "compressed") -}}
     {{- $ourTemplate := resources.Get "scss/base.scss" -}}
     {{- $ourStyle := $ourTemplate | resources.ExecuteAsTemplate "scss/base.scss" . | toCSS $options -}}
 
-    {{- $style := slice -}}
-    {{- if $lightgallery -}}
-        {{- $lightgalleryStyle := resources.Get "css/lightgallery/lightgallery.css" -}}
-        {{- $style = slice $lightgalleryStyle $ourStyle | resources.Concat "css/concated.css" | minify | fingerprint -}}
-    {{- else -}}
-        {{- $style = slice $ourStyle | resources.Concat "css/concated.css" | minify | fingerprint -}}
-    {{ end }}
+
+    {{- $lightgalleryStyle := resources.Get "css/lightgallery/lightgallery.css" -}}
+    {{- $style := slice $lightgalleryStyle $ourStyle | resources.Concat "css/concated.css" | minify | fingerprint -}}
     <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}">
 
     {{/* External Styles - Fonts etc */}}
@@ -57,7 +43,14 @@
     <link href="{{ . }}" rel="stylesheet">
     {{- end -}}
 
-    <link rel="icon" href="{{ .Site.Params.favicon | default "/images/favicon.ico" | absURL }}">
+    {{ $faviconRelPrefix := "" }}
+    {{ if .Site.Params.svgIcon }}
+        <link rel="icon" type="image/svg+xml" href="{{ .Site.Params.svgIcon }}">
+        {{ $faviconRelPrefix = "alternate " }}
+    {{ end }}
+
+
+    <link rel="{{- $faviconRelPrefix }}icon" href="{{ .Site.Params.icon | default "/images/favicon.ico" | absURL }}">
     {{ hugo.Generator }}
   </head>
   {{- $class := "" -}}

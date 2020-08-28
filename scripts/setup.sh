@@ -6,6 +6,7 @@
 tidy -i -asxhtml -utf8 "Source Files/pages/cameras.html" > static/xml/cameras.xhtml
 # Validate
 xmllint --noout static/xml/cameras.xhtml
+[ $? -eq 0 ] || exit $?;
 # Extract body
 xmlstarlet sel -N "xhtml=http://www.w3.org/1999/xhtml" -t -c "/xhtml:html/xhtml:body" static/xml/cameras.xhtml  > content/post/cameras/cameras.html
 

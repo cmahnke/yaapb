@@ -4,10 +4,17 @@
     "start": "hugo server -D --debug --disableFastRender --buildFuture"
   },
   "dependencies": {
+    "carousel-js": "^4.0.0",
+    "infinite-scroll": "^3.0.6",
     "jquery": "^3.5.1",
+    "jquery-pjax": "^2.0.1",
     "jquery-ui": "^1.12.1",
+    "lg-fullscreen": "^1.2.1",
     "lightgallery": "^1.7.3",
     "masonry-layout": "^4.2.2",
     "modernizr": "^3.11.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0"
   }
 }

@@ -9,7 +9,7 @@
 
 <div class="included-html">
   {{ if $content }}
-    {{ $content }}
+    {{ $content | safeHTML }}
   {{ else }}
     <div class="include-error">Couldn't load {{ $filename }}</div>
   {{ end }}
