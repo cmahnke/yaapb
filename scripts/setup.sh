@@ -3,11 +3,11 @@
 # You need `xmllint`, `tidy` and `xmlstarlet` installed
 
 # Convert to xml
-#tidy -i -asxhtml -utf8 "Source Files/pages/cameras.html" -output "Source Files/pages/cameras.xhtml"
+#tidy -i -asxhtml -utf8 "Source Files/pages/cameras.html" > "Source Files/pages/cameras.xhtml"
 # Validate
 #xmllint cameras.xhtml
 # Extract body
-#xmlstarlet
+#xmlstarlet sel -N "xhtml=http://www.w3.org/1999/xhtml" -t -c "/xhtml:html/xhtml:body" "Source Files/pages/cameras.xhtml" > content/post/cameras/cameras.html
 
 # Favicons
 # See https://gist.github.com/pfig/1808188
