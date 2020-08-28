@@ -3,7 +3,7 @@
 # You need `xmllint`, `tidy` and `xmlstarlet` installed
 
 # Convert to xml
-tidy -i -asxhtml -utf8 "Source Files/pages/cameras.html" > static/xml/cameras.xhtml
+tidy -i -asxhtml -utf8 --drop-empty-elements no "Source Files/pages/cameras.html" > static/xml/cameras.xhtml
 # Validate
 xmllint --noout static/xml/cameras.xhtml
 [ $? -eq 0 ] || exit $?;
