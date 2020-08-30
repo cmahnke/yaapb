@@ -1,7 +1,9 @@
 {
   "scripts": {
     "build": "hugo",
-    "start": "hugo server -D --debug --disableFastRender --buildFuture"
+    "start": "hugo server -D --debug --disableFastRender --buildFuture",
+    "modernizr": "node_modules/.bin/modernizr -f fontface,backgroundsize,generatedcontent,csstransforms,csstransforms3d,csstransitions,touchevents -d assets/js/modernizr.js"
+
   },
   "dependencies": {
     "carousel-js": "^4.0.0",
