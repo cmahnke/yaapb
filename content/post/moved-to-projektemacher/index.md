@@ -9,5 +9,5 @@ This blog has been moved to [Projektemacher](https://projektemacher.org/). It's 
 
 There have been a few updates during this process:
 * Images are now available in highest possible resolution
-* An fullscreen view has been added
+* A new fullscreen view has been added
 * JavaScript bugs have been fixed
