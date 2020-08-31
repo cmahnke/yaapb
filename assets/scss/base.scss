@@ -1728,9 +1728,10 @@ ul {
 
         .icon:before {
             content: ' ';
-            display: block;
+            display: inline-block;
             background-size: 80% 80%;
             height: 24px;
+            width: 24px;
             background-repeat: no-repeat;
             background-position: center;
 
@@ -1740,37 +1741,43 @@ ul {
             position: relative;
             padding-left: 25px;
 
-            li:before {
-                content: "";
-            }
-
             li.cam-link:before {
                 background-image: url($camera-dark);
-
             }
 
             li.manual:before {
                 background-image: url($book-dark);
             }
 
-            .tag-icon:before {
+            i.tag-icon:before {
                 background-image: url($tag-dark);
             }
 
-            .picture-icon:before {
+            i.picture-icon:before {
                 background-image: url($picture-dark);
+            }
+
+            &.icon.camera:before{
+                content: ' ';
+                display: inline-block;
+                height: 24px;
+                width: 24px;
+                background-image: url($camera-dark);
             }
 
         }
 
+        /*
         li:before {
             position: absolute;
             top: 0;
             left: 0;
-            font-family: FontAwesome;
-            content: "\f083";
+
+            content: ' ';
+            background-image: url($camera-dark);
             color: black;
         }
+        */
     }
 }
 
