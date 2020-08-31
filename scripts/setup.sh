@@ -8,7 +8,7 @@ tidy -i -asxhtml -utf8 --drop-empty-elements no "Source Files/pages/cameras.html
 xmllint --noout static/xml/cameras.xhtml
 [ $? -eq 0 ] || exit $?;
 # Extract body
-xmlstarlet sel -N "xhtml=http://www.w3.org/1999/xhtml" -t -c "/xhtml:html/xhtml:body" static/xml/cameras.xhtml  > content/post/cameras/cameras.html
+xmlstarlet sel -N "xhtml=http://www.w3.org/1999/xhtml" -t -c "/xhtml:html/xhtml:body" static/xml/cameras.xhtml  > content/cameras/cameras.html
 
 # Favicons
 # See https://gist.github.com/pfig/1808188
