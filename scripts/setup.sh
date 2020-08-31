@@ -21,3 +21,4 @@ convert static/images/favicon-16.png static/images/favicon-32.png static/images/
 
 # NPM dependencies
 yarn install
+yarn run modernizr

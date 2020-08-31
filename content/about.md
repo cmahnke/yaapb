@@ -35,6 +35,8 @@ My other blogs
 Tags
 ----
 
+{{< tagcloud >}}
+
 Changes
 -------
 

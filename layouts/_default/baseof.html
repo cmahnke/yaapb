@@ -25,7 +25,7 @@
     {{ $opts := dict "targetPath" "js/main.js" "defines" $defines "minify" false }}
     {{ $theme := resources.Get "js/main.js" | js.Build $opts }}
 
-    {{- $js := slice $theme | resources.Concat "js/concated.js" | minify | fingerprint -}}
+    {{- $js := slice $theme | resources.Concat "js/concated.js" | fingerprint -}}
 
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 
@@ -57,10 +57,17 @@
   {{- if hasPrefix .Page.File.Path "about" -}}
       {{- $class = "about" -}}
   {{- end -}}
+  {{ if .IsHome }}
+      {{- $class = "index" -}}
+  {{ end }}
   {{- if .Params.metaPage -}}
       {{- $class = printf "%s %s" $class "meta" -}}
   {{ end }}
+
+{{/*
   <body class="{block:IndexPage}index{/block:IndexPage} {block:PermalinkPage}show{/block:PermalinkPage} {block:TagPage}tag_page{/block:TagPage}">
+*/}}
+    <body class="{{ $class }}">
     <div id="extra_div_1"></div>
     <div id="page">
       <div id="extra_div_2"></div>
