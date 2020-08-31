@@ -5,13 +5,13 @@ require('jquery-ui');
 require('lightgallery');
 
 require('jquery-pjax');
+require('imagesloaded');
 require('masonry-layout');
-
-require('infinite-scroll');
+//require('infinite-scroll');
 require('carousel-js');
 
 
-var modernizer_options = {  "feature-detects": []};
+//var Masonry = Outlayer.create('masonry');
 
 var tagURLPrefix = '/tags';
 

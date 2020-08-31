@@ -3,11 +3,10 @@
     "build": "hugo",
     "start": "hugo server -D --debug --disableFastRender --buildFuture",
     "modernizr": "node_modules/.bin/modernizr -f fontface,backgroundsize,generatedcontent,csstransforms,csstransforms3d,csstransitions,touchevents -d assets/js/modernizr.js"
-
   },
   "dependencies": {
     "carousel-js": "^4.0.0",
-    "infinite-scroll": "^3.0.6",
+    "imagesloaded": "^4.1.4",
     "jquery": "^3.5.1",
     "jquery-pjax": "^2.0.1",
     "jquery-ui": "^1.12.1",
