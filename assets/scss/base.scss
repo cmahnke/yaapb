@@ -1742,18 +1742,18 @@ ul {
             padding-left: 25px;
 
             li.cam-link:before {
-                background-image: url($camera-dark);
+                background-image: url($link-dark);
             }
 
             li.manual:before {
                 background-image: url($book-dark);
             }
 
-            i.tag-icon:before {
+            .tag-icon:before {
                 background-image: url($tag-dark);
             }
 
-            i.picture-icon:before {
+            .picture-icon:before {
                 background-image: url($picture-dark);
             }
 
@@ -1767,17 +1767,6 @@ ul {
 
         }
 
-        /*
-        li:before {
-            position: absolute;
-            top: 0;
-            left: 0;
-
-            content: ' ';
-            background-image: url($camera-dark);
-            color: black;
-        }
-        */
     }
 }
 
@@ -1788,6 +1777,15 @@ a.cam-tag-link {
 
 a.no-link {
     color: lightgrey;
+
+    .icon.tag-icon:before {
+        background-image: url($tag-light);
+    }
+
+    .icon.picture-icon:before {
+        background-image: url($picture-light);
+    }
+
 }
 
 ul.cameras li a:hover {
