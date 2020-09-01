@@ -1,4 +1,5 @@
-Modernizr = require('./modernizr');
+//Modernizr = require('./modernizr');
+require('./modernizr');
 
 window.$ = window.jQuery = require('jquery');
 require('jquery-ui');
