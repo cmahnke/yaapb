@@ -16183,7 +16183,7 @@
   }
 
   // main.js
-  Modernizr = require_modernizr();
+  require_modernizr();
   window.$ = window.jQuery = require_jquery();
   require_widget();
   require_lightgallery();
