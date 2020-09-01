@@ -1749,12 +1749,27 @@ ul {
                 background-image: url($book-dark);
             }
 
-            .tag-icon:before {
-                background-image: url($tag-dark);
+            a {
+                .tag-icon:before {
+                    background-image: url($tag-dark);
+                }
+
+                .picture-icon:before {
+                    background-image: url($picture-dark);
+                }
             }
 
-            .picture-icon:before {
-                background-image: url($picture-dark);
+            a.no-link {
+                color: lightgrey;
+
+                .tag-icon:before {
+                    background-image: url($tag-light);
+                }
+
+                .picture-icon:before {
+                    background-image: url($picture-light);
+                }
+
             }
 
             &.icon.camera:before{
@@ -1775,18 +1790,7 @@ a.cam-tag-link {
     letter-spacing: 3px;
 }
 
-a.no-link {
-    color: lightgrey;
 
-    .icon.tag-icon:before {
-        background-image: url($tag-light);
-    }
-
-    .icon.picture-icon:before {
-        background-image: url($picture-light);
-    }
-
-}
 
 ul.cameras li a:hover {
     text-decoration: none;
