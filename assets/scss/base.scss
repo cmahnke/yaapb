@@ -1724,11 +1724,14 @@ body.show #posts .photoset_wrap {
 body {
   font-family: $font-body-font;
 
-  about {
-    //background-position: 97% 97%;
-    background-position: 97% 5em;
+  &.about {
+    background-position: 95% 7em;
     background-image: url("/images/cm.svg");
     background-repeat: no-repeat;
+  }
+
+  &.error404 #post.show {
+      margin-left: 30%
   }
 
   &.meta {
@@ -1854,4 +1857,18 @@ ul.cameras li a:hover {
 
 .error404 {
   margin: 1em 0 5em;
+}
+
+#footerInfo {
+    p {
+        color: lightgrey;
+        margin-block-start: .4em;
+        margin-block-end: .4em;
+
+        img {
+            display: inline-block;
+            vertical-align: middle;
+
+        }
+    }
 }

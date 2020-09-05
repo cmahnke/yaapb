@@ -60,9 +60,16 @@
   {{ if .IsHome }}
       {{- $class = "index" -}}
   {{ end }}
-  {{- if .Params.metaPage -}}
+  {{- if or .Params.metaPage (hasPrefix .Page.Name "404") -}}
       {{- $class = printf "%s %s" $class "meta" -}}
   {{ end }}
+  {{- if hasPrefix .Page.Name "404" -}}
+      {{- $class = printf "%s %s" $class "error404" -}}
+  {{ end }}
+
+  {{- if hasPrefix .Page.File.Path "tags" -}}
+      {{- $class = printf "%s %s" $class "tag_page" -}}
+  {{- end -}}
 
     <body class="{{ $class }}">
         <div id="extra_div_1"></div>

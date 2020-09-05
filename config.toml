@@ -9,8 +9,8 @@ disablePathToLower = true
 
 [params]
 author = "Christian Mahnke"
-keywords = ""
-description = ""
+keywords = "analog, photography, lomography, old cameras"
+description = "Yet another analog photo blog - photograpy with cameras from the flea market."
 linkTumblr = true
 stylesheets = ["https://fonts.googleapis.com/css2?family=Inconsolata&family=Playfair+Display:wght@400;700&display=swap"]
 

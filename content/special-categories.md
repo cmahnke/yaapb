@@ -5,5 +5,5 @@ metaPage: true
 
 Usually posts are tagged with the used camera, location or film. But sometimes some posts also belong to a special category:
 
-* [Found something]()
-* [Expired film]()
+* [Found something](/found-something)
+* [Expired film](/expired-film)

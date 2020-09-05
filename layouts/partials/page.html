@@ -3,9 +3,14 @@
 {{- if .Params.resources -}}
     {{- $class = printf "%s photoset" $class -}}
     {{- $type = "photo" -}}
+{{- else -}}
+    {{- $class = printf "%s text" $class -}}
+{{ end }}
+{{- if .Params.metaPage -}}
+    {{- $class = printf "%s text permalink_page" $class -}}
 {{- end -}}
 
-<li  class="{{ $class }}" data-permalink="{{ .RelPermalink }}" data-post-type="{{ $type }}">
+<li class="{{ $class }}" data-permalink="{{ .RelPermalink }}" data-post-type="{{ $type }}">
       <div class="post-pad">
 
           <div class="post-meta">
@@ -13,7 +18,7 @@
               {{ partial "post/date.html" . }}
               {{ partial "post/tags.html" . }}
             {{ else }}
-                <h3 class="post-title"><a href="">{{ .Title }}</a></h3>            
+                <h3 class="post-title"><a href="">{{ .Title }}</a></h3>
             {{ end }}
           </div>
 
@@ -52,18 +57,18 @@
                     {{ end -}}
                 {{- end -}}
             {{- end -}}
-        {{ end }}
+        {{- end -}}
 
         <div class="{{ $class }}">
-            {{ if eq $class "text-body" }}
+            {{- if eq $class "text-body" -}}
                 {{ .Content }}
-            {{ else if eq $class "photo-permalink-container" }}
+            {{- else if eq $class "photo-permalink-container" -}}
                 <a href="{{ .RelPermalink }}">
                     {{ with index $images 0 }}
                         <img src="{{ (index . "front").RelPermalink }}" alt="" data-highres="{{ (index . "orig").RelPermalink }}" class="post-image">
                     {{ end }}
                 </a>
-            {{ else if eq $class "photoset_wrap" }}
+            {{- else if eq $class "photoset_wrap" -}}
                 <div class="photoset_wrap" data-permalink="{{ .RelPermalink }}">
                 {{- range $images -}}
                      <a class="photoset_photo" href="{{ .RelPermalink }}">
@@ -71,11 +76,13 @@
                      </a>
                 {{- end -}}
                 </div>
-            {{ end }}
+            {{- end -}}
 
-            <div class="caption">
-                {{ .Content }}
-            </div>
+            {{- if ne $class "text-body" -}}
+                <div class="caption">
+                    {{ .Content }}
+                </div>
+            {{- end -}}
 
         </div>
 
