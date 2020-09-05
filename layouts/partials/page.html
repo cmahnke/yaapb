@@ -1,83 +1,84 @@
-{{/*
+{{- $class := "post" -}}
+{{- $type := "" -}}
+{{- if .Params.resources -}}
+    {{- $class = printf "%s photoset" $class -}}
+    {{- $type = "photo" -}}
+{{- end -}}
 
-{{ printf "%#v" $.Site }}
-
-
-*/}}
-
-<div id="post-wrap" class="wrap">
-  <ul id="posts" class=" show">
-    <li id="post_" class="post text permalink_page " data-post-type="text">
+<li  class="{{ $class }}" data-permalink="{{ .RelPermalink }}" data-post-type="{{ $type }}">
       <div class="post-pad">
 
           <div class="post-meta">
-            <h3 class="post-title"><a href="">{{ .Title }}</a></h3>
             {{- if not .Params.metaPage -}}
-
-              <div class="date date-top">
-                <a href="{{ .RelPermalink }}">
-                  <span class="days">{{- partial "date.html" (dict "date" .Date "language" $.Page.Language "months" $.Site.Data.months) -}}</span>
-                </a>
-              </div>
-              {{ if isset .Params "tags" }}
-                <div class="tags">
-                  <h4>Tags</h4>
-                  <ul class="tags-list">
-                      {{ range $tag := .Params.tags }}
-                          <li class="tag">
-                              <a href="{{ "tags/" | relLangURL }}{{ $tag | urlize }}" title="{{ $tag }}">#{{ $tag }}</a>
-                          </li>
-                      {{ end }}
-                  </ul>
-                  </div>
-              {{ end }}
-                  {{ end }}
+              {{ partial "post/date.html" . }}
+              {{ partial "post/tags.html" . }}
+            {{ else }}
+                <h3 class="post-title"><a href="">{{ .Title }}</a></h3>            
+            {{ end }}
           </div>
 
         <div class="post-content">
-        {{ $class := "text-body" }}
-        {{ $linkClass := "" }}
-        {{ if .Params.resources }}
-            {{ if eq (len .Params.resources) 1 }}
-                {{ $class = "photo-permalink-container" }}
-                {{ $linkClass = "photo-permalink" }}
-            {{ else if gt (len .Params.resources) 1 }}
-                {{ $class = "photoset_wrap" }}
-                {{ $linkClass = "photoset_photo" }}
-            {{ end }}
+        {{- $class := "text-body" -}}
+        {{- $linkClass := "" -}}
+        {{- $images := slice -}}
+
+        {{- if .Params.resources -}}
+            {{- if eq (len .Params.resources) 1 -}}
+                {{- $class = "photo-permalink-container" -}}
+                {{- $linkClass = "photo-permalink" -}}
+            {{- else if gt (len .Params.resources) 1 -}}
+                {{- $class = "photoset_wrap" -}}
+                {{- $linkClass = "photoset_photo" -}}
+            {{- end -}}
+            {{- $maxWidth := 1280 -}}
+            {{- $thumbsWidth := 400 -}}
+
+            {{- range .Params.resources -}}
+                {{- if and .src (not .name) -}}
+                    {{- $src := .RelPermalink -}}
+                    {{- $image := $.Resources.GetMatch .src -}}
+                    {{- if $image -}}
+                        {{- $imageDisplay := $image -}}
+                        {{- if gt $imageDisplay.Width $maxWidth }}
+                            {{- $image = $imageDisplay.Resize (printf "%dx" $maxWidth) -}}
+                        {{- end -}}
+                        {{- if eq $image.MediaType.SubType "png" -}}
+                          {{ $image = $imageDisplay.Resize (printf "%dx %s" $imageDisplay.Width "jpg") -}}
+                        {{- end -}}
+                        {{- $thumb := $imageDisplay.Resize (printf "%dx jpg" $thumbsWidth) -}}
+                        {{- $images = $images | append (dict "orig" $image "front" $imageDisplay "thumb" $thumb) -}}
+                    {{- else -}}
+                        <div class="image-viewer-error">Couldn't load image "{{ $src }}"</div>
+                    {{ end -}}
+                {{- end -}}
+            {{- end -}}
         {{ end }}
 
         <div class="{{ $class }}">
             {{ if eq $class "text-body" }}
                 {{ .Content }}
-            {{ else }}
-                <a class="{{ $linkClass }}">
-                    <img src="{{ (index .Params.resources 0).RelPermalink }}">
+            {{ else if eq $class "photo-permalink-container" }}
+                <a href="{{ .RelPermalink }}">
+                    {{ with index $images 0 }}
+                        <img src="{{ (index . "front").RelPermalink }}" alt="" data-highres="{{ (index . "orig").RelPermalink }}" class="post-image">
+                    {{ end }}
                 </a>
+            {{ else if eq $class "photoset_wrap" }}
+                <div class="photoset_wrap" data-permalink="{{ .RelPermalink }}">
+                {{- range $images -}}
+                     <a class="photoset_photo" href="{{ .RelPermalink }}">
+                          <img src="{{ (index . "front").RelPermalink }}" data-highres="{{ (index . "orig").RelPermalink }}" class="post-image" />
+                     </a>
+                {{- end -}}
+                </div>
             {{ end }}
-        </div>
 
-        {{/*
-        <div class="photo-permalink-container">
-        {block:IndexPage}
-        <a class="photo-permalink" href="{Permalink}">{/block:IndexPage}{block:PermalinkPage}{LinkOpenTag}{/block:PermalinkPage}<img src="{block:IndexPage}{PhotoURL-400}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}" alt="{PhotoAlt}" data-highres="{PhotoURL-HighRes}" class="post-image" /></a>
-
-        </div>
-        {/block:Photo}
-
-        {block:Photoset}
-        <div class="photoset_wrap" data-permalink="{block:IndexPage}{Permalink}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}">
-          {block:Photos}
-          <a class="photoset_photo" href="{Permalink}"><img src="{block:IndexPage}{PhotoURL-400}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}" data-highres="{PhotoURL-HighRes}" class="post-image" /></a>
-          {/block:Photos}
-        </div>
-        {/block:Photoset}
-
-        */}}
+            <div class="caption">
+                {{ .Content }}
+            </div>
 
         </div>
 
       </div>
-      </li>
-      </ul>
-      </div>
+    </div>
+ </li>

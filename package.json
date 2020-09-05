@@ -5,7 +5,7 @@
     "modernizr": "node_modules/.bin/modernizr -f fontface,backgroundsize,generatedcontent,csstransforms,csstransforms3d,csstransitions,touchevents -d assets/js/modernizr.js"
   },
   "dependencies": {
-    "carousel-js": "^4.0.0",
+    "bootstrap": "^4.5.2",
     "imagesloaded": "^4.1.4",
     "jquery": "^3.5.1",
     "jquery-pjax": "^2.0.1",

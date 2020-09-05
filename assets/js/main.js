@@ -8,9 +8,7 @@ require('jquery-pjax');
 require('imagesloaded');
 Spinner = require('spin');
 require('masonry-layout');
-//require('infinite-scroll');
-require('carousel-js');
-
+require('bootstrap/js/src/carousel');
 
 
 //var Masonry = Outlayer.create('masonry');

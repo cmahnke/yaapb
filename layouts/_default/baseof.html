@@ -64,16 +64,17 @@
       {{- $class = printf "%s %s" $class "meta" -}}
   {{ end }}
 
-{{/*
-  <body class="{block:IndexPage}index{/block:IndexPage} {block:PermalinkPage}show{/block:PermalinkPage} {block:TagPage}tag_page{/block:TagPage}">
-*/}}
     <body class="{{ $class }}">
-    <div id="extra_div_1"></div>
-    <div id="page">
-      <div id="extra_div_2"></div>
-      {{ partial "header.html" . }}
-          {{ block "content" . }}{{ end }}
-      {{ partial "footer.html" . }}
-    </div>
-  </body>
+        <div id="extra_div_1"></div>
+        <div id="page">
+            <div id="extra_div_2"></div>
+            {{ partial "header.html" . }}
+            <div id="post-wrap" class="wrap">
+                <ul id="posts" class=" show">
+                    {{ block "content" . }}{{ end }}
+                </ul>
+            </div>
+            {{ partial "footer.html" . }}
+        </div>
+    </body>
 </html>

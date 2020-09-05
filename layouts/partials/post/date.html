@@ -1,0 +1,5 @@
+<div class="date date-top">
+    <a href="{{ .RelPermalink }}">
+        <span class="days">{{- partial "date.html" (dict "date" .Date "language" $.Page.Language "months" $.Site.Data.months) -}}</span>
+    </a>
+</div>
