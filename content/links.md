@@ -1,3 +1,8 @@
+---
+title: "Links"
+metaPage: true
+---
+
 This page holds some links to external camera pages.
 
 Blogs / Collectors sites

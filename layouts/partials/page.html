@@ -1,63 +1,83 @@
+{{/*
+
 {{ printf "%#v" $.Site }}
 
-<div class="post-meta">
-    <div class="date date-top">
-      <a href="{{ .RelPermalink }}">
-        <span class="days">{{- partial "date.html" (dict "date" .Date "language" $.Page.Language "months" $.Site.Data.months) -}}</span>
-      </a>
-    </div>
-    {{ if isset .Params "tags" }}
-      <div class="tags">
-        <h4>Tags</h4>
-        <ul class="tags-list">
-            {{ range $tag := .Params.tags }}
-                <li class="tag">
-                    <a href="{{ "tags/" | relLangURL }}{{ $tag | urlize }}" title="{{ $tag }}">#{{ $tag }}</a>
-                </li>
-            {{ end }}
-        </ul>
-        </div>
-    {{ end }}
-</div>
-<div class="post-content">
-{{ $class := "text-body" }}
-{{ $linkClass := "" }}
-{{ if .Params.resources }}
-    {{ if eq (len .Params.resources) 1 }}
-        {{ $class = "photo-permalink-container" }}
-        {{ $linkClass = "photo-permalink" }}
-    {{ else if gt (len .Params.resources) 1 }}
-        {{ $class = "photoset_wrap" }}
-        {{ $linkClass = "photoset_photo" }}
-    {{ end }}
-{{ end }}
-
-<div class="{{ $class }}">
-    {{ if eq $class "text-body" }}
-        {{ .Content }}
-    {{ else }}
-        <a class="{{ $linkClass }}">
-            <img src="{{ (index .Params.resources 0).RelPermalink }}">
-        </a>
-    {{ end }}
-</div>
-
-{{/*
-<div class="photo-permalink-container">
-{block:IndexPage}
-<a class="photo-permalink" href="{Permalink}">{/block:IndexPage}{block:PermalinkPage}{LinkOpenTag}{/block:PermalinkPage}<img src="{block:IndexPage}{PhotoURL-400}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}" alt="{PhotoAlt}" data-highres="{PhotoURL-HighRes}" class="post-image" /></a>
-
-</div>
-{/block:Photo}
-
-{block:Photoset}
-<div class="photoset_wrap" data-permalink="{block:IndexPage}{Permalink}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}">
-  {block:Photos}
-  <a class="photoset_photo" href="{Permalink}"><img src="{block:IndexPage}{PhotoURL-400}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}" data-highres="{PhotoURL-HighRes}" class="post-image" /></a>
-  {/block:Photos}
-</div>
-{/block:Photoset}
 
 */}}
 
-</div>
+<div id="post-wrap" class="wrap">
+  <ul id="posts" class=" show">
+    <li id="post_" class="post text permalink_page " data-post-type="text">
+      <div class="post-pad">
+
+          <div class="post-meta">
+            <h3 class="post-title"><a href="">{{ .Title }}</a></h3>
+            {{- if not .Params.metaPage -}}
+
+              <div class="date date-top">
+                <a href="{{ .RelPermalink }}">
+                  <span class="days">{{- partial "date.html" (dict "date" .Date "language" $.Page.Language "months" $.Site.Data.months) -}}</span>
+                </a>
+              </div>
+              {{ if isset .Params "tags" }}
+                <div class="tags">
+                  <h4>Tags</h4>
+                  <ul class="tags-list">
+                      {{ range $tag := .Params.tags }}
+                          <li class="tag">
+                              <a href="{{ "tags/" | relLangURL }}{{ $tag | urlize }}" title="{{ $tag }}">#{{ $tag }}</a>
+                          </li>
+                      {{ end }}
+                  </ul>
+                  </div>
+              {{ end }}
+                  {{ end }}
+          </div>
+
+        <div class="post-content">
+        {{ $class := "text-body" }}
+        {{ $linkClass := "" }}
+        {{ if .Params.resources }}
+            {{ if eq (len .Params.resources) 1 }}
+                {{ $class = "photo-permalink-container" }}
+                {{ $linkClass = "photo-permalink" }}
+            {{ else if gt (len .Params.resources) 1 }}
+                {{ $class = "photoset_wrap" }}
+                {{ $linkClass = "photoset_photo" }}
+            {{ end }}
+        {{ end }}
+
+        <div class="{{ $class }}">
+            {{ if eq $class "text-body" }}
+                {{ .Content }}
+            {{ else }}
+                <a class="{{ $linkClass }}">
+                    <img src="{{ (index .Params.resources 0).RelPermalink }}">
+                </a>
+            {{ end }}
+        </div>
+
+        {{/*
+        <div class="photo-permalink-container">
+        {block:IndexPage}
+        <a class="photo-permalink" href="{Permalink}">{/block:IndexPage}{block:PermalinkPage}{LinkOpenTag}{/block:PermalinkPage}<img src="{block:IndexPage}{PhotoURL-400}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}" alt="{PhotoAlt}" data-highres="{PhotoURL-HighRes}" class="post-image" /></a>
+
+        </div>
+        {/block:Photo}
+
+        {block:Photoset}
+        <div class="photoset_wrap" data-permalink="{block:IndexPage}{Permalink}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}">
+          {block:Photos}
+          <a class="photoset_photo" href="{Permalink}"><img src="{block:IndexPage}{PhotoURL-400}{/block:IndexPage}{block:PermalinkPage}{PhotoURL-HighRes}{/block:PermalinkPage}" data-highres="{PhotoURL-HighRes}" class="post-image" /></a>
+          {/block:Photos}
+        </div>
+        {/block:Photoset}
+
+        */}}
+
+        </div>
+
+      </div>
+      </li>
+      </ul>
+      </div>

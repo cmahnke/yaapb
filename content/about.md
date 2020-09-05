@@ -1,3 +1,8 @@
+---
+title: "About"
+metaPage: true
+---
+
 About
 
 In January 2016 I had too much free time and decided to try something new. I’ve bought some cheap analog cameras at the flea market and some film.

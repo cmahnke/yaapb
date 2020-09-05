@@ -53,9 +53,12 @@
     <link rel="{{- $faviconRelPrefix }}icon" href="{{ .Site.Params.icon | default "/images/favicon.ico" | absURL }}">
     {{ hugo.Generator }}
   </head>
-  {{- $class := "" -}}
+  {{- $class := "show " -}}
   {{- if hasPrefix .Page.File.Path "about" -}}
-      {{- $class = "about" -}}
+      {{- $class = printf "%s %s" $class "about" -}}
+  {{- end -}}
+  {{- if hasPrefix .Page.File.Path "links" -}}
+      {{- $class = printf "%s %s" $class "links" -}}
   {{- end -}}
   {{ if .IsHome }}
       {{- $class = "index" -}}
@@ -72,9 +75,9 @@
     <div id="page">
       <div id="extra_div_2"></div>
       {{ partial "header.html" . }}
-        <div id="content">
+{{/*  <div id="content"> */}}
             {{ block "content" . }}{{ end }}
-        </div>
+{{/*  </div> */}}
       {{ partial "footer.html" . }}
     </div>
   </body>

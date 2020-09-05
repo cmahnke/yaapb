@@ -1729,13 +1729,14 @@ ul {
         .icon:before {
             content: ' ';
             display: inline-block;
-            background-size: 80% 80%;
+          /*  background-size: 80% 80%;*/
             height: 24px;
-            width: 24px;
+            width: 16px;
             background-repeat: no-repeat;
             background-position: center;
-
+                vertical-align: bottom;
         }
+
 
         li {
             position: relative;
@@ -1773,11 +1774,19 @@ ul {
             }
 
             &.icon.camera:before{
+                position: absolute;
+                top: 0;
+                left: 0;
                 content: ' ';
                 display: inline-block;
                 height: 24px;
-                width: 24px;
+                width: 16px;
                 background-image: url($camera-dark);
+                vertical-align: bottom;
+            }
+
+            i.icon {
+              padding-right: 3px;
             }
 
         }
@@ -1790,14 +1799,8 @@ a.cam-tag-link {
     letter-spacing: 3px;
 }
 
-
-
 ul.cameras li a:hover {
     text-decoration: none;
-}
-
-#fb-root {
-    display: none;
 }
 
 .date-top {
@@ -1830,5 +1833,14 @@ body {
         background-position: 97% 5em;
         background-image: url("/images/cm.svg");
         background-repeat: no-repeat;
+    }
+
+    &.links {
+      .post-pad {
+      ul {
+        list-style-type: square;
+        margin-left: 26px;
+      }
+    }
     }
 }
