@@ -439,16 +439,14 @@
   
   <url>
     <loc>https://yaapb.projektemacher.org/about/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://yaapb.projektemacher.org/links/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yaapb.projektemacher.org/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://yaapb.projektemacher.org/links/</loc>
   </url>
   
   <url>
