@@ -57,9 +57,6 @@
   {{- if hasPrefix .Page.File.Path "about" -}}
       {{- $class = printf "%s %s" $class "about" -}}
   {{- end -}}
-  {{- if hasPrefix .Page.File.Path "links" -}}
-      {{- $class = printf "%s %s" $class "links" -}}
-  {{- end -}}
   {{ if .IsHome }}
       {{- $class = "index" -}}
   {{ end }}
@@ -75,9 +72,7 @@
     <div id="page">
       <div id="extra_div_2"></div>
       {{ partial "header.html" . }}
-{{/*  <div id="content"> */}}
-            {{ block "content" . }}{{ end }}
-{{/*  </div> */}}
+          {{ block "content" . }}{{ end }}
       {{ partial "footer.html" . }}
     </div>
   </body>

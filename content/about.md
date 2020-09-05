@@ -3,8 +3,6 @@ title: "About"
 metaPage: true
 ---
 
-About
-
 In January 2016 I had too much free time and decided to try something new. I’ve bought some cheap analog cameras at the flea market and some film.
 
 This blog shows some of the results. Currently nine out of ten images are garbage. Playing with different cameras and cross processing doesn’t really help either.
@@ -13,8 +11,7 @@ I pay about 5 € for a camera, so buying film and letting processing it, costs 
 
 Each stack of images is tagged with film (cross processing, expired film), camera and location.
 
-Todo
-----
+# Todo
 
 *   Cameras: Panorama / stereo cameras
 *   Cameras: Polaroid camera
@@ -28,22 +25,24 @@ Todo
 *   Site: Get the light box mode working on stacks
 *   Site: Check why some Tags aren’t clickable
 
-My other blogs
---------------
-
-*   [Diapräsentation](http://diapraesentation.tumblr.com/) (German, not updated anymore)
-*   [Flohmarktfunde](http://flohmarktfunde.tumblr.com/) (not updated anymore)
-*   [Hässliche Plastiktiere und Zeugs](http://haesslicheplastiktiereundzeugs.tumblr.com/) (not updateted anymore)
-*   [Nebeleule](http://nebeleule.de/) (with others, several posts a week)
-*   [Ric, an unknown artist](https://ric-unknownartist.tumblr.com) (updated some times)
-
-Tags
-----
+# Tags
 
 {{< tagcloud >}}
 
-Changes
--------
+# Colophon
 
-*   15 March 2019  
-    Updated camera list and About page
+This page(s) have been generated with [Hugo](https://gohugo.io/).
+
+The [Tagcloud](http://www.johann-oberdorfer.eu/blog/2020/02/23/20-02-23_tag_cloud_for_hugo/) and the [lightGallery](https://sachinchoolur.github.io/lightGallery/) are taken from the provided links.
+
+The page is hosted by [GitHub](https://github.com/).
+
+# Contact
+
+"YAAPB" is a blog made by *Christian Mahnke*.
+
+Contact is possible via [E-Mail](mailto:yaapb@projektemacher.org).
+
+## My other blogs
+
+My other blogs are listed on [Projektemacher.org](https://projektemacher.org/blogs/).

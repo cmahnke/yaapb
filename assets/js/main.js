@@ -1,4 +1,3 @@
-//Modernizr = require('./modernizr');
 require('./modernizr');
 
 window.$ = window.jQuery = require('jquery');
@@ -7,9 +6,11 @@ require('lightgallery');
 
 require('jquery-pjax');
 require('imagesloaded');
+Spinner = require('spin');
 require('masonry-layout');
 //require('infinite-scroll');
 require('carousel-js');
+
 
 
 //var Masonry = Outlayer.create('masonry');
@@ -548,5 +549,9 @@ var paper = {
 
 };
 
-window.paper = paper;
-paper.setup();
+$(document).ready(function() {
+  if (!$('body').hasClass('meta')) {
+    window.paper = paper;
+    paper.setup();
+  }
+});

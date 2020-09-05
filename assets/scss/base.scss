@@ -1721,126 +1721,137 @@ body.show #posts .photoset_wrap {
     float: inherit;
 }
 
-ul {
-    &.cameras {
-        list-style-type: none;
-        padding-left: 20px;
+body {
+  font-family: $font-body-font;
 
-        .icon:before {
+  about {
+    //background-position: 97% 97%;
+    background-position: 97% 5em;
+    background-image: url("/images/cm.svg");
+    background-repeat: no-repeat;
+  }
+
+  &.meta {
+    .post-pad {
+      ul {
+        list-style-type: square;
+        margin-left: 26px;
+
+        &.cameras {
+          list-style-type: none;
+          padding-left: 20px;
+          margin: 0;
+
+          .icon:before {
             content: ' ';
             display: inline-block;
-          /*  background-size: 80% 80%;*/
+            /*
+            position: absolute;
+            top: 0;
+            left: 0;
+            */
             height: 24px;
             width: 16px;
             background-repeat: no-repeat;
             background-position: center;
-                vertical-align: bottom;
-        }
+            vertical-align: bottom;
+          }
 
+          ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+          }
 
-        li {
+          li {
             position: relative;
             padding-left: 25px;
 
+            &:before {
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+
             li.cam-link:before {
-                background-image: url($link-dark);
+              background-image: url($link-dark);
             }
 
             li.manual:before {
-                background-image: url($book-dark);
+              background-image: url($book-dark);
             }
 
             a {
-                .tag-icon:before {
-                    background-image: url($tag-dark);
-                }
+              .tag-icon:before {
+                background-image: url($tag-dark);
+              }
 
-                .picture-icon:before {
-                    background-image: url($picture-dark);
-                }
+              .picture-icon:before {
+                background-image: url($picture-dark);
+              }
             }
 
             a.no-link {
-                color: lightgrey;
+              color: lightgrey;
 
-                .tag-icon:before {
-                    background-image: url($tag-light);
-                }
+              .tag-icon:before {
+                background-image: url($tag-light);
+              }
 
-                .picture-icon:before {
-                    background-image: url($picture-light);
-                }
-
+              .picture-icon:before {
+                background-image: url($picture-light);
+              }
             }
 
-            &.icon.camera:before{
-                position: absolute;
-                top: 0;
-                left: 0;
-                content: ' ';
-                display: inline-block;
-                height: 24px;
-                width: 16px;
-                background-image: url($camera-dark);
-                vertical-align: bottom;
+            &.icon.camera:before {
+              position: absolute;
+              top: 0;
+              left: 0;
+              content: ' ';
+              display: inline-block;
+              height: 24px;
+              width: 16px;
+              background-image: url($camera-dark);
+              vertical-align: bottom;
             }
 
             i.icon {
               padding-right: 3px;
             }
-
+          }
         }
-
+      }
     }
+  }
 }
 
 a.cam-tag-link {
-    padding-left: 15px;
-    letter-spacing: 3px;
+  padding-left: 15px;
+  letter-spacing: 3px;
 }
 
 ul.cameras li a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .date-top {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .tags {
-    position: absolute;
-    top: 140px;
-    right: 0;
+  position: absolute;
+  top: 140px;
+  right: 0;
 }
 
 .social {
-    position: absolute;
-    top: 290px;
-    right: 0;
+  position: absolute;
+  top: 290px;
+  right: 0;
 }
 
 .error404 {
-    margin: 1em 0 5em;
-}
-
-body {
-    font-family: $font-body-font;
-
-    about {
-        //background-position: 97% 97%;
-        background-position: 97% 5em;
-        background-image: url("/images/cm.svg");
-        background-repeat: no-repeat;
-    }
-
-    &.links {
-      .post-pad {
-      ul {
-        list-style-type: square;
-        margin-left: 26px;
-      }
-    }
-    }
+  margin: 1em 0 5em;
 }
