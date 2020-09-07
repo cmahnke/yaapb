@@ -8421,333 +8421,6 @@
     })(jQuery);
   });
 
-  // node_modules/ev-emitter/ev-emitter.js
-  var require_ev_emitter = __commonJS((exports, module) => {
-    (function(global, factory) {
-      if (typeof define == "function" && define.amd) {
-        define(factory);
-      } else if (typeof module == "object" && module.exports) {
-        module.exports = factory();
-      } else {
-        global.EvEmitter = factory();
-      }
-    })(typeof window != "undefined" ? window : exports, function() {
-      "use strict";
-      function EvEmitter() {
-      }
-      var proto = EvEmitter.prototype;
-      proto.on = function(eventName, listener) {
-        if (!eventName || !listener) {
-          return;
-        }
-        var events = this._events = this._events || {};
-        var listeners = events[eventName] = events[eventName] || [];
-        if (listeners.indexOf(listener) == -1) {
-          listeners.push(listener);
-        }
-        return this;
-      };
-      proto.once = function(eventName, listener) {
-        if (!eventName || !listener) {
-          return;
-        }
-        this.on(eventName, listener);
-        var onceEvents = this._onceEvents = this._onceEvents || {};
-        var onceListeners = onceEvents[eventName] = onceEvents[eventName] || {};
-        onceListeners[listener] = true;
-        return this;
-      };
-      proto.off = function(eventName, listener) {
-        var listeners = this._events && this._events[eventName];
-        if (!listeners || !listeners.length) {
-          return;
-        }
-        var index = listeners.indexOf(listener);
-        if (index != -1) {
-          listeners.splice(index, 1);
-        }
-        return this;
-      };
-      proto.emitEvent = function(eventName, args) {
-        var listeners = this._events && this._events[eventName];
-        if (!listeners || !listeners.length) {
-          return;
-        }
-        listeners = listeners.slice(0);
-        args = args || [];
-        var onceListeners = this._onceEvents && this._onceEvents[eventName];
-        for (var i = 0; i < listeners.length; i++) {
-          var listener = listeners[i];
-          var isOnce = onceListeners && onceListeners[listener];
-          if (isOnce) {
-            this.off(eventName, listener);
-            delete onceListeners[listener];
-          }
-          listener.apply(this, args);
-        }
-        return this;
-      };
-      proto.allOff = function() {
-        delete this._events;
-        delete this._onceEvents;
-      };
-      return EvEmitter;
-    });
-  });
-
-  // node_modules/imagesloaded/imagesloaded.js
-  var require_imagesloaded = __commonJS((exports, module) => {
-    /*!
-     * imagesLoaded v4.1.4
-     * JavaScript is all like "You images are done yet or what?"
-     * MIT License
-     */
-    (function(window2, factory) {
-      "use strict";
-      if (typeof define == "function" && define.amd) {
-        define([
-          "ev-emitter/ev-emitter"
-        ], function(EvEmitter) {
-          return factory(window2, EvEmitter);
-        });
-      } else if (typeof module == "object" && module.exports) {
-        module.exports = factory(window2, require_ev_emitter());
-      } else {
-        window2.imagesLoaded = factory(window2, window2.EvEmitter);
-      }
-    })(typeof window !== "undefined" ? window : exports, function factory(window2, EvEmitter) {
-      "use strict";
-      var $3 = window2.jQuery;
-      var console2 = window2.console;
-      function extend(a, b) {
-        for (var prop in b) {
-          a[prop] = b[prop];
-        }
-        return a;
-      }
-      var arraySlice = Array.prototype.slice;
-      function makeArray(obj) {
-        if (Array.isArray(obj)) {
-          return obj;
-        }
-        var isArrayLike = typeof obj == "object" && typeof obj.length == "number";
-        if (isArrayLike) {
-          return arraySlice.call(obj);
-        }
-        return [obj];
-      }
-      function ImagesLoaded(elem, options, onAlways) {
-        if (!(this instanceof ImagesLoaded)) {
-          return new ImagesLoaded(elem, options, onAlways);
-        }
-        var queryElem = elem;
-        if (typeof elem == "string") {
-          queryElem = document.querySelectorAll(elem);
-        }
-        if (!queryElem) {
-          console2.error("Bad element for imagesLoaded " + (queryElem || elem));
-          return;
-        }
-        this.elements = makeArray(queryElem);
-        this.options = extend({}, this.options);
-        if (typeof options == "function") {
-          onAlways = options;
-        } else {
-          extend(this.options, options);
-        }
-        if (onAlways) {
-          this.on("always", onAlways);
-        }
-        this.getImages();
-        if ($3) {
-          this.jqDeferred = new $3.Deferred();
-        }
-        setTimeout(this.check.bind(this));
-      }
-      ImagesLoaded.prototype = Object.create(EvEmitter.prototype);
-      ImagesLoaded.prototype.options = {};
-      ImagesLoaded.prototype.getImages = function() {
-        this.images = [];
-        this.elements.forEach(this.addElementImages, this);
-      };
-      ImagesLoaded.prototype.addElementImages = function(elem) {
-        if (elem.nodeName == "IMG") {
-          this.addImage(elem);
-        }
-        if (this.options.background === true) {
-          this.addElementBackgroundImages(elem);
-        }
-        var nodeType = elem.nodeType;
-        if (!nodeType || !elementNodeTypes[nodeType]) {
-          return;
-        }
-        var childImgs = elem.querySelectorAll("img");
-        for (var i = 0; i < childImgs.length; i++) {
-          var img = childImgs[i];
-          this.addImage(img);
-        }
-        if (typeof this.options.background == "string") {
-          var children = elem.querySelectorAll(this.options.background);
-          for (i = 0; i < children.length; i++) {
-            var child = children[i];
-            this.addElementBackgroundImages(child);
-          }
-        }
-      };
-      var elementNodeTypes = {
-        1: true,
-        9: true,
-        11: true
-      };
-      ImagesLoaded.prototype.addElementBackgroundImages = function(elem) {
-        var style = getComputedStyle(elem);
-        if (!style) {
-          return;
-        }
-        var reURL = /url\((['"])?(.*?)\1\)/gi;
-        var matches = reURL.exec(style.backgroundImage);
-        while (matches !== null) {
-          var url = matches && matches[2];
-          if (url) {
-            this.addBackground(url, elem);
-          }
-          matches = reURL.exec(style.backgroundImage);
-        }
-      };
-      ImagesLoaded.prototype.addImage = function(img) {
-        var loadingImage = new LoadingImage(img);
-        this.images.push(loadingImage);
-      };
-      ImagesLoaded.prototype.addBackground = function(url, elem) {
-        var background = new Background(url, elem);
-        this.images.push(background);
-      };
-      ImagesLoaded.prototype.check = function() {
-        var _this = this;
-        this.progressedCount = 0;
-        this.hasAnyBroken = false;
-        if (!this.images.length) {
-          this.complete();
-          return;
-        }
-        function onProgress(image, elem, message) {
-          setTimeout(function() {
-            _this.progress(image, elem, message);
-          });
-        }
-        this.images.forEach(function(loadingImage) {
-          loadingImage.once("progress", onProgress);
-          loadingImage.check();
-        });
-      };
-      ImagesLoaded.prototype.progress = function(image, elem, message) {
-        this.progressedCount++;
-        this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
-        this.emitEvent("progress", [this, image, elem]);
-        if (this.jqDeferred && this.jqDeferred.notify) {
-          this.jqDeferred.notify(this, image);
-        }
-        if (this.progressedCount == this.images.length) {
-          this.complete();
-        }
-        if (this.options.debug && console2) {
-          console2.log("progress: " + message, image, elem);
-        }
-      };
-      ImagesLoaded.prototype.complete = function() {
-        var eventName = this.hasAnyBroken ? "fail" : "done";
-        this.isComplete = true;
-        this.emitEvent(eventName, [this]);
-        this.emitEvent("always", [this]);
-        if (this.jqDeferred) {
-          var jqMethod = this.hasAnyBroken ? "reject" : "resolve";
-          this.jqDeferred[jqMethod](this);
-        }
-      };
-      function LoadingImage(img) {
-        this.img = img;
-      }
-      LoadingImage.prototype = Object.create(EvEmitter.prototype);
-      LoadingImage.prototype.check = function() {
-        var isComplete = this.getIsImageComplete();
-        if (isComplete) {
-          this.confirm(this.img.naturalWidth !== 0, "naturalWidth");
-          return;
-        }
-        this.proxyImage = new Image();
-        this.proxyImage.addEventListener("load", this);
-        this.proxyImage.addEventListener("error", this);
-        this.img.addEventListener("load", this);
-        this.img.addEventListener("error", this);
-        this.proxyImage.src = this.img.src;
-      };
-      LoadingImage.prototype.getIsImageComplete = function() {
-        return this.img.complete && this.img.naturalWidth;
-      };
-      LoadingImage.prototype.confirm = function(isLoaded, message) {
-        this.isLoaded = isLoaded;
-        this.emitEvent("progress", [this, this.img, message]);
-      };
-      LoadingImage.prototype.handleEvent = function(event) {
-        var method = "on" + event.type;
-        if (this[method]) {
-          this[method](event);
-        }
-      };
-      LoadingImage.prototype.onload = function() {
-        this.confirm(true, "onload");
-        this.unbindEvents();
-      };
-      LoadingImage.prototype.onerror = function() {
-        this.confirm(false, "onerror");
-        this.unbindEvents();
-      };
-      LoadingImage.prototype.unbindEvents = function() {
-        this.proxyImage.removeEventListener("load", this);
-        this.proxyImage.removeEventListener("error", this);
-        this.img.removeEventListener("load", this);
-        this.img.removeEventListener("error", this);
-      };
-      function Background(url, element) {
-        this.url = url;
-        this.element = element;
-        this.img = new Image();
-      }
-      Background.prototype = Object.create(LoadingImage.prototype);
-      Background.prototype.check = function() {
-        this.img.addEventListener("load", this);
-        this.img.addEventListener("error", this);
-        this.img.src = this.url;
-        var isComplete = this.getIsImageComplete();
-        if (isComplete) {
-          this.confirm(this.img.naturalWidth !== 0, "naturalWidth");
-          this.unbindEvents();
-        }
-      };
-      Background.prototype.unbindEvents = function() {
-        this.img.removeEventListener("load", this);
-        this.img.removeEventListener("error", this);
-      };
-      Background.prototype.confirm = function(isLoaded, message) {
-        this.isLoaded = isLoaded;
-        this.emitEvent("progress", [this, this.element, message]);
-      };
-      ImagesLoaded.makeJQueryPlugin = function(jQuery2) {
-        jQuery2 = jQuery2 || window2.jQuery;
-        if (!jQuery2) {
-          return;
-        }
-        $3 = jQuery2;
-        $3.fn.imagesLoaded = function(options, callback) {
-          var instance = new ImagesLoaded(this, options, callback);
-          return instance.jqDeferred.promise($3(this));
-        };
-      };
-      ImagesLoaded.makeJQueryPlugin();
-      return ImagesLoaded;
-    });
-  });
-
   // node_modules/spin/spin.js
   var require_spin = __commonJS((exports, module) => {
     var prefixes = ["webkit", "Moz", "ms", "O"];
@@ -8976,6 +8649,849 @@
     module.exports = Spinner2;
   });
 
+  // node_modules/bootstrap/js/src/carousel.js
+  var require_carousel = __commonJS((exports) => {
+    __export(exports, {
+      default: () => carousel_default
+    });
+    const jquery2 = __toModule(require_jquery());
+    const NAME = "carousel";
+    const VERSION = "4.5.2";
+    const DATA_KEY = "bs.carousel";
+    const EVENT_KEY = `.${DATA_KEY}`;
+    const DATA_API_KEY = ".data-api";
+    const JQUERY_NO_CONFLICT = jquery2.default.fn[NAME];
+    const ARROW_LEFT_KEYCODE = 37;
+    const ARROW_RIGHT_KEYCODE = 39;
+    const TOUCHEVENT_COMPAT_WAIT = 500;
+    const SWIPE_THRESHOLD = 40;
+    const Default = {
+      interval: 5e3,
+      keyboard: true,
+      slide: false,
+      pause: "hover",
+      wrap: true,
+      touch: true
+    };
+    const DefaultType = {
+      interval: "(number|boolean)",
+      keyboard: "boolean",
+      slide: "(boolean|string)",
+      pause: "(string|boolean)",
+      wrap: "boolean",
+      touch: "boolean"
+    };
+    const DIRECTION_NEXT = "next";
+    const DIRECTION_PREV = "prev";
+    const DIRECTION_LEFT = "left";
+    const DIRECTION_RIGHT = "right";
+    const EVENT_SLIDE = `slide${EVENT_KEY}`;
+    const EVENT_SLID = `slid${EVENT_KEY}`;
+    const EVENT_KEYDOWN = `keydown${EVENT_KEY}`;
+    const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY}`;
+    const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY}`;
+    const EVENT_TOUCHSTART = `touchstart${EVENT_KEY}`;
+    const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY}`;
+    const EVENT_TOUCHEND = `touchend${EVENT_KEY}`;
+    const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY}`;
+    const EVENT_POINTERUP = `pointerup${EVENT_KEY}`;
+    const EVENT_DRAG_START = `dragstart${EVENT_KEY}`;
+    const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`;
+    const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`;
+    const CLASS_NAME_CAROUSEL = "carousel";
+    const CLASS_NAME_ACTIVE = "active";
+    const CLASS_NAME_SLIDE = "slide";
+    const CLASS_NAME_RIGHT = "carousel-item-right";
+    const CLASS_NAME_LEFT = "carousel-item-left";
+    const CLASS_NAME_NEXT = "carousel-item-next";
+    const CLASS_NAME_PREV = "carousel-item-prev";
+    const CLASS_NAME_POINTER_EVENT = "pointer-event";
+    const SELECTOR_ACTIVE = ".active";
+    const SELECTOR_ACTIVE_ITEM = ".active.carousel-item";
+    const SELECTOR_ITEM = ".carousel-item";
+    const SELECTOR_ITEM_IMG = ".carousel-item img";
+    const SELECTOR_NEXT_PREV = ".carousel-item-next, .carousel-item-prev";
+    const SELECTOR_INDICATORS = ".carousel-indicators";
+    const SELECTOR_DATA_SLIDE = "[data-slide], [data-slide-to]";
+    const SELECTOR_DATA_RIDE = '[data-ride="carousel"]';
+    const PointerType = {
+      TOUCH: "touch",
+      PEN: "pen"
+    };
+    class Carousel {
+      constructor(element, config) {
+        this._items = null;
+        this._interval = null;
+        this._activeElement = null;
+        this._isPaused = false;
+        this._isSliding = false;
+        this.touchTimeout = null;
+        this.touchStartX = 0;
+        this.touchDeltaX = 0;
+        this._config = this._getConfig(config);
+        this._element = element;
+        this._indicatorsElement = this._element.querySelector(SELECTOR_INDICATORS);
+        this._touchSupported = "ontouchstart" in document.documentElement || navigator.maxTouchPoints > 0;
+        this._pointerEvent = Boolean(window.PointerEvent || window.MSPointerEvent);
+        this._addEventListeners();
+      }
+      static get VERSION() {
+        return VERSION;
+      }
+      static get Default() {
+        return Default;
+      }
+      next() {
+        if (!this._isSliding) {
+          this._slide(DIRECTION_NEXT);
+        }
+      }
+      nextWhenVisible() {
+        if (!document.hidden && (jquery2.default(this._element).is(":visible") && jquery2.default(this._element).css("visibility") !== "hidden")) {
+          this.next();
+        }
+      }
+      prev() {
+        if (!this._isSliding) {
+          this._slide(DIRECTION_PREV);
+        }
+      }
+      pause(event) {
+        if (!event) {
+          this._isPaused = true;
+        }
+        if (this._element.querySelector(SELECTOR_NEXT_PREV)) {
+          util_default.triggerTransitionEnd(this._element);
+          this.cycle(true);
+        }
+        clearInterval(this._interval);
+        this._interval = null;
+      }
+      cycle(event) {
+        if (!event) {
+          this._isPaused = false;
+        }
+        if (this._interval) {
+          clearInterval(this._interval);
+          this._interval = null;
+        }
+        if (this._config.interval && !this._isPaused) {
+          this._interval = setInterval((document.visibilityState ? this.nextWhenVisible : this.next).bind(this), this._config.interval);
+        }
+      }
+      to(index) {
+        this._activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
+        const activeIndex = this._getItemIndex(this._activeElement);
+        if (index > this._items.length - 1 || index < 0) {
+          return;
+        }
+        if (this._isSliding) {
+          jquery2.default(this._element).one(EVENT_SLID, () => this.to(index));
+          return;
+        }
+        if (activeIndex === index) {
+          this.pause();
+          this.cycle();
+          return;
+        }
+        const direction = index > activeIndex ? DIRECTION_NEXT : DIRECTION_PREV;
+        this._slide(direction, this._items[index]);
+      }
+      dispose() {
+        jquery2.default(this._element).off(EVENT_KEY);
+        jquery2.default.removeData(this._element, DATA_KEY);
+        this._items = null;
+        this._config = null;
+        this._element = null;
+        this._interval = null;
+        this._isPaused = null;
+        this._isSliding = null;
+        this._activeElement = null;
+        this._indicatorsElement = null;
+      }
+      _getConfig(config) {
+        config = {
+          ...Default,
+          ...config
+        };
+        util_default.typeCheckConfig(NAME, config, DefaultType);
+        return config;
+      }
+      _handleSwipe() {
+        const absDeltax = Math.abs(this.touchDeltaX);
+        if (absDeltax <= SWIPE_THRESHOLD) {
+          return;
+        }
+        const direction = absDeltax / this.touchDeltaX;
+        this.touchDeltaX = 0;
+        if (direction > 0) {
+          this.prev();
+        }
+        if (direction < 0) {
+          this.next();
+        }
+      }
+      _addEventListeners() {
+        if (this._config.keyboard) {
+          jquery2.default(this._element).on(EVENT_KEYDOWN, (event) => this._keydown(event));
+        }
+        if (this._config.pause === "hover") {
+          jquery2.default(this._element).on(EVENT_MOUSEENTER, (event) => this.pause(event)).on(EVENT_MOUSELEAVE, (event) => this.cycle(event));
+        }
+        if (this._config.touch) {
+          this._addTouchEventListeners();
+        }
+      }
+      _addTouchEventListeners() {
+        if (!this._touchSupported) {
+          return;
+        }
+        const start = (event) => {
+          if (this._pointerEvent && PointerType[event.originalEvent.pointerType.toUpperCase()]) {
+            this.touchStartX = event.originalEvent.clientX;
+          } else if (!this._pointerEvent) {
+            this.touchStartX = event.originalEvent.touches[0].clientX;
+          }
+        };
+        const move = (event) => {
+          if (event.originalEvent.touches && event.originalEvent.touches.length > 1) {
+            this.touchDeltaX = 0;
+          } else {
+            this.touchDeltaX = event.originalEvent.touches[0].clientX - this.touchStartX;
+          }
+        };
+        const end = (event) => {
+          if (this._pointerEvent && PointerType[event.originalEvent.pointerType.toUpperCase()]) {
+            this.touchDeltaX = event.originalEvent.clientX - this.touchStartX;
+          }
+          this._handleSwipe();
+          if (this._config.pause === "hover") {
+            this.pause();
+            if (this.touchTimeout) {
+              clearTimeout(this.touchTimeout);
+            }
+            this.touchTimeout = setTimeout((event2) => this.cycle(event2), TOUCHEVENT_COMPAT_WAIT + this._config.interval);
+          }
+        };
+        jquery2.default(this._element.querySelectorAll(SELECTOR_ITEM_IMG)).on(EVENT_DRAG_START, (e) => e.preventDefault());
+        if (this._pointerEvent) {
+          jquery2.default(this._element).on(EVENT_POINTERDOWN, (event) => start(event));
+          jquery2.default(this._element).on(EVENT_POINTERUP, (event) => end(event));
+          this._element.classList.add(CLASS_NAME_POINTER_EVENT);
+        } else {
+          jquery2.default(this._element).on(EVENT_TOUCHSTART, (event) => start(event));
+          jquery2.default(this._element).on(EVENT_TOUCHMOVE, (event) => move(event));
+          jquery2.default(this._element).on(EVENT_TOUCHEND, (event) => end(event));
+        }
+      }
+      _keydown(event) {
+        if (/input|textarea/i.test(event.target.tagName)) {
+          return;
+        }
+        switch (event.which) {
+          case ARROW_LEFT_KEYCODE:
+            event.preventDefault();
+            this.prev();
+            break;
+          case ARROW_RIGHT_KEYCODE:
+            event.preventDefault();
+            this.next();
+            break;
+          default:
+        }
+      }
+      _getItemIndex(element) {
+        this._items = element && element.parentNode ? [].slice.call(element.parentNode.querySelectorAll(SELECTOR_ITEM)) : [];
+        return this._items.indexOf(element);
+      }
+      _getItemByDirection(direction, activeElement) {
+        const isNextDirection = direction === DIRECTION_NEXT;
+        const isPrevDirection = direction === DIRECTION_PREV;
+        const activeIndex = this._getItemIndex(activeElement);
+        const lastItemIndex = this._items.length - 1;
+        const isGoingToWrap = isPrevDirection && activeIndex === 0 || isNextDirection && activeIndex === lastItemIndex;
+        if (isGoingToWrap && !this._config.wrap) {
+          return activeElement;
+        }
+        const delta = direction === DIRECTION_PREV ? -1 : 1;
+        const itemIndex = (activeIndex + delta) % this._items.length;
+        return itemIndex === -1 ? this._items[this._items.length - 1] : this._items[itemIndex];
+      }
+      _triggerSlideEvent(relatedTarget, eventDirectionName) {
+        const targetIndex = this._getItemIndex(relatedTarget);
+        const fromIndex = this._getItemIndex(this._element.querySelector(SELECTOR_ACTIVE_ITEM));
+        const slideEvent = jquery2.default.Event(EVENT_SLIDE, {
+          relatedTarget,
+          direction: eventDirectionName,
+          from: fromIndex,
+          to: targetIndex
+        });
+        jquery2.default(this._element).trigger(slideEvent);
+        return slideEvent;
+      }
+      _setActiveIndicatorElement(element) {
+        if (this._indicatorsElement) {
+          const indicators = [].slice.call(this._indicatorsElement.querySelectorAll(SELECTOR_ACTIVE));
+          jquery2.default(indicators).removeClass(CLASS_NAME_ACTIVE);
+          const nextIndicator = this._indicatorsElement.children[this._getItemIndex(element)];
+          if (nextIndicator) {
+            jquery2.default(nextIndicator).addClass(CLASS_NAME_ACTIVE);
+          }
+        }
+      }
+      _slide(direction, element) {
+        const activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
+        const activeElementIndex = this._getItemIndex(activeElement);
+        const nextElement = element || activeElement && this._getItemByDirection(direction, activeElement);
+        const nextElementIndex = this._getItemIndex(nextElement);
+        const isCycling = Boolean(this._interval);
+        let directionalClassName;
+        let orderClassName;
+        let eventDirectionName;
+        if (direction === DIRECTION_NEXT) {
+          directionalClassName = CLASS_NAME_LEFT;
+          orderClassName = CLASS_NAME_NEXT;
+          eventDirectionName = DIRECTION_LEFT;
+        } else {
+          directionalClassName = CLASS_NAME_RIGHT;
+          orderClassName = CLASS_NAME_PREV;
+          eventDirectionName = DIRECTION_RIGHT;
+        }
+        if (nextElement && jquery2.default(nextElement).hasClass(CLASS_NAME_ACTIVE)) {
+          this._isSliding = false;
+          return;
+        }
+        const slideEvent = this._triggerSlideEvent(nextElement, eventDirectionName);
+        if (slideEvent.isDefaultPrevented()) {
+          return;
+        }
+        if (!activeElement || !nextElement) {
+          return;
+        }
+        this._isSliding = true;
+        if (isCycling) {
+          this.pause();
+        }
+        this._setActiveIndicatorElement(nextElement);
+        const slidEvent = jquery2.default.Event(EVENT_SLID, {
+          relatedTarget: nextElement,
+          direction: eventDirectionName,
+          from: activeElementIndex,
+          to: nextElementIndex
+        });
+        if (jquery2.default(this._element).hasClass(CLASS_NAME_SLIDE)) {
+          jquery2.default(nextElement).addClass(orderClassName);
+          util_default.reflow(nextElement);
+          jquery2.default(activeElement).addClass(directionalClassName);
+          jquery2.default(nextElement).addClass(directionalClassName);
+          const nextElementInterval = parseInt(nextElement.getAttribute("data-interval"), 10);
+          if (nextElementInterval) {
+            this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
+            this._config.interval = nextElementInterval;
+          } else {
+            this._config.interval = this._config.defaultInterval || this._config.interval;
+          }
+          const transitionDuration = util_default.getTransitionDurationFromElement(activeElement);
+          jquery2.default(activeElement).one(util_default.TRANSITION_END, () => {
+            jquery2.default(nextElement).removeClass(`${directionalClassName} ${orderClassName}`).addClass(CLASS_NAME_ACTIVE);
+            jquery2.default(activeElement).removeClass(`${CLASS_NAME_ACTIVE} ${orderClassName} ${directionalClassName}`);
+            this._isSliding = false;
+            setTimeout(() => jquery2.default(this._element).trigger(slidEvent), 0);
+          }).emulateTransitionEnd(transitionDuration);
+        } else {
+          jquery2.default(activeElement).removeClass(CLASS_NAME_ACTIVE);
+          jquery2.default(nextElement).addClass(CLASS_NAME_ACTIVE);
+          this._isSliding = false;
+          jquery2.default(this._element).trigger(slidEvent);
+        }
+        if (isCycling) {
+          this.cycle();
+        }
+      }
+      static _jQueryInterface(config) {
+        return this.each(function() {
+          let data = jquery2.default(this).data(DATA_KEY);
+          let _config = {
+            ...Default,
+            ...jquery2.default(this).data()
+          };
+          if (typeof config === "object") {
+            _config = {
+              ..._config,
+              ...config
+            };
+          }
+          const action = typeof config === "string" ? config : _config.slide;
+          if (!data) {
+            data = new Carousel(this, _config);
+            jquery2.default(this).data(DATA_KEY, data);
+          }
+          if (typeof config === "number") {
+            data.to(config);
+          } else if (typeof action === "string") {
+            if (typeof data[action] === "undefined") {
+              throw new TypeError(`No method named "${action}"`);
+            }
+            data[action]();
+          } else if (_config.interval && _config.ride) {
+            data.pause();
+            data.cycle();
+          }
+        });
+      }
+      static _dataApiClickHandler(event) {
+        const selector = util_default.getSelectorFromElement(this);
+        if (!selector) {
+          return;
+        }
+        const target = jquery2.default(selector)[0];
+        if (!target || !jquery2.default(target).hasClass(CLASS_NAME_CAROUSEL)) {
+          return;
+        }
+        const config = {
+          ...jquery2.default(target).data(),
+          ...jquery2.default(this).data()
+        };
+        const slideIndex = this.getAttribute("data-slide-to");
+        if (slideIndex) {
+          config.interval = false;
+        }
+        Carousel._jQueryInterface.call(jquery2.default(target), config);
+        if (slideIndex) {
+          jquery2.default(target).data(DATA_KEY).to(slideIndex);
+        }
+        event.preventDefault();
+      }
+    }
+    jquery2.default(document).on(EVENT_CLICK_DATA_API, SELECTOR_DATA_SLIDE, Carousel._dataApiClickHandler);
+    jquery2.default(window).on(EVENT_LOAD_DATA_API, () => {
+      const carousels = [].slice.call(document.querySelectorAll(SELECTOR_DATA_RIDE));
+      for (let i = 0, len = carousels.length; i < len; i++) {
+        const $carousel = jquery2.default(carousels[i]);
+        Carousel._jQueryInterface.call($carousel, $carousel.data());
+      }
+    });
+    jquery2.default.fn[NAME] = Carousel._jQueryInterface;
+    jquery2.default.fn[NAME].Constructor = Carousel;
+    jquery2.default.fn[NAME].noConflict = () => {
+      jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
+      return Carousel._jQueryInterface;
+    };
+    var carousel_default = Carousel;
+  });
+
+  // node_modules/ev-emitter/ev-emitter.js
+  var require_ev_emitter = __commonJS((exports, module) => {
+    (function(global, factory) {
+      if (typeof define == "function" && define.amd) {
+        define(factory);
+      } else if (typeof module == "object" && module.exports) {
+        module.exports = factory();
+      } else {
+        global.EvEmitter = factory();
+      }
+    })(typeof window != "undefined" ? window : exports, function() {
+      "use strict";
+      function EvEmitter() {
+      }
+      var proto = EvEmitter.prototype;
+      proto.on = function(eventName, listener) {
+        if (!eventName || !listener) {
+          return;
+        }
+        var events = this._events = this._events || {};
+        var listeners = events[eventName] = events[eventName] || [];
+        if (listeners.indexOf(listener) == -1) {
+          listeners.push(listener);
+        }
+        return this;
+      };
+      proto.once = function(eventName, listener) {
+        if (!eventName || !listener) {
+          return;
+        }
+        this.on(eventName, listener);
+        var onceEvents = this._onceEvents = this._onceEvents || {};
+        var onceListeners = onceEvents[eventName] = onceEvents[eventName] || {};
+        onceListeners[listener] = true;
+        return this;
+      };
+      proto.off = function(eventName, listener) {
+        var listeners = this._events && this._events[eventName];
+        if (!listeners || !listeners.length) {
+          return;
+        }
+        var index = listeners.indexOf(listener);
+        if (index != -1) {
+          listeners.splice(index, 1);
+        }
+        return this;
+      };
+      proto.emitEvent = function(eventName, args) {
+        var listeners = this._events && this._events[eventName];
+        if (!listeners || !listeners.length) {
+          return;
+        }
+        listeners = listeners.slice(0);
+        args = args || [];
+        var onceListeners = this._onceEvents && this._onceEvents[eventName];
+        for (var i = 0; i < listeners.length; i++) {
+          var listener = listeners[i];
+          var isOnce = onceListeners && onceListeners[listener];
+          if (isOnce) {
+            this.off(eventName, listener);
+            delete onceListeners[listener];
+          }
+          listener.apply(this, args);
+        }
+        return this;
+      };
+      proto.allOff = function() {
+        delete this._events;
+        delete this._onceEvents;
+      };
+      return EvEmitter;
+    });
+  });
+
+  // node_modules/imagesloaded/imagesloaded.js
+  var require_imagesloaded = __commonJS((exports, module) => {
+    /*!
+     * imagesLoaded v4.1.4
+     * JavaScript is all like "You images are done yet or what?"
+     * MIT License
+     */
+    (function(window2, factory) {
+      "use strict";
+      if (typeof define == "function" && define.amd) {
+        define([
+          "ev-emitter/ev-emitter"
+        ], function(EvEmitter) {
+          return factory(window2, EvEmitter);
+        });
+      } else if (typeof module == "object" && module.exports) {
+        module.exports = factory(window2, require_ev_emitter());
+      } else {
+        window2.imagesLoaded = factory(window2, window2.EvEmitter);
+      }
+    })(typeof window !== "undefined" ? window : exports, function factory(window2, EvEmitter) {
+      "use strict";
+      var $3 = window2.jQuery;
+      var console2 = window2.console;
+      function extend(a, b) {
+        for (var prop in b) {
+          a[prop] = b[prop];
+        }
+        return a;
+      }
+      var arraySlice = Array.prototype.slice;
+      function makeArray(obj) {
+        if (Array.isArray(obj)) {
+          return obj;
+        }
+        var isArrayLike = typeof obj == "object" && typeof obj.length == "number";
+        if (isArrayLike) {
+          return arraySlice.call(obj);
+        }
+        return [obj];
+      }
+      function ImagesLoaded2(elem, options, onAlways) {
+        if (!(this instanceof ImagesLoaded2)) {
+          return new ImagesLoaded2(elem, options, onAlways);
+        }
+        var queryElem = elem;
+        if (typeof elem == "string") {
+          queryElem = document.querySelectorAll(elem);
+        }
+        if (!queryElem) {
+          console2.error("Bad element for imagesLoaded " + (queryElem || elem));
+          return;
+        }
+        this.elements = makeArray(queryElem);
+        this.options = extend({}, this.options);
+        if (typeof options == "function") {
+          onAlways = options;
+        } else {
+          extend(this.options, options);
+        }
+        if (onAlways) {
+          this.on("always", onAlways);
+        }
+        this.getImages();
+        if ($3) {
+          this.jqDeferred = new $3.Deferred();
+        }
+        setTimeout(this.check.bind(this));
+      }
+      ImagesLoaded2.prototype = Object.create(EvEmitter.prototype);
+      ImagesLoaded2.prototype.options = {};
+      ImagesLoaded2.prototype.getImages = function() {
+        this.images = [];
+        this.elements.forEach(this.addElementImages, this);
+      };
+      ImagesLoaded2.prototype.addElementImages = function(elem) {
+        if (elem.nodeName == "IMG") {
+          this.addImage(elem);
+        }
+        if (this.options.background === true) {
+          this.addElementBackgroundImages(elem);
+        }
+        var nodeType = elem.nodeType;
+        if (!nodeType || !elementNodeTypes[nodeType]) {
+          return;
+        }
+        var childImgs = elem.querySelectorAll("img");
+        for (var i = 0; i < childImgs.length; i++) {
+          var img = childImgs[i];
+          this.addImage(img);
+        }
+        if (typeof this.options.background == "string") {
+          var children = elem.querySelectorAll(this.options.background);
+          for (i = 0; i < children.length; i++) {
+            var child = children[i];
+            this.addElementBackgroundImages(child);
+          }
+        }
+      };
+      var elementNodeTypes = {
+        1: true,
+        9: true,
+        11: true
+      };
+      ImagesLoaded2.prototype.addElementBackgroundImages = function(elem) {
+        var style = getComputedStyle(elem);
+        if (!style) {
+          return;
+        }
+        var reURL = /url\((['"])?(.*?)\1\)/gi;
+        var matches = reURL.exec(style.backgroundImage);
+        while (matches !== null) {
+          var url = matches && matches[2];
+          if (url) {
+            this.addBackground(url, elem);
+          }
+          matches = reURL.exec(style.backgroundImage);
+        }
+      };
+      ImagesLoaded2.prototype.addImage = function(img) {
+        var loadingImage = new LoadingImage(img);
+        this.images.push(loadingImage);
+      };
+      ImagesLoaded2.prototype.addBackground = function(url, elem) {
+        var background = new Background(url, elem);
+        this.images.push(background);
+      };
+      ImagesLoaded2.prototype.check = function() {
+        var _this = this;
+        this.progressedCount = 0;
+        this.hasAnyBroken = false;
+        if (!this.images.length) {
+          this.complete();
+          return;
+        }
+        function onProgress(image, elem, message) {
+          setTimeout(function() {
+            _this.progress(image, elem, message);
+          });
+        }
+        this.images.forEach(function(loadingImage) {
+          loadingImage.once("progress", onProgress);
+          loadingImage.check();
+        });
+      };
+      ImagesLoaded2.prototype.progress = function(image, elem, message) {
+        this.progressedCount++;
+        this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
+        this.emitEvent("progress", [this, image, elem]);
+        if (this.jqDeferred && this.jqDeferred.notify) {
+          this.jqDeferred.notify(this, image);
+        }
+        if (this.progressedCount == this.images.length) {
+          this.complete();
+        }
+        if (this.options.debug && console2) {
+          console2.log("progress: " + message, image, elem);
+        }
+      };
+      ImagesLoaded2.prototype.complete = function() {
+        var eventName = this.hasAnyBroken ? "fail" : "done";
+        this.isComplete = true;
+        this.emitEvent(eventName, [this]);
+        this.emitEvent("always", [this]);
+        if (this.jqDeferred) {
+          var jqMethod = this.hasAnyBroken ? "reject" : "resolve";
+          this.jqDeferred[jqMethod](this);
+        }
+      };
+      function LoadingImage(img) {
+        this.img = img;
+      }
+      LoadingImage.prototype = Object.create(EvEmitter.prototype);
+      LoadingImage.prototype.check = function() {
+        var isComplete = this.getIsImageComplete();
+        if (isComplete) {
+          this.confirm(this.img.naturalWidth !== 0, "naturalWidth");
+          return;
+        }
+        this.proxyImage = new Image();
+        this.proxyImage.addEventListener("load", this);
+        this.proxyImage.addEventListener("error", this);
+        this.img.addEventListener("load", this);
+        this.img.addEventListener("error", this);
+        this.proxyImage.src = this.img.src;
+      };
+      LoadingImage.prototype.getIsImageComplete = function() {
+        return this.img.complete && this.img.naturalWidth;
+      };
+      LoadingImage.prototype.confirm = function(isLoaded, message) {
+        this.isLoaded = isLoaded;
+        this.emitEvent("progress", [this, this.img, message]);
+      };
+      LoadingImage.prototype.handleEvent = function(event) {
+        var method = "on" + event.type;
+        if (this[method]) {
+          this[method](event);
+        }
+      };
+      LoadingImage.prototype.onload = function() {
+        this.confirm(true, "onload");
+        this.unbindEvents();
+      };
+      LoadingImage.prototype.onerror = function() {
+        this.confirm(false, "onerror");
+        this.unbindEvents();
+      };
+      LoadingImage.prototype.unbindEvents = function() {
+        this.proxyImage.removeEventListener("load", this);
+        this.proxyImage.removeEventListener("error", this);
+        this.img.removeEventListener("load", this);
+        this.img.removeEventListener("error", this);
+      };
+      function Background(url, element) {
+        this.url = url;
+        this.element = element;
+        this.img = new Image();
+      }
+      Background.prototype = Object.create(LoadingImage.prototype);
+      Background.prototype.check = function() {
+        this.img.addEventListener("load", this);
+        this.img.addEventListener("error", this);
+        this.img.src = this.url;
+        var isComplete = this.getIsImageComplete();
+        if (isComplete) {
+          this.confirm(this.img.naturalWidth !== 0, "naturalWidth");
+          this.unbindEvents();
+        }
+      };
+      Background.prototype.unbindEvents = function() {
+        this.img.removeEventListener("load", this);
+        this.img.removeEventListener("error", this);
+      };
+      Background.prototype.confirm = function(isLoaded, message) {
+        this.isLoaded = isLoaded;
+        this.emitEvent("progress", [this, this.element, message]);
+      };
+      ImagesLoaded2.makeJQueryPlugin = function(jQuery2) {
+        jQuery2 = jQuery2 || window2.jQuery;
+        if (!jQuery2) {
+          return;
+        }
+        $3 = jQuery2;
+        $3.fn.imagesLoaded = function(options, callback) {
+          var instance = new ImagesLoaded2(this, options, callback);
+          return instance.jqDeferred.promise($3(this));
+        };
+      };
+      ImagesLoaded2.makeJQueryPlugin();
+      return ImagesLoaded2;
+    });
+  });
+
+  // node_modules/jquery-bridget/jquery-bridget.js
+  var require_jquery_bridget = __commonJS((exports, module) => {
+    (function(window2, factory) {
+      if (typeof define == "function" && define.amd) {
+        define(["jquery"], function(jQuery2) {
+          return factory(window2, jQuery2);
+        });
+      } else if (typeof module == "object" && module.exports) {
+        module.exports = factory(window2, require_jquery());
+      } else {
+        window2.jQueryBridget = factory(window2, window2.jQuery);
+      }
+    })(window, function factory(window2, jQuery2) {
+      "use strict";
+      var arraySlice = Array.prototype.slice;
+      var console2 = window2.console;
+      var logError = typeof console2 == "undefined" ? function() {
+      } : function(message) {
+        console2.error(message);
+      };
+      function jQueryBridget2(namespace, PluginClass, $3) {
+        $3 = $3 || jQuery2 || window2.jQuery;
+        if (!$3) {
+          return;
+        }
+        if (!PluginClass.prototype.option) {
+          PluginClass.prototype.option = function(opts) {
+            if (!$3.isPlainObject(opts)) {
+              return;
+            }
+            this.options = $3.extend(true, this.options, opts);
+          };
+        }
+        $3.fn[namespace] = function(arg0) {
+          if (typeof arg0 == "string") {
+            var args = arraySlice.call(arguments, 1);
+            return methodCall(this, arg0, args);
+          }
+          plainCall(this, arg0);
+          return this;
+        };
+        function methodCall($elems, methodName, args) {
+          var returnValue;
+          var pluginMethodStr = "$()." + namespace + '("' + methodName + '")';
+          $elems.each(function(i, elem) {
+            var instance = $3.data(elem, namespace);
+            if (!instance) {
+              logError(namespace + " not initialized. Cannot call methods, i.e. " + pluginMethodStr);
+              return;
+            }
+            var method = instance[methodName];
+            if (!method || methodName.charAt(0) == "_") {
+              logError(pluginMethodStr + " is not a valid method");
+              return;
+            }
+            var value = method.apply(instance, args);
+            returnValue = returnValue === void 0 ? value : returnValue;
+          });
+          return returnValue !== void 0 ? returnValue : $elems;
+        }
+        function plainCall($elems, options) {
+          $elems.each(function(i, elem) {
+            var instance = $3.data(elem, namespace);
+            if (instance) {
+              instance.option(options);
+              instance._init();
+            } else {
+              instance = new PluginClass(elem, options);
+              $3.data(elem, namespace, instance);
+            }
+          });
+        }
+        updateJQuery($3);
+      }
+      function updateJQuery($3) {
+        if (!$3 || $3 && $3.bridget) {
+          return;
+        }
+        $3.bridget = jQueryBridget2;
+      }
+      updateJQuery(jQuery2 || window2.jQuery);
+      return jQueryBridget2;
+    });
+  });
+
   // node_modules/get-size/get-size.js
   var require_get_size = __commonJS((exports, module) => {
     /*!
@@ -9107,7 +9623,7 @@
     });
   });
 
-  // node_modules/desandro-matches-selector/matches-selector.js
+  // node_modules/masonry-layout/node_modules/desandro-matches-selector/matches-selector.js
   var require_matches_selector = __commonJS((exports, module) => {
     (function(window2, factory) {
       "use strict";
@@ -9143,7 +9659,7 @@
     });
   });
 
-  // node_modules/fizzy-ui-utils/utils.js
+  // node_modules/masonry-layout/node_modules/fizzy-ui-utils/utils.js
   var require_utils = __commonJS((exports, module) => {
     (function(window2, factory) {
       if (typeof define == "function" && define.amd) {
@@ -9290,7 +9806,7 @@
     });
   });
 
-  // node_modules/outlayer/item.js
+  // node_modules/masonry-layout/node_modules/outlayer/item.js
   var require_item = __commonJS((exports, module) => {
     (function(window2, factory) {
       if (typeof define == "function" && define.amd) {
@@ -9639,7 +10155,7 @@
     });
   });
 
-  // node_modules/outlayer/outlayer.js
+  // node_modules/masonry-layout/node_modules/outlayer/outlayer.js
   var require_outlayer = __commonJS((exports, module) => {
     /*!
      * Outlayer v2.1.1
@@ -10177,9 +10693,9 @@
       }
     })(window, function factory(Outlayer, getSize) {
       "use strict";
-      var Masonry = Outlayer.create("masonry");
-      Masonry.compatOptions.fitWidth = "isFitWidth";
-      var proto = Masonry.prototype;
+      var Masonry2 = Outlayer.create("masonry");
+      Masonry2.compatOptions.fitWidth = "isFitWidth";
+      var proto = Masonry2.prototype;
       proto._resetLayout = function() {
         this.getSize();
         this._getMeasurement("columnWidth", "outerWidth");
@@ -10312,439 +10828,12 @@
         this.getContainerWidth();
         return previousWidth != this.containerWidth;
       };
-      return Masonry;
+      return Masonry2;
     });
   });
 
-  // node_modules/bootstrap/js/src/carousel.js
-  var require_carousel = __commonJS((exports) => {
-    __export(exports, {
-      default: () => carousel_default
-    });
-    const jquery2 = __toModule(require_jquery());
-    const NAME = "carousel";
-    const VERSION = "4.5.2";
-    const DATA_KEY = "bs.carousel";
-    const EVENT_KEY = `.${DATA_KEY}`;
-    const DATA_API_KEY = ".data-api";
-    const JQUERY_NO_CONFLICT = jquery2.default.fn[NAME];
-    const ARROW_LEFT_KEYCODE = 37;
-    const ARROW_RIGHT_KEYCODE = 39;
-    const TOUCHEVENT_COMPAT_WAIT = 500;
-    const SWIPE_THRESHOLD = 40;
-    const Default = {
-      interval: 5e3,
-      keyboard: true,
-      slide: false,
-      pause: "hover",
-      wrap: true,
-      touch: true
-    };
-    const DefaultType = {
-      interval: "(number|boolean)",
-      keyboard: "boolean",
-      slide: "(boolean|string)",
-      pause: "(string|boolean)",
-      wrap: "boolean",
-      touch: "boolean"
-    };
-    const DIRECTION_NEXT = "next";
-    const DIRECTION_PREV = "prev";
-    const DIRECTION_LEFT = "left";
-    const DIRECTION_RIGHT = "right";
-    const EVENT_SLIDE = `slide${EVENT_KEY}`;
-    const EVENT_SLID = `slid${EVENT_KEY}`;
-    const EVENT_KEYDOWN = `keydown${EVENT_KEY}`;
-    const EVENT_MOUSEENTER = `mouseenter${EVENT_KEY}`;
-    const EVENT_MOUSELEAVE = `mouseleave${EVENT_KEY}`;
-    const EVENT_TOUCHSTART = `touchstart${EVENT_KEY}`;
-    const EVENT_TOUCHMOVE = `touchmove${EVENT_KEY}`;
-    const EVENT_TOUCHEND = `touchend${EVENT_KEY}`;
-    const EVENT_POINTERDOWN = `pointerdown${EVENT_KEY}`;
-    const EVENT_POINTERUP = `pointerup${EVENT_KEY}`;
-    const EVENT_DRAG_START = `dragstart${EVENT_KEY}`;
-    const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`;
-    const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`;
-    const CLASS_NAME_CAROUSEL = "carousel";
-    const CLASS_NAME_ACTIVE = "active";
-    const CLASS_NAME_SLIDE = "slide";
-    const CLASS_NAME_RIGHT = "carousel-item-right";
-    const CLASS_NAME_LEFT = "carousel-item-left";
-    const CLASS_NAME_NEXT = "carousel-item-next";
-    const CLASS_NAME_PREV = "carousel-item-prev";
-    const CLASS_NAME_POINTER_EVENT = "pointer-event";
-    const SELECTOR_ACTIVE = ".active";
-    const SELECTOR_ACTIVE_ITEM = ".active.carousel-item";
-    const SELECTOR_ITEM = ".carousel-item";
-    const SELECTOR_ITEM_IMG = ".carousel-item img";
-    const SELECTOR_NEXT_PREV = ".carousel-item-next, .carousel-item-prev";
-    const SELECTOR_INDICATORS = ".carousel-indicators";
-    const SELECTOR_DATA_SLIDE = "[data-slide], [data-slide-to]";
-    const SELECTOR_DATA_RIDE = '[data-ride="carousel"]';
-    const PointerType = {
-      TOUCH: "touch",
-      PEN: "pen"
-    };
-    class Carousel {
-      constructor(element, config) {
-        this._items = null;
-        this._interval = null;
-        this._activeElement = null;
-        this._isPaused = false;
-        this._isSliding = false;
-        this.touchTimeout = null;
-        this.touchStartX = 0;
-        this.touchDeltaX = 0;
-        this._config = this._getConfig(config);
-        this._element = element;
-        this._indicatorsElement = this._element.querySelector(SELECTOR_INDICATORS);
-        this._touchSupported = "ontouchstart" in document.documentElement || navigator.maxTouchPoints > 0;
-        this._pointerEvent = Boolean(window.PointerEvent || window.MSPointerEvent);
-        this._addEventListeners();
-      }
-      static get VERSION() {
-        return VERSION;
-      }
-      static get Default() {
-        return Default;
-      }
-      next() {
-        if (!this._isSliding) {
-          this._slide(DIRECTION_NEXT);
-        }
-      }
-      nextWhenVisible() {
-        if (!document.hidden && (jquery2.default(this._element).is(":visible") && jquery2.default(this._element).css("visibility") !== "hidden")) {
-          this.next();
-        }
-      }
-      prev() {
-        if (!this._isSliding) {
-          this._slide(DIRECTION_PREV);
-        }
-      }
-      pause(event) {
-        if (!event) {
-          this._isPaused = true;
-        }
-        if (this._element.querySelector(SELECTOR_NEXT_PREV)) {
-          util_default.triggerTransitionEnd(this._element);
-          this.cycle(true);
-        }
-        clearInterval(this._interval);
-        this._interval = null;
-      }
-      cycle(event) {
-        if (!event) {
-          this._isPaused = false;
-        }
-        if (this._interval) {
-          clearInterval(this._interval);
-          this._interval = null;
-        }
-        if (this._config.interval && !this._isPaused) {
-          this._interval = setInterval((document.visibilityState ? this.nextWhenVisible : this.next).bind(this), this._config.interval);
-        }
-      }
-      to(index) {
-        this._activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
-        const activeIndex = this._getItemIndex(this._activeElement);
-        if (index > this._items.length - 1 || index < 0) {
-          return;
-        }
-        if (this._isSliding) {
-          jquery2.default(this._element).one(EVENT_SLID, () => this.to(index));
-          return;
-        }
-        if (activeIndex === index) {
-          this.pause();
-          this.cycle();
-          return;
-        }
-        const direction = index > activeIndex ? DIRECTION_NEXT : DIRECTION_PREV;
-        this._slide(direction, this._items[index]);
-      }
-      dispose() {
-        jquery2.default(this._element).off(EVENT_KEY);
-        jquery2.default.removeData(this._element, DATA_KEY);
-        this._items = null;
-        this._config = null;
-        this._element = null;
-        this._interval = null;
-        this._isPaused = null;
-        this._isSliding = null;
-        this._activeElement = null;
-        this._indicatorsElement = null;
-      }
-      _getConfig(config) {
-        config = {
-          ...Default,
-          ...config
-        };
-        util_default.typeCheckConfig(NAME, config, DefaultType);
-        return config;
-      }
-      _handleSwipe() {
-        const absDeltax = Math.abs(this.touchDeltaX);
-        if (absDeltax <= SWIPE_THRESHOLD) {
-          return;
-        }
-        const direction = absDeltax / this.touchDeltaX;
-        this.touchDeltaX = 0;
-        if (direction > 0) {
-          this.prev();
-        }
-        if (direction < 0) {
-          this.next();
-        }
-      }
-      _addEventListeners() {
-        if (this._config.keyboard) {
-          jquery2.default(this._element).on(EVENT_KEYDOWN, (event) => this._keydown(event));
-        }
-        if (this._config.pause === "hover") {
-          jquery2.default(this._element).on(EVENT_MOUSEENTER, (event) => this.pause(event)).on(EVENT_MOUSELEAVE, (event) => this.cycle(event));
-        }
-        if (this._config.touch) {
-          this._addTouchEventListeners();
-        }
-      }
-      _addTouchEventListeners() {
-        if (!this._touchSupported) {
-          return;
-        }
-        const start = (event) => {
-          if (this._pointerEvent && PointerType[event.originalEvent.pointerType.toUpperCase()]) {
-            this.touchStartX = event.originalEvent.clientX;
-          } else if (!this._pointerEvent) {
-            this.touchStartX = event.originalEvent.touches[0].clientX;
-          }
-        };
-        const move = (event) => {
-          if (event.originalEvent.touches && event.originalEvent.touches.length > 1) {
-            this.touchDeltaX = 0;
-          } else {
-            this.touchDeltaX = event.originalEvent.touches[0].clientX - this.touchStartX;
-          }
-        };
-        const end = (event) => {
-          if (this._pointerEvent && PointerType[event.originalEvent.pointerType.toUpperCase()]) {
-            this.touchDeltaX = event.originalEvent.clientX - this.touchStartX;
-          }
-          this._handleSwipe();
-          if (this._config.pause === "hover") {
-            this.pause();
-            if (this.touchTimeout) {
-              clearTimeout(this.touchTimeout);
-            }
-            this.touchTimeout = setTimeout((event2) => this.cycle(event2), TOUCHEVENT_COMPAT_WAIT + this._config.interval);
-          }
-        };
-        jquery2.default(this._element.querySelectorAll(SELECTOR_ITEM_IMG)).on(EVENT_DRAG_START, (e) => e.preventDefault());
-        if (this._pointerEvent) {
-          jquery2.default(this._element).on(EVENT_POINTERDOWN, (event) => start(event));
-          jquery2.default(this._element).on(EVENT_POINTERUP, (event) => end(event));
-          this._element.classList.add(CLASS_NAME_POINTER_EVENT);
-        } else {
-          jquery2.default(this._element).on(EVENT_TOUCHSTART, (event) => start(event));
-          jquery2.default(this._element).on(EVENT_TOUCHMOVE, (event) => move(event));
-          jquery2.default(this._element).on(EVENT_TOUCHEND, (event) => end(event));
-        }
-      }
-      _keydown(event) {
-        if (/input|textarea/i.test(event.target.tagName)) {
-          return;
-        }
-        switch (event.which) {
-          case ARROW_LEFT_KEYCODE:
-            event.preventDefault();
-            this.prev();
-            break;
-          case ARROW_RIGHT_KEYCODE:
-            event.preventDefault();
-            this.next();
-            break;
-          default:
-        }
-      }
-      _getItemIndex(element) {
-        this._items = element && element.parentNode ? [].slice.call(element.parentNode.querySelectorAll(SELECTOR_ITEM)) : [];
-        return this._items.indexOf(element);
-      }
-      _getItemByDirection(direction, activeElement) {
-        const isNextDirection = direction === DIRECTION_NEXT;
-        const isPrevDirection = direction === DIRECTION_PREV;
-        const activeIndex = this._getItemIndex(activeElement);
-        const lastItemIndex = this._items.length - 1;
-        const isGoingToWrap = isPrevDirection && activeIndex === 0 || isNextDirection && activeIndex === lastItemIndex;
-        if (isGoingToWrap && !this._config.wrap) {
-          return activeElement;
-        }
-        const delta = direction === DIRECTION_PREV ? -1 : 1;
-        const itemIndex = (activeIndex + delta) % this._items.length;
-        return itemIndex === -1 ? this._items[this._items.length - 1] : this._items[itemIndex];
-      }
-      _triggerSlideEvent(relatedTarget, eventDirectionName) {
-        const targetIndex = this._getItemIndex(relatedTarget);
-        const fromIndex = this._getItemIndex(this._element.querySelector(SELECTOR_ACTIVE_ITEM));
-        const slideEvent = jquery2.default.Event(EVENT_SLIDE, {
-          relatedTarget,
-          direction: eventDirectionName,
-          from: fromIndex,
-          to: targetIndex
-        });
-        jquery2.default(this._element).trigger(slideEvent);
-        return slideEvent;
-      }
-      _setActiveIndicatorElement(element) {
-        if (this._indicatorsElement) {
-          const indicators = [].slice.call(this._indicatorsElement.querySelectorAll(SELECTOR_ACTIVE));
-          jquery2.default(indicators).removeClass(CLASS_NAME_ACTIVE);
-          const nextIndicator = this._indicatorsElement.children[this._getItemIndex(element)];
-          if (nextIndicator) {
-            jquery2.default(nextIndicator).addClass(CLASS_NAME_ACTIVE);
-          }
-        }
-      }
-      _slide(direction, element) {
-        const activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
-        const activeElementIndex = this._getItemIndex(activeElement);
-        const nextElement = element || activeElement && this._getItemByDirection(direction, activeElement);
-        const nextElementIndex = this._getItemIndex(nextElement);
-        const isCycling = Boolean(this._interval);
-        let directionalClassName;
-        let orderClassName;
-        let eventDirectionName;
-        if (direction === DIRECTION_NEXT) {
-          directionalClassName = CLASS_NAME_LEFT;
-          orderClassName = CLASS_NAME_NEXT;
-          eventDirectionName = DIRECTION_LEFT;
-        } else {
-          directionalClassName = CLASS_NAME_RIGHT;
-          orderClassName = CLASS_NAME_PREV;
-          eventDirectionName = DIRECTION_RIGHT;
-        }
-        if (nextElement && jquery2.default(nextElement).hasClass(CLASS_NAME_ACTIVE)) {
-          this._isSliding = false;
-          return;
-        }
-        const slideEvent = this._triggerSlideEvent(nextElement, eventDirectionName);
-        if (slideEvent.isDefaultPrevented()) {
-          return;
-        }
-        if (!activeElement || !nextElement) {
-          return;
-        }
-        this._isSliding = true;
-        if (isCycling) {
-          this.pause();
-        }
-        this._setActiveIndicatorElement(nextElement);
-        const slidEvent = jquery2.default.Event(EVENT_SLID, {
-          relatedTarget: nextElement,
-          direction: eventDirectionName,
-          from: activeElementIndex,
-          to: nextElementIndex
-        });
-        if (jquery2.default(this._element).hasClass(CLASS_NAME_SLIDE)) {
-          jquery2.default(nextElement).addClass(orderClassName);
-          util_default.reflow(nextElement);
-          jquery2.default(activeElement).addClass(directionalClassName);
-          jquery2.default(nextElement).addClass(directionalClassName);
-          const nextElementInterval = parseInt(nextElement.getAttribute("data-interval"), 10);
-          if (nextElementInterval) {
-            this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
-            this._config.interval = nextElementInterval;
-          } else {
-            this._config.interval = this._config.defaultInterval || this._config.interval;
-          }
-          const transitionDuration = util_default.getTransitionDurationFromElement(activeElement);
-          jquery2.default(activeElement).one(util_default.TRANSITION_END, () => {
-            jquery2.default(nextElement).removeClass(`${directionalClassName} ${orderClassName}`).addClass(CLASS_NAME_ACTIVE);
-            jquery2.default(activeElement).removeClass(`${CLASS_NAME_ACTIVE} ${orderClassName} ${directionalClassName}`);
-            this._isSliding = false;
-            setTimeout(() => jquery2.default(this._element).trigger(slidEvent), 0);
-          }).emulateTransitionEnd(transitionDuration);
-        } else {
-          jquery2.default(activeElement).removeClass(CLASS_NAME_ACTIVE);
-          jquery2.default(nextElement).addClass(CLASS_NAME_ACTIVE);
-          this._isSliding = false;
-          jquery2.default(this._element).trigger(slidEvent);
-        }
-        if (isCycling) {
-          this.cycle();
-        }
-      }
-      static _jQueryInterface(config) {
-        return this.each(function() {
-          let data = jquery2.default(this).data(DATA_KEY);
-          let _config = {
-            ...Default,
-            ...jquery2.default(this).data()
-          };
-          if (typeof config === "object") {
-            _config = {
-              ..._config,
-              ...config
-            };
-          }
-          const action = typeof config === "string" ? config : _config.slide;
-          if (!data) {
-            data = new Carousel(this, _config);
-            jquery2.default(this).data(DATA_KEY, data);
-          }
-          if (typeof config === "number") {
-            data.to(config);
-          } else if (typeof action === "string") {
-            if (typeof data[action] === "undefined") {
-              throw new TypeError(`No method named "${action}"`);
-            }
-            data[action]();
-          } else if (_config.interval && _config.ride) {
-            data.pause();
-            data.cycle();
-          }
-        });
-      }
-      static _dataApiClickHandler(event) {
-        const selector = util_default.getSelectorFromElement(this);
-        if (!selector) {
-          return;
-        }
-        const target = jquery2.default(selector)[0];
-        if (!target || !jquery2.default(target).hasClass(CLASS_NAME_CAROUSEL)) {
-          return;
-        }
-        const config = {
-          ...jquery2.default(target).data(),
-          ...jquery2.default(this).data()
-        };
-        const slideIndex = this.getAttribute("data-slide-to");
-        if (slideIndex) {
-          config.interval = false;
-        }
-        Carousel._jQueryInterface.call(jquery2.default(target), config);
-        if (slideIndex) {
-          jquery2.default(target).data(DATA_KEY).to(slideIndex);
-        }
-        event.preventDefault();
-      }
-    }
-    jquery2.default(document).on(EVENT_CLICK_DATA_API, SELECTOR_DATA_SLIDE, Carousel._dataApiClickHandler);
-    jquery2.default(window).on(EVENT_LOAD_DATA_API, () => {
-      const carousels = [].slice.call(document.querySelectorAll(SELECTOR_DATA_RIDE));
-      for (let i = 0, len = carousels.length; i < len; i++) {
-        const $carousel = jquery2.default(carousels[i]);
-        Carousel._jQueryInterface.call($carousel, $carousel.data());
-      }
-    });
-    jquery2.default.fn[NAME] = Carousel._jQueryInterface;
-    jquery2.default.fn[NAME].Constructor = Carousel;
-    jquery2.default.fn[NAME].noConflict = () => {
-      jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
-      return Carousel._jQueryInterface;
-    };
-    var carousel_default = Carousel;
+  // assets/js/script.js
+  var require_script = __commonJS(() => {
   });
 
   // node_modules/bootstrap/js/src/util.js
@@ -10886,10 +10975,14 @@
   require_widget();
   require_lightgallery();
   require_jquery_pjax();
-  require_imagesloaded();
   Spinner = require_spin();
-  require_masonry();
   require_carousel();
+  ImagesLoaded = require_imagesloaded();
+  jQueryBridget = require_jquery_bridget();
+  Masonry = require_masonry();
+  jQueryBridget("masonry", Masonry, window.$);
+  jQueryBridget("imagesLoaded", ImagesLoaded, window.$);
+  require_script();
   var tagURLPrefix = "/tags";
   var paper = {
     setup: function() {
