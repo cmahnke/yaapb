@@ -8,12 +8,15 @@
     "bootstrap": "^4.5.2",
     "imagesloaded": "^4.1.4",
     "jquery": "^3.5.1",
+    "jquery-bridget": "^2.0.1",
     "jquery-pjax": "^2.0.1",
     "jquery-ui": "^1.12.1",
     "lg-fullscreen": "^1.2.1",
     "lightgallery": "^1.7.3",
+    "masonry": "https://github.com/desandro/masonry.git#v2.1.08",
     "masonry-layout": "^4.2.2",
     "modernizr": "^3.11.3",
+    "outlayer": "1.4.2",
     "spin": "^0.0.1"
   },
   "devDependencies": {

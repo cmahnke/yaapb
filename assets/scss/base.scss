@@ -1686,14 +1686,6 @@ h1#title {
     line-height: 1.0em;
 }
 
-#disclaimer {
-    color: lightgrey;
-}
-
-#disclaimer a {
-    color: lightgrey;
-}
-
 body.show #posts .tags {
     display: inline !important;
 }
@@ -1860,6 +1852,15 @@ ul.cameras li a:hover {
 }
 
 #footerInfo {
+
+    a {
+        color: lightgrey;
+    }
+
+    #disclaimer {
+        color: lightgrey;
+    }
+
     p {
         color: lightgrey;
         margin-block-start: .4em;
@@ -1871,4 +1872,17 @@ ul.cameras li a:hover {
 
         }
     }
+}
+
+#posts.index .text .text-body {
+    ul {
+        text-align: left;
+        list-style: square outside;
+        padding-left: .8rem;
+
+        li {
+
+        }
+    }
+
 }

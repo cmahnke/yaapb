@@ -76,11 +76,7 @@
         <div id="page">
             <div id="extra_div_2"></div>
             {{ partial "header.html" . }}
-            <div id="post-wrap" class="wrap">
-                <ul id="posts" class=" show">
-                    {{ block "content" . }}{{ end }}
-                </ul>
-            </div>
+            {{ block "content" . }}{{ end }}
             {{ partial "footer.html" . }}
         </div>
     </body>

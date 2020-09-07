@@ -5,11 +5,21 @@ require('jquery-ui');
 require('lightgallery');
 
 require('jquery-pjax');
-require('imagesloaded');
 Spinner = require('spin');
-require('masonry-layout');
 require('bootstrap/js/src/carousel');
 
+ImagesLoaded = require('imagesloaded');
+jQueryBridget = require('jquery-bridget');
+Masonry = require('masonry-layout');
+
+//yarn add https://github.com/desandro/masonry.git#v2.1.08
+//require('masonry/jquery.masonry.js')
+
+jQueryBridget( 'masonry', Masonry, window.$ );
+jQueryBridget( 'imagesLoaded', ImagesLoaded, window.$ );
+
+
+require('./script.js');
 
 //var Masonry = Outlayer.create('masonry');
 

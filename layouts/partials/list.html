@@ -1,13 +1,16 @@
-{{ $pages := .Pages }}
-{{ if .IsHome }}
-    {{ $pages = .Site.RegularPages }}
-{{ end }}
-{{ $paginator := .Paginate (where $pages "Params.displayinlist" "!=" false) -}}
-{{- range $paginator.Pages -}}
-    {{ partial "page.html" . }}
-{{ end }}
-
-{{ if or ($paginator.HasPrev) ($paginator.HasNext) -}}
+<div id="post-wrap" class="wrap">
+    <ul id="posts" class="index show">
+    {{ $pages := .Pages }}
+    {{ if .IsHome }}
+        {{ $pages = .Site.RegularPages }}
+    {{ end }}
+    {{ $paginator := .Paginate (where $pages "Params.displayinlist" "!=" false) -}}
+    {{- range $paginator.Pages -}}
+        {{ partial "page.html" . }}
+    {{ end }}
+    </ul>
+</div>
+{{ if or $paginator.HasPrev $paginator.HasNext -}}
 <div class="pagination" id="pagination-pages">
   <div class="pagination-links">
     {{ if $paginator.HasPrev }}

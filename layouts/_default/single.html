@@ -2,5 +2,9 @@
   {{ .Title }} · {{ .Site.Title }}
 {{ end }}
 {{ define "content" }}
-  {{ partial "page.html" . }}
+    <div id="post-wrap" class="wrap">
+        <ul id="posts" class="index show">
+          {{ partial "page.html" . }}
+        </ul>
+    </div>
 {{ end }}
