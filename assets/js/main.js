@@ -6,26 +6,23 @@ require('lightgallery');
 
 require('jquery-pjax');
 Spinner = require('spin');
-require('bootstrap/js/src/carousel');
 
-/*
-ImagesLoaded = require('imagesloaded');
-jQueryBridget = require('jquery-bridget');
-Masonry = require('masonry-layout');
-*/
-//yarn add https://github.com/desandro/masonry.git#v2.1.08
+bootstrap = require('bootstrap/dist/js/bootstrap');
 require('masonry/jquery.masonry.js')
-
-//jQueryBridget( 'masonry', Masonry, window.$ );
-//jQueryBridget( 'imagesLoaded', ImagesLoaded, window.$ );
-
 
 require('./script.js');
 
 
-
 /* Modifications
  * Uncaught TypeError: url.indexOf is not a function: https://stackoverflow.com/questions/37738732/jquery-3-0-url-indexof-error
+ * Installing old Vorions from GitHub: yarn add https://github.com/desandro/masonry.git#v2.1.08
+
+ * Components for newer versions
+ *      jQueryBridget = require('jquery-bridget');
+ *      ImagesLoaded = require('imagesloaded');
+ *      jQueryBridget = require('jquery-bridget');
+ *      Masonry = require('masonry-layout');
+ *    Needed dependencies: jquery-bridget outlayer
  */
 
 var tagURLPrefix = '/tags';
@@ -98,13 +95,13 @@ var paper = {
                             l === 0 && e.addClass('active'),
                             l += 1
                     }
-                    a.prev = $('<a class="pagination-newer" href="#features-carousel" data-slide="prev">&#x25C0;</a>'),
-                        a.next = $('<a class="pagination-older" href="#features-carousel" data-slide="next">&#x25B6;</a>'),
+                    a.prev = $('<a class="pagination-newer carousel-control-prev" href="#features-carousel" role="button" data-slide="prev">&#x25C0;</a>'),
+                        a.next = $('<a class="pagination-older carousel-control-next" href="#features-carousel" role="button" data-slide="next">&#x25B6;</a>'),
                         a.arrows = $('<div class="pagination pagination-slideshow" />').append(a.prev).append(a.next),
                         l = a.list.find('.item').length,
                         f = $('<div class="navigation" />');
                     while (l--)
-                        h = $('<em />').html('•').attr('data-index', a.list.find('.item').length - l - 1),
+                        h = $('<em />').html('•').attr('data-index', a.list.find('.item').length - l - 1).attr('data-slide-to', a.list.find('.item').length - l - 1),
                         h.on('click', function(a) {
                             return $('#features .carousel').carousel(parseInt($(this).attr('data-index')))
                         }),
@@ -258,6 +255,7 @@ paper.Notebook.prototype = {
             this.setImageHeights(this.sources[a], c, this.element, b, this.settings.lastNotebook, this.max_height),
             c.className = "notebook-page page-style-" + parseInt(Math.random() * 5),
             c.setAttribute("data-page", this.sources.length - a),
+            //c.setAttribute('onclick', '$(this).click()'),
             c.style.zIndex = a + 1e3,
             this.pages.push(c),
             this.element.appendChild(c),
@@ -542,7 +540,6 @@ paper.MovablePage.prototype = {
     }
 }
 
-
 $(document).ready(function() {
     if (!$('body').hasClass('meta')) {
         window.paper = paper;
@@ -550,15 +547,18 @@ $(document).ready(function() {
     }
     // Lightgallery for a single image
     if ($('#post-wrap').hasClass('single')) {
-        var container = $('div.photo-permalink-container');
-        container.click(function() {
-            container.lightGallery({
-                share: false,
-                autoplay: false,
-                autoplayControls: false,
-                selector: '.post-image'
-            });
-            event.preventDefault();
+        //var container = $('div.photo-permalink-container');
+        $('.photo-permalink-container').lightGallery({
+            share: false,
+            autoplay: false,
+            autoplayControls: false,
+            selector: '.post-image'
+        });
+        $('.photoset_wrap').lightGallery({
+            share: false,
+            autoplay: false,
+            autoplayControls: false,
+            selector: '.post-image'
         });
     }
 });

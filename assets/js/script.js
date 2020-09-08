@@ -1,31 +1,3 @@
-// Inspired by https://gist.github.com/edadams/6038781
-/*
-function openInTumblrLightbox(obj) {
-  event.preventDefault();
-  Tumblr.Lightbox.init([{
-    width: obj.dataset.width,
-    height: obj.dataset.height,
-    low_res: obj.src,
-    high_res: obj.src
-  }], 1);
-}
-*/
-
-/* Lightbox mode for posts with a single image - woks in Chrome */
-
-/*
-$("div.photo-permalink-container a[class != 'photo-permalink']").
-click(function() {
-  event.preventDefault();
-  Tumblr.Lightbox.init([{
-    width: this.children[0].dataset.width,
-    height: this.children[0].dataset.height,
-    low_res: this.children[0].src,
-    high_res: this.children[0].src
-  }], 1);
-  return false;
-});
-*/
 
 /* A hack to get the lightbox working on images in stacks */
 /*
