@@ -574,10 +574,10 @@ jquery-pjax@^2.0.1:
   resolved "https://registry.yarnpkg.com/jquery-pjax/-/jquery-pjax-2.0.1.tgz#6b3a1ba16e644e624bdcfe72eb6b3d96a846f5f2"
   integrity sha1-azoboW5kTmJL3P5y62s9lqhG9fI=
 
-jquery-ui@^1.12.1:
+jquery-ui-dist@^1.12.1:
   version "1.12.1"
-  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
-  integrity sha1-vLQEXI3QU5wTS8FIjN0+dop6nlE=
+  resolved "https://registry.yarnpkg.com/jquery-ui-dist/-/jquery-ui-dist-1.12.1.tgz#5c0815d3cc6f90ff5faaf5b268a6e23b4ca904fa"
+  integrity sha1-XAgV08xvkP9fqvWyaKbiO0ypBPo=
 
 "jquery@>=1.4.2 <4", jquery@>=1.7.0, jquery@^3.5.1:
   version "3.5.1"
@@ -667,9 +667,9 @@ masonry-layout@^4.2.2:
     get-size "^2.0.2"
     outlayer "^2.1.0"
 
-"masonry@https://github.com/desandro/masonry.git#v2.1.08":
+"masonry@https://github.com/desandro/masonry.git#v2.0.8":
   version "0.0.0"
-  resolved "https://github.com/desandro/masonry.git#7bd495ebd18f1c200c192beaf20d1fc1cd5b2fa9"
+  resolved "https://github.com/desandro/masonry.git#e72dcf1d4765d9b9dc6040ac1410fac5b0552b23"
 
 mdurl@^1.0.1:
   version "1.0.1"

@@ -59,24 +59,22 @@
             {{- end -}}
         {{- end -}}
 
-        {{ $link := .RelPermalink }}
-        <div class="{{ $class }}">
+        {{ $link := .Permalink }}
+        <div class="{{ $class }}" {{- if eq $class "photoset_wrap" -}} data-permalink="{{ $link }}" {{- end -}}>
             {{- if eq $class "text-body" -}}
                 {{ .Content }}
             {{- else if eq $class "photo-permalink-container" -}}
                 <a href="{{ $link }}">
                     {{ with index $images 0 }}
-                        <img src="{{ (index . "front").RelPermalink }}" alt="" data-highres="{{ (index . "orig").RelPermalink }}" class="post-image">
+                        <img src="{{ (index . "front").RelPermalink }}" alt="" data-src="{{ (index . "orig").RelPermalink }}" data-highres="{{ (index . "orig").RelPermalink }}" class="post-image">
                     {{ end }}
                 </a>
             {{- else if eq $class "photoset_wrap" -}}
-{{/* <div class="photoset_wrap" data-permalink="{{ $link }}"> */}}
                 {{- range $images -}}
                      <a class="photoset_photo" href="{{ $link }}">
-                          <img src="{{ (index . "front").RelPermalink }}" data-highres="{{ (index . "orig").RelPermalink }}" class="post-image" />
+                          <img src="{{ (index . "front").RelPermalink }}" data-src="{{ (index . "orig").Permalink }}" data-highres="{{ (index . "orig").Permalink }}" class="post-image" />
                      </a>
                 {{- end -}}
-{{/*    </div> */}}
             {{- end -}}
 
             {{- if ne $class "text-body" -}}
