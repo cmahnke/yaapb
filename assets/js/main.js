@@ -188,6 +188,7 @@ paper.Notebook = function(a, b) {
         this.writeMarkup(),
         this.appendElement(),
         $(this.container).show()
+        $(this).trigger('notebook:initialized');
 };
 
 paper.Notebook.prototype = {
@@ -256,6 +257,8 @@ paper.Notebook.prototype = {
             c.className = "notebook-page page-style-" + parseInt(Math.random() * 5),
             c.setAttribute("data-page", this.sources.length - a),
             //c.setAttribute('onclick', '$(this).click()'),
+            c.setAttribute('data-src', $(this.container.children[a]).find('img').data('src')),
+            c.setAttribute('data-thumb', $(this.container.children[a]).find('img').data('thumb')),
             c.style.zIndex = a + 1e3,
             this.pages.push(c),
             this.element.appendChild(c),
@@ -373,8 +376,20 @@ paper.Notebook.prototype = {
         if (this.dragged)
             return this.dragged = !1,
                 !0;
-        if (!$("body").hasClass("show"))
+
+        if (!$("body").hasClass("show")) {
             return window.location.href = this.permalink
+        } else {
+            // Lightgallery for a image stack
+            var gallery = [];
+            $(this.container).find('.notebook-page').each(function () {
+                gallery.push({src: $(this).data('src'), thumb: $(this).data('thumb')});
+            });
+            $(this).lightGallery({
+                dynamic: true,
+                dynamicEl: gallery
+            });
+        }
     },
     flip: function() {
         var a, b, c, d, e, f, g, h, i = this;
@@ -541,20 +556,14 @@ paper.MovablePage.prototype = {
 }
 
 $(document).ready(function() {
-    if (!$('body').hasClass('meta')) {
+    if (!$('body').hasClass('meta') && !$('post-wrap').hasClass('single')) {
         window.paper = paper;
         paper.setup();
     }
-    // Lightgallery for a single image
+
     if ($('#post-wrap').hasClass('single')) {
-        //var container = $('div.photo-permalink-container');
+        // Lightgallery for a single image
         $('.photo-permalink-container').lightGallery({
-            share: false,
-            autoplay: false,
-            autoplayControls: false,
-            selector: '.post-image'
-        });
-        $('.photoset_wrap').lightGallery({
             share: false,
             autoplay: false,
             autoplayControls: false,

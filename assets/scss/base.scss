@@ -1736,7 +1736,19 @@ body {
   }
 
   &.meta {
+    #posts.index .text {
+
+        .post-title a {
+            font-size: 48px;
+        }
+
+        .text-body {
+            max-height: unset;
+        }
+    }
+
     .post-pad {
+
       ul {
         list-style-type: square;
         margin-left: 26px;
