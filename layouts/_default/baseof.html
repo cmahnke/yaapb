@@ -22,8 +22,8 @@
     {{- end -}}
 
     {{ $defines := dict "process.env.NODE_ENV" `"production"` }}
-    {{ $opts := dict "targetPath" "js/main.js" "defines" $defines "minify" false }}
-    {{ $theme := resources.Get "js/main.js" | js.Build $opts }}
+    {{ $opts := dict "targetPath" "js/main.js" "defines" $defines "minify" true }}
+    {{ $theme := resources.Get "js/main.js" | minify | js.Build $opts }}
 
     {{- $js := slice $theme | resources.Concat "js/concated.js" | fingerprint -}}
 
@@ -32,8 +32,6 @@
     {{ $options := (dict "targetPath" "base.css" "outputStyle" "compressed") -}}
     {{- $ourTemplate := resources.Get "scss/base.scss" -}}
     {{- $ourStyle := $ourTemplate | resources.ExecuteAsTemplate "scss/base.scss" . | toCSS $options -}}
-
-
     {{- $lightgalleryStyle := resources.Get "css/lightgallery/lightgallery.css" -}}
     {{- $style := slice $lightgalleryStyle $ourStyle | resources.Concat "css/concated.css" | minify | fingerprint -}}
     <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}">

@@ -72,7 +72,7 @@
             {{- else if eq $class "photoset_wrap" -}}
                 {{- range $images -}}
                      <a class="photoset_photo" href="{{ $link }}">
-                          <img src="{{ (index . "front").RelPermalink }}" data-src="{{ (index . "orig").Permalink }}" data-highres="{{ (index . "orig").Permalink }}" class="post-image" />
+                          <img src="{{ (index . "front").RelPermalink }}" data-src="{{ (index . "orig").Permalink }}" data-thumb="{{ (index . "thumb").Permalink }}" data-highres="{{ (index . "orig").Permalink }}" class="post-image" />
                      </a>
                 {{- end -}}
             {{- end -}}

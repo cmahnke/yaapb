@@ -556,7 +556,7 @@ paper.MovablePage.prototype = {
 }
 
 $(document).ready(function() {
-    if (!$('body').hasClass('meta') && !$('post-wrap').hasClass('single')) {
+    if (!$('body').hasClass('meta') && !$('#posts-wrap').hasClass('single')) {
         window.paper = paper;
         paper.setup();
     }
