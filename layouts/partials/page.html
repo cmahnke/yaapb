@@ -17,6 +17,12 @@
             {{- if not .Params.metaPage -}}
               {{ partial "post/date.html" . }}
               {{ partial "post/tags.html" . }}
+              {{ if and .Site.Params.linkTumblr .Params.tumblr_url }}
+                  <div class="tumblr">
+                      <h4>Original entry</h4>
+                      <a href="{{ .Params.tumblr_url }}">Original on Tumblr</a>
+                  </div>
+              {{ end }}
             {{ else }}
                 <h3 class="post-title"><a href="">{{ .Title }}</a></h3>
             {{ end }}
@@ -60,7 +66,7 @@
         {{- end -}}
 
         {{ $link := .Permalink }}
-        <div class="{{ $class }}" {{- if eq $class "photoset_wrap" -}} data-permalink="{{ $link }}" {{- end -}}>
+        <div class="{{ $class }}" {{- if eq $class "photoset_wrap" }} data-permalink="{{ $link }}" {{- end -}}>
             {{- if eq $class "text-body" -}}
                 {{ .Content }}
             {{- else if eq $class "photo-permalink-container" -}}

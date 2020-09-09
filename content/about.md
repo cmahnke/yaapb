@@ -33,6 +33,10 @@ Each stack of images is tagged with film (cross processing, expired film), camer
 
 This page(s) have been generated with [Hugo](https://gohugo.io/).
 
+The theme is based on the [Tumblr](https://www.tumblr.com/) theme [Paper Stacks](https://www.tumblr.com/theme/36202), a collaboration by [FiftyThree](https://www.fiftythree.com/tumblr/via/theme) and [ALLDAYEVERYDAY](https://www.alldayeveryday.com/).
+
+[Inconsolata](https://github.com/googlefonts/inconsolata) and [Playfair Display](https://github.com/clauseggers/Playfair-Display) are used as fonts - if installed on your computer.
+
 The [Tagcloud](http://www.johann-oberdorfer.eu/blog/2020/02/23/20-02-23_tag_cloud_for_hugo/) and the [lightGallery](https://sachinchoolur.github.io/lightGallery/) are taken from the provided links.
 
 The page is hosted by [GitHub](https://github.com/).

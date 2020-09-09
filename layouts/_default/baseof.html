@@ -22,7 +22,7 @@
     {{- end -}}
 
     {{ $defines := dict "process.env.NODE_ENV" `"production"` }}
-    {{ $opts := dict "targetPath" "js/main.js" "defines" $defines "minify" true }}
+    {{ $opts := dict "targetPath" "js/main.js" "defines" $defines "minify" false }}
     {{ $theme := resources.Get "js/main.js" | minify | js.Build $opts }}
 
     {{- $js := slice $theme | resources.Concat "js/concated.js" | fingerprint -}}
@@ -65,10 +65,9 @@
       {{- $class = printf "%s %s" $class "error404" -}}
   {{ end }}
 
-  {{- if hasPrefix .Page.File.Path "tags" -}}
+  {{- if hasPrefix .Page.Path "tags" -}}
       {{- $class = printf "%s %s" $class "tag_page" -}}
   {{- end -}}
-
     <body class="{{ $class }}">
         <div id="extra_div_1"></div>
         <div id="page">

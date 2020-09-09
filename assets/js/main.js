@@ -30,7 +30,7 @@ var tagURLPrefix = '/tags';
 var paper = {
     setup: function() {
         paper.movablePage == null && (paper.movablePage = new paper.MovablePage("#posts.show")),
-            $("body").hasClass("index") && !window.location.href.match(/page/i) && !$("body").hasClass("tag_page") && paper.features.load(),
+            $("body").hasClass("index") && !window.location.href.match(/post/i) && !$("body").hasClass("tag_page") && paper.features.load(),
             paper.$posts = $("#posts.index"),
             paper.$posts.imagesLoaded(function() {
                 return paper.books.build()
@@ -151,7 +151,7 @@ var paper = {
     },
     books: {
         build: function() {
-            if (typeof Modernizr != "undefined" && Modernizr !== null && Modernizr.csstransforms)
+            if (typeof Modernizr != "undefined" && Modernizr !== null && Modernizr.csstransforms) {
                 return $(".photoset_wrap").length === 0 && paper.$posts.masonry(),
                     $(".photoset_wrap").each(function(a) {
                         var b, c, d, e, f, g;
@@ -168,6 +168,7 @@ var paper = {
                         if (d.data("notebook") != null)
                             return c = $(this).closest(".post").addClass("notebooked")
                     })
+                }
         }
     }
 };
@@ -234,8 +235,13 @@ paper.Notebook.prototype = {
                                 marginLeft: a
                             })
                     }));
-            if (d && e)
-                return paper.$posts.masonry()
+            /*
+             *  !$('#posts-wrap').hasClass('single') disables Masonry for single pages
+             *  !$('body').hasClass('tag_page') diabales Masonry for s tag pages
+             */
+            if (d && e && !$('#posts-wrap').hasClass('single') && !$('body').hasClass('tag_page')) {
+                return paper.$posts.masonry();
+            }
         })
     },
     writeMarkup: function() {
@@ -556,7 +562,7 @@ paper.MovablePage.prototype = {
 }
 
 $(document).ready(function() {
-    if (!$('body').hasClass('meta') && !$('#posts-wrap').hasClass('single')) {
+    if (!$('body').hasClass('meta')) {
         window.paper = paper;
         paper.setup();
     }
