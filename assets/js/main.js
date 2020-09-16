@@ -442,8 +442,8 @@ paper.MovablePage = function(a, b) {
     if (!this.element || !$.support.pjax)
         return null;
     b || (b = {}),
-        this.nextSelector = b.nextSelector || "a.pagination-older",
-        this.prevSelector = b.prevSelector || "a.pagination-newer",
+        this.nextSelector = b.nextSelector || "#features a.pagination-older",
+        this.prevSelector = b.prevSelector || "#features a.pagination-newer",
         this.fragmentSelector = b.fragmentSelector || "#posts",
         this.activateArrows(),
         this.element.addEventListener("touchstart", this, !1),
@@ -576,4 +576,6 @@ $(document).ready(function() {
             selector: '.post-image'
         });
     }
+
+    //$('#pagination-pages .pagination-older, #pagination-pages .pagination-newer').off('click');
 });
