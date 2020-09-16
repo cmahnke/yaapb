@@ -10,9 +10,6 @@ Spinner = require('spin');
 bootstrap = require('bootstrap/dist/js/bootstrap');
 require('masonry/jquery.masonry.js')
 
-require('./script.js');
-
-
 /* Modifications
  * Uncaught TypeError: url.indexOf is not a function: https://stackoverflow.com/questions/37738732/jquery-3-0-url-indexof-error
  * Installing old Vorions from GitHub: yarn add https://github.com/desandro/masonry.git#v2.1.08
