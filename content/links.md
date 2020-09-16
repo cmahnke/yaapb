@@ -1,6 +1,7 @@
 ---
 title: "Links"
 metaPage: true
+displayinlist: false
 ---
 
 This page holds some links to external camera pages.
