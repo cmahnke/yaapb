@@ -442,10 +442,6 @@
   </url>
   
   <url>
-    <loc>https://yaapb.projektemacher.org/special-categories/</loc>
-  </url>
-  
-  <url>
     <loc>https://yaapb.projektemacher.org/categories/</loc>
   </url>
   
@@ -463,6 +459,10 @@
   
   <url>
     <loc>https://yaapb.projektemacher.org/cameras/</loc>
+  </url>
+  
+  <url>
+    <loc>https://yaapb.projektemacher.org/special-categories/</loc>
   </url>
   
 </urlset>

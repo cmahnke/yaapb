@@ -22431,10 +22431,6 @@
     })(window, jQuery);
   });
 
-  // assets/js/script.js
-  var require_script = __commonJS(() => {
-  });
-
   // main.js
   require_modernizr();
   window.$ = window.jQuery = require_jquery();
@@ -22444,7 +22440,6 @@
   Spinner = require_spin();
   bootstrap = require_bootstrap();
   require_jquery_masonry();
-  require_script();
   var tagURLPrefix = "/tags";
   var paper = {setup: function() {
     paper.movablePage == null && (paper.movablePage = new paper.MovablePage("#posts.show")), $("body").hasClass("index") && !window.location.href.match(/post/i) && !$("body").hasClass("tag_page") && paper.features.load(), paper.$posts = $("#posts.index"), paper.$posts.imagesLoaded(function() {
@@ -22620,7 +22615,7 @@
     }
     if (!this.element || !$.support.pjax)
       return null;
-    b || (b = {}), this.nextSelector = b.nextSelector || "a.pagination-older", this.prevSelector = b.prevSelector || "a.pagination-newer", this.fragmentSelector = b.fragmentSelector || "#posts", this.activateArrows(), this.element.addEventListener("touchstart", this, false), this.element.addEventListener("touchmove", this, false), this.element.addEventListener("touchend", this, false);
+    b || (b = {}), this.nextSelector = b.nextSelector || "#features a.pagination-older", this.prevSelector = b.prevSelector || "#features a.pagination-newer", this.fragmentSelector = b.fragmentSelector || "#posts", this.activateArrows(), this.element.addEventListener("touchstart", this, false), this.element.addEventListener("touchmove", this, false), this.element.addEventListener("touchend", this, false);
   };
   paper.MovablePage.prototype = {next: function() {
     var a;
