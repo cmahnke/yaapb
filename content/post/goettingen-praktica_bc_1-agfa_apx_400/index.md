@@ -9,7 +9,7 @@ source: Film 6
 alias:
 - 141728336751
 resources:
-- src: "image0010.jpg"
-- src: "image0011.jpg"
+- src: "0010.jpg"
+- src: "0011.jpg"
 tumblr_url: https://yaapb.tumblr.com/post/141728336751
 ---
