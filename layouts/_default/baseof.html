@@ -21,9 +21,9 @@
       <link rel="canonical" href="{{ .Permalink }}">
     {{- end -}}
 
-    {{ $defines := dict "process.env.NODE_ENV" `"production"` }}
-    {{ $opts := dict "targetPath" "js/main.js" "defines" $defines "minify" false }}
-    {{ $theme := resources.Get "js/main.js" | minify | js.Build $opts }}
+    {{- $defines := dict "process.env.NODE_ENV" `"production"` -}}
+    {{- $opts := dict "targetPath" "js/main.js" "defines" $defines "minify" true -}}
+    {{- $theme := resources.Get "js/main.js" | js.Build $opts -}}
 
     {{- $js := slice $theme | resources.Concat "js/concated.js" | fingerprint -}}
 
