@@ -5,6 +5,38 @@ $font-body-font: Inconsolata, Helvetica, Arial, sans-serif !default;
 $lg-font-path: /fonts/lightgallery !default;
 $lg-image-path: /images/lightgallery !default;
 
+/* Fonts downloaded from https://google-webfonts-helper.herokuapp.com/ */
+@font-face {
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/fonts/Inconsolata_400_normal.woff2) format('woff2'),
+         url(/fonts/Inconsolata_400_normal.woff) format('woff');
+}
+@font-face {
+    font-family: 'Inconsolata';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/fonts/Inconsolata_700_normal.woff2) format('woff2'),
+         url(/fonts/Inconsolata_700_normal.woff) format('woff');
+}
+/* playfair-display-regular - latin-ext_latin */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/playfair-display-v21-latin-ext_latin-regular.woff2') format('woff2'),
+       url('/fonts/playfair-display-v21-latin-ext_latin-regular.woff') format('woff');
+}
+/* playfair-display-700 - latin-ext_latin */
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/playfair-display-v21-latin-ext_latin-700.woff2') format('woff2'),
+       url('/fonts/playfair-display-v21-latin-ext_latin-700.woff') format('woff');
+}
+
 @import "icons";
 /* Start with stuff from Tumblr theme */
 .carousel {
