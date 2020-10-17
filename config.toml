@@ -62,10 +62,6 @@ stylesheets = []
         target = "assets/js/lightgallery"
 
     [[module.mounts]]
-        source = "node_modules/lightgallery/dist/css"
-        target = "assets/css/lightgallery"
-
-    [[module.mounts]]
         source = "node_modules/lightgallery/dist/fonts"
         target = "static/fonts/lightgallery"
 

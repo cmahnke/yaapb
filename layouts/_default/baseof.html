@@ -29,11 +29,10 @@
 
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 
-    {{ $options := (dict "targetPath" "base.css" "outputStyle" "compressed") -}}
+    {{ $options := (dict "targetPath" "base.css" "outputStyle" "compressed" "includePaths" (slice "node_modules/lightgallery/dist/css")) -}}
     {{- $ourTemplate := resources.Get "scss/base.scss" -}}
     {{- $ourStyle := $ourTemplate | resources.ExecuteAsTemplate "scss/base.scss" . | toCSS $options -}}
-    {{- $lightgalleryStyle := resources.Get "css/lightgallery/lightgallery.css" -}}
-    {{- $style := slice $lightgalleryStyle $ourStyle | resources.Concat "css/concated.css" | minify | fingerprint -}}
+    {{- $style := slice $ourStyle | resources.Concat "css/concated.css" | minify | fingerprint -}}
     <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}">
 
     {{/* External Styles - Fonts etc */}}

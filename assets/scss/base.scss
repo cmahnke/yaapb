@@ -5,6 +5,8 @@ $font-body-font: Inconsolata, Helvetica, Arial, sans-serif !default;
 $lg-font-path: /fonts/lightgallery !default;
 $lg-image-path: /images/lightgallery !default;
 
+@import "lightgallery";
+
 /* Fonts downloaded from https://google-webfonts-helper.herokuapp.com/ */
 @font-face {
     font-family: 'Inconsolata';
