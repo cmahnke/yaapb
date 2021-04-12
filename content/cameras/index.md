@@ -3,4 +3,4 @@ title: "My cameras"
 metaPage: true
 displayinlist: false
 ---
-{{< html file="content/cameras/cameras.html" >}}
+{{< html/include file="content/cameras/cameras.html" >}}
