@@ -2,13 +2,13 @@
 
 # You need `xmllint`, `tidy` and `xmlstarlet` installed
 
-# Convert to xml
-tidy -i -asxhtml -utf8 --drop-empty-elements no "Source Files/pages/cameras.html" > static/xml/cameras.xhtml
-# Validate
-xmllint --noout static/xml/cameras.xhtml
-[ $? -eq 0 ] || exit $?;
-# Extract body
-xmlstarlet sel -N "xhtml=http://www.w3.org/1999/xhtml" -t -c "/xhtml:html/xhtml:body/*" static/xml/cameras.xhtml |sed -E 's/ xmlns="[^"]*"//g' | sed -E 's/<([[:alnum:]]+) ([^<]*)\/>/<\1 \2><\/\1>/g' > content/cameras/cameras.html
+## Convert to xml
+#tidy -i -asxhtml -utf8 --drop-empty-elements no "Source Files/pages/cameras.html" > static/xml/cameras.xhtml
+## Validate
+#xmllint --noout static/xml/cameras.xhtml
+#[ $? -eq 0 ] || exit $?;
+## Extract body
+#xmlstarlet sel -N "xhtml=http://www.w3.org/1999/xhtml" -t -c "/xhtml:html/xhtml:body/*" static/xml/cameras.xhtml |sed -E 's/ xmlns="[^"]*"//g' | sed -E 's/<([[:alnum:]]+) ([^<]*)\/>/<\1 \2><\/\1>/g' > content/cameras/cameras.html
 
 # Favicons
 # See https://gist.github.com/pfig/1808188

@@ -4,4 +4,3 @@ resources
 static/images/favicon*
 yarn-error.log
 assets/js/modernizr.js
-content/cameras/cameras.html
