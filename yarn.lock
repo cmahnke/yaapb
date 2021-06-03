@@ -612,12 +612,10 @@ lg-fullscreen@^1.2.1:
   dependencies:
     jquery ">=1.7.0"
 
-lightgallery@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/lightgallery/-/lightgallery-1.10.0.tgz#74ae0c198784a235159885588842ed5123e14b94"
-  integrity sha512-3yjU2JATPFQxbcA0GglkWrdwC3Fjy9jjlvDymCrH4JizU2hN60z3r1Q4almFGcV/YFKIDWnD5k8o7zvFcTdaMg==
-  dependencies:
-    jquery ">=1.7.0"
+lightgallery@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/lightgallery/-/lightgallery-2.1.1.tgz#dbd5e714848b250d5f1cb38cc51e5f8a08d62b8a"
+  integrity sha512-bB2C82APU75HX8ekKhdPSbncQuSgNjS4c9KBj0Bwz64xQtgZW70famYIitNaNwi4KegU6ItxvTT4rSNWj7JkXw==
 
 linkify-it@^2.0.0:
   version "2.2.0"
