@@ -44,7 +44,7 @@ The page is hosted by [GitHub](https://github.com/).
 
 # Contact
 
-"YAAPB" is a [project](https://projektemacher.org) made by *Christian Mahnke*.
+"YAAPB" is a [project](https://projektemacher.org) made by **[Christian Mahnke](https://christianmahnke.de/)**.
 
 Contact is possible via [E-Mail](mailto:yaapb@projektemacher.org).
 
