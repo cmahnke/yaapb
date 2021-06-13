@@ -1,5 +1,5 @@
 ---
-date: "2016-03-22T09:51:36Z"
+date: 2016-03-22T09:51:36Z
 tags:
 - Bassum
 - Kodak Gold 200

@@ -1,5 +1,5 @@
 ---
-date: "2020-08-22T08:26:19+02:00"
+date: 2020-08-22T08:26:19+02:00
 title: "Moved to Projektemacher.org"
 tags:
 - Status

@@ -1,5 +1,5 @@
 ---
-date: "2019-04-27T15:01:22Z"
+date: 2019-04-27T15:01:22Z
 tags:
 - Göttingen
 - Expired Film

@@ -1,5 +1,5 @@
 ---
-date: "2019-05-17T09:38:12Z"
+date: 2019-05-17T09:38:12Z
 tags:
 - Göttingen
 - Campus

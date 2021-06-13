@@ -1,5 +1,5 @@
 ---
-date: "2017-07-03T16:59:50Z"
+date: 2017-07-03T16:59:50Z
 tags:
 - Paris
 - Found Negative

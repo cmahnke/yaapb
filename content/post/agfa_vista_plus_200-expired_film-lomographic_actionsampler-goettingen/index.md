@@ -1,5 +1,5 @@
 ---
-date: "2017-06-27T21:14:26Z"
+date: 2017-06-27T21:14:26Z
 tags:
 - AGFA Vista Plus 200
 - Expired Film

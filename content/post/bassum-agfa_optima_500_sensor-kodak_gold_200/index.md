@@ -1,5 +1,5 @@
 ---
-date: "2016-04-09T19:58:44Z"
+date: 2016-04-09T19:58:44Z
 tags:
 - Bassum
 - Agfa Optima 500 Sensor

@@ -1,5 +1,5 @@
 ---
-date: "2017-06-07T19:13:37Z"
+date: 2017-06-07T19:13:37Z
 tags:
 - Göttingen
 - Kodak Gold 200

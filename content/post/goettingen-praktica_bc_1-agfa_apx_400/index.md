@@ -1,5 +1,5 @@
 ---
-date: "2016-03-26T18:39:54Z"
+date: 2016-03-26T18:39:54Z
 tags:
 - Göttingen
 - Praktica BC 1

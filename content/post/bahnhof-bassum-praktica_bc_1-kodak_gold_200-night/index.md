@@ -1,5 +1,5 @@
 ---
-date: "2016-02-23T22:56:27Z"
+date: 2016-02-23T22:56:27Z
 tags:
 - Bahnhof
 - Bassum

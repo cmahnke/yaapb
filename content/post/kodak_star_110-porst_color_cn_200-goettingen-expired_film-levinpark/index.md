@@ -1,5 +1,5 @@
 ---
-date: "2017-07-20T17:20:28Z"
+date: 2017-07-20T17:20:28Z
 tags:
 - Kodak Star 110
 - Porst Color CN 200

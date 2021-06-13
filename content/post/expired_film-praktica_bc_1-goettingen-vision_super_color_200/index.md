@@ -1,5 +1,5 @@
 ---
-date: "2018-02-14T18:54:57Z"
+date: 2018-02-14T18:54:57Z
 tags:
 - Expired Film
 - Praktica BC 1

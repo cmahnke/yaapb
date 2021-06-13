@@ -1,5 +1,5 @@
 ---
-date: "2017-06-27T21:17:07Z"
+date: 2017-06-27T21:17:07Z
 tags:
 - Lomographic ActionSampler
 - AGFA Vista Plus 200

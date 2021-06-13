@@ -1,5 +1,5 @@
 ---
-date: "2016-11-01T18:58:10Z"
+date: 2016-11-01T18:58:10Z
 tags:
 - Göttingen
 - Pouva Start

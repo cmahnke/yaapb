@@ -1,5 +1,5 @@
 ---
-date: "2019-05-17T09:36:17Z"
+date: 2019-05-17T09:36:17Z
 tags:
 - Wendebachstausee
 - Smena Symbol

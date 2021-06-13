@@ -1,5 +1,5 @@
 ---
-date: "2019-04-27T14:54:44Z"
+date: 2019-04-27T14:54:44Z
 source: Film 17
 tags:
 - Göttingen

@@ -1,5 +1,5 @@
 ---
-date: "2016-02-23T22:57:52Z"
+date: 2016-02-23T22:57:52Z
 tags:
 - Verden
 - Aller

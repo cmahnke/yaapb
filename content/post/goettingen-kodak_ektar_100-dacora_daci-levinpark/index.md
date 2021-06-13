@@ -1,5 +1,5 @@
 ---
-date: "2017-07-03T16:57:28Z"
+date: 2017-07-03T16:57:28Z
 tags:
 - Göttingen
 - Kodak Ektar 100

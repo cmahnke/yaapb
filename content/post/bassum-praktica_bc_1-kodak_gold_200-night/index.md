@@ -1,5 +1,5 @@
 ---
-date: "2016-02-23T22:55:28Z"
+date: 2016-02-23T22:55:28Z
 tags:
 - Bassum
 - Praktica BC 1

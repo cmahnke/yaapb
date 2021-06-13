@@ -1,5 +1,5 @@
 ---
-date: "2016-03-26T18:40:56Z"
+date: 2016-03-26T18:40:56Z
 tags:
 - Bremen
 - Praktica BC 1

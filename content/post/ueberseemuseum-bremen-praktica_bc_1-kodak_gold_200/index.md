@@ -1,5 +1,5 @@
 ---
-date: "2016-02-23T22:57:04Z"
+date: 2016-02-23T22:57:04Z
 tags:
 - Überseemuseum
 - Bremen

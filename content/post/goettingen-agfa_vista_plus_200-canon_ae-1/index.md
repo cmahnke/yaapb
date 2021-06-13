@@ -1,5 +1,5 @@
 ---
-date: "2019-05-17T09:36:11Z"
+date: 2019-05-17T09:36:11Z
 tags:
 - Göttingen
 - Agfa Vista Plus 200
