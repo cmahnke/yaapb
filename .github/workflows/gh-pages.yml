@@ -19,7 +19,7 @@ jobs:
           sudo apt-get install libtiff5 imagemagick tidy libxml2-utils xmlstarlet
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3.0.0
+        uses: actions/setup-node@v3.1.1
         with:
           node-version: 10.22.0
 
