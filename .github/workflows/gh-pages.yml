@@ -32,8 +32,14 @@ jobs:
         with:
           hugo-version: '0.104.3'
           extended: true
+
       - name: Build Hugo site
         run: hugo
+
+      - name: Puppeteer
+        run: |
+          ./themes/projektemacher-base/scripts/init/package.json.sh
+          ./themes/projektemacher-base/scripts/github/check-js-errors.sh
 
       - name: Deploy site
         uses: peaceiris/actions-gh-pages@v3
