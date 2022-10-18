@@ -405,7 +405,7 @@ paper.Notebook.prototype = {
                 autoplayControls: false,
                 thumbnail: true
             };
-            lightGallery(this, options);
+            lightGallery(this.get(), options);
         }
     },
     flip: function() {
