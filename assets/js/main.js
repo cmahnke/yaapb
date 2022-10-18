@@ -2,7 +2,11 @@ require('./modernizr');
 
 window.$ = window.jQuery = require('jquery');
 require('jquery-ui-dist/jquery-ui');
-require('lightgallery');
+//require('lightgallery');
+import lightGallery from 'lightgallery';
+import lgFullscreen from 'lightgallery/plugins/fullscreen';
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+
 
 require('jquery-pjax');
 Spinner = require('spin');
@@ -12,7 +16,7 @@ require('masonry/jquery.masonry.js')
 
 /* Modifications
  * Uncaught TypeError: url.indexOf is not a function: https://stackoverflow.com/questions/37738732/jquery-3-0-url-indexof-error
- * Installing old Vorions from GitHub: yarn add https://github.com/desandro/masonry.git#v2.1.08
+ * Installing old versions from GitHub: yarn add https://github.com/desandro/masonry.git#v2.1.08
 
  * Components for newer versions
  *      jQueryBridget = require('jquery-bridget');
@@ -388,10 +392,20 @@ paper.Notebook.prototype = {
             $(this.container).find('.notebook-page').each(function () {
                 gallery.push({src: $(this).data('src'), thumb: $(this).data('thumb')});
             });
+            /*
             $(this).lightGallery({
                 dynamic: true,
                 dynamicEl: gallery
             });
+            */
+            options = {
+                plugins: [lgFullscreen, lgThumbnail],
+                share: false,
+                autoplay: false,
+                autoplayControls: false,
+                thumbnail: true
+            };
+            lightGallery(this, options);
         }
     },
     flip: function() {
@@ -566,12 +580,21 @@ $(document).ready(function() {
 
     if ($('#post-wrap').hasClass('single')) {
         // Lightgallery for a single image
+        /*
         $('.photo-permalink-container').lightGallery({
             share: false,
             autoplay: false,
             autoplayControls: false,
             selector: '.post-image'
-        });
+        });*/
+        options = {
+            plugins: [lgFullscreen],
+            share: false,
+            autoplay: false,
+            autoplayControls: false,
+            thumbnail: true
+        };
+        lightGallery(document.document.querySelectorAll('.photo-permalink-container'), options);
     }
 
     //$('#pagination-pages .pagination-older, #pagination-pages .pagination-newer').off('click');
