@@ -618,9 +618,13 @@ masonry-layout@^4.2.2:
     get-size "^2.0.2"
     outlayer "^2.1.0"
 
-"masonry@https://github.com/desandro/masonry.git#v2.0.8":
-  version "0.0.0"
-  resolved "https://github.com/desandro/masonry.git#e72dcf1d4765d9b9dc6040ac1410fac5b0552b23"
+"masonry@https://github.com/desandro/masonry.git#v4.2.2":
+  version "4.2.2"
+  uid "3b0883cf4a4a046896719b9cf282ea74be7ffecd"
+  resolved "https://github.com/desandro/masonry.git#3b0883cf4a4a046896719b9cf282ea74be7ffecd"
+  dependencies:
+    get-size "^2.0.2"
+    outlayer "^2.1.0"
 
 mdurl@^1.0.1:
   version "1.0.1"
