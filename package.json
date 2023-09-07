@@ -7,17 +7,17 @@
   "dependencies": {
     "bootstrap": "^3.4.1",
     "imagesloaded": "^4.1.4",
-    "jquery": "^3.6.4",
+    "jquery": "^3.7.1",
     "jquery-pjax": "^2.0.1",
     "jquery-ui-dist": "^1.13.2",
     "lg-fullscreen": "^1.2.1",
     "lightgallery": "^2.7.1",
     "masonry": "https://github.com/desandro/masonry.git#v2.0.8",
     "masonry-layout": "^4.2.2",
-    "modernizr": "^3.12.0",
+    "modernizr": "^3.13.0",
     "spin": "^0.0.1"
   },
   "devDependencies": {
-    "eslint": "^8.38.0"
+    "eslint": "^8.48.0"
   }
 }
