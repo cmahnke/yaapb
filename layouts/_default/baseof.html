@@ -51,9 +51,6 @@
     {{ hugo.Generator }}
   </head>
   {{- $class := "show " -}}
-  {{- if hasPrefix .Page.File.Path "about" -}}
-      {{- $class = printf "%s %s" $class "about" -}}
-  {{- end -}}
   {{ if .IsHome }}
       {{- $class = "index" -}}
   {{ end }}
@@ -64,9 +61,15 @@
       {{- $class = printf "%s %s" $class "error404" -}}
   {{ end }}
 
-  {{- if hasPrefix .Page.Path "tags" -}}
-      {{- $class = printf "%s %s" $class "tag_page" -}}
+  {{- with .Page.File -}}
+    {{- if hasPrefix .Path "about" -}}
+        {{- $class = printf "%s %s" $class "about" -}}
+    {{- end -}}
+    {{- if hasPrefix .Path "tags" -}}
+        {{- $class = printf "%s %s" $class "tag_page" -}}
+    {{- end -}}
   {{- end -}}
+
     <body class="{{ $class }}">
         <div id="extra_div_1"></div>
         <div id="page">
