@@ -2,7 +2,6 @@
 date: 2017-06-27T21:15:06Z
 tags:
 - Göttingen
-- featured
 - Lomographic ActionSampler
 - AGFA Vista Plus 200
 - Expired Film
