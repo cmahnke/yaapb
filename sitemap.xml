@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://yaapb.projektemacher.org/post/</loc>
+    <lastmod>2024-03-20T04:06:06+00:00</lastmod>
+  </url><url>
+    <loc>https://yaapb.projektemacher.org/</loc>
+    <lastmod>2024-03-20T04:06:06+00:00</lastmod>
+  </url><url>
     <loc>https://yaapb.projektemacher.org/post/goettingen-olympus-pen-ee_polaroid-200/</loc>
     <lastmod>2024-01-15T21:15:06+00:00</lastmod>
   </url><url>
@@ -14,13 +20,7 @@
     <loc>https://yaapb.projektemacher.org/tags/Polaroid-200/</loc>
     <lastmod>2024-01-15T21:15:06+00:00</lastmod>
   </url><url>
-    <loc>https://yaapb.projektemacher.org/post/</loc>
-    <lastmod>2024-01-15T21:15:06+00:00</lastmod>
-  </url><url>
     <loc>https://yaapb.projektemacher.org/tags/</loc>
-    <lastmod>2024-01-15T21:15:06+00:00</lastmod>
-  </url><url>
-    <loc>https://yaapb.projektemacher.org/</loc>
     <lastmod>2024-01-15T21:15:06+00:00</lastmod>
   </url><url>
     <loc>https://yaapb.projektemacher.org/post/goettingen-kirschblueten-rollei-35_kodak-200/</loc>
