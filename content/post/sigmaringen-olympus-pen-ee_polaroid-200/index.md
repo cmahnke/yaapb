@@ -5,7 +5,6 @@ tags:
 - Olympus Pen EE
 - Polaroid 200
 source: edited
-draft: true
 resources:
 - src: "Brücke.jpg"
 - src: "Schloss.jpg"
