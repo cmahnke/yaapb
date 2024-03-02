@@ -67,6 +67,9 @@ defaultMarkdownHandler = 'goldmark'
           rightDoubleQuote = '&rdquo;'
           rightSingleQuote = '&rsquo;'
 
+[sitemap]
+  changeFreq = 'weekly'
+
 [module]
     [[module.mounts]]
         source = "assets/scss"
