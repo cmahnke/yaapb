@@ -13,6 +13,7 @@ Blogs / Collectors sites
 *   [Classic cameras](http://camarasclassicas.blogspot.com/)
 *   [Matt’s Classic Cameras](http://mattsclassiccameras.com/)
 *   [Die kleine Penti (German)](http://www.diekleinepenti.de/)
+*   [John’s Cameras](https://oldcamera.blog/)
 
 Links lists
 -----------
