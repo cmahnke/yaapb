@@ -47,7 +47,7 @@ jobs:
           ./themes/projektemacher-base/scripts/github/check-js-errors.sh
 
       - name: Archive links
-        run: python ./themes/projektemacher-base/scripts/archive.py -d docs/ -e labs.projektemacher.org,projektemacher.org
+        run: python ./themes/projektemacher-base/scripts/archive.py -d docs/ -e yaapb.projektemacher.org,projektemacher.org
 
       - name: Deploy site
         uses: peaceiris/actions-gh-pages@v4
