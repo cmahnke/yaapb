@@ -6,3 +6,4 @@ yarn-error.log
 assets/js/modernizr.js
 **/.DS_Store
 .hugo_build.lock
+data/stats.json
