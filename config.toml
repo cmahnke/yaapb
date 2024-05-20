@@ -7,7 +7,7 @@ languagecode = "en"
 defaultcontentlanguage = "en"
 disablePathToLower = true
 theme = ["projektemacher-base"]
-#enableGitInfo = true
+enableGitInfo = true
 
 [params]
 author = "Christian Mahnke"
@@ -102,3 +102,6 @@ defaultMarkdownHandler = 'goldmark'
 
 [build]
   writeStats = true
+
+[frontmatter]
+  lastmod = ['lastmod', ':git', 'modified', 'date', 'publishdate', 'pubdate', 'published']
