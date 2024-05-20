@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://yaapb.projektemacher.org/cameras/</loc>
+    <lastmod>2024-05-20T21:33:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://yaapb.projektemacher.org/</loc>
+    <lastmod>2024-05-20T21:33:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://yaapb.projektemacher.org/tags/Bremerhaven/</loc>
     <lastmod>2024-03-20T04:06:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -23,10 +31,6 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://yaapb.projektemacher.org/tags/</loc>
-    <lastmod>2024-03-20T04:06:06+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://yaapb.projektemacher.org/</loc>
     <lastmod>2024-03-20T04:06:06+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -431,9 +435,6 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://yaapb.projektemacher.org/links/</loc>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://yaapb.projektemacher.org/cameras/</loc>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://yaapb.projektemacher.org/special-categories/</loc>
