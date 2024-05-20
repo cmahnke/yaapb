@@ -98,3 +98,6 @@ defaultMarkdownHandler = 'goldmark'
     [[module.mounts]]
         source = "node_modules/lightgallery/images"
         target = "static/images/lightgallery"
+
+[build]
+  writeStats = true
