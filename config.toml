@@ -6,7 +6,8 @@ canonifyurls = true
 languagecode = "en"
 defaultcontentlanguage = "en"
 disablePathToLower = true
-#theme = ["projektemacher-base"]
+theme = ["projektemacher-base"]
+#enableGitInfo = true
 
 [params]
 author = "Christian Mahnke"

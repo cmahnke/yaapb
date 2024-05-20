@@ -10,6 +10,8 @@
 ## Extract body
 #xmlstarlet sel -N "xhtml=http://www.w3.org/1999/xhtml" -t -c "/xhtml:html/xhtml:body/*" static/xml/cameras.xhtml |sed -E 's/ xmlns="[^"]*"//g' | sed -E 's/<([[:alnum:]]+) ([^<]*)\/>/<\1 \2><\/\1>/g' > content/cameras/cameras.html
 
+$PWD/themes/projektemacher-base/scripts/init/i18n.sh
+
 # Favicons
 # See https://gist.github.com/pfig/1808188
 convert "Source Files/Logo/logo.jpg" -resize 256x256 -transparent white static/images/favicon-256.png

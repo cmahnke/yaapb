@@ -1963,3 +1963,14 @@ ul.cameras li a:hover {
 .tumblr {
     display: none;
 }
+
+date.lastmod {
+    margin-top: 2em;
+    display: block;
+    text-align: end;
+
+    &:before {
+      content: 'Last updated: ';
+      font-weight: bold;
+    }
+}
