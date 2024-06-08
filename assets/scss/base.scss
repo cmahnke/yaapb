@@ -1752,6 +1752,11 @@ body.show #posts .photoset_wrap {
     float: inherit;
 }
 
+p.small {
+    font-size: smaller !important;
+    text-align: end !important;
+}
+
 body {
   font-family: $font-body-font;
 
@@ -1907,6 +1912,8 @@ ul.cameras li a:hover {
 }
 
 #footerInfo {
+    display: flex;
+    justify-content: space-between;
 
     a {
         color: lightgrey;

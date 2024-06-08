@@ -7,5 +7,14 @@
         '{{ .Site.Title }}' {{ i18n "projektemacher" | safeHTML }}
       </p>
     </div>
+    <div class="privacy">
+      {{ $privacyUrl := "/privacy" }}
+      {{- if and $.Sites.First.Params.footer.privacyUrl -}}
+        {{ $privacyUrl := $.Sites.First.Params.footer.privacyUrl }}
+      {{- end -}}
+      <p>
+        <a href="{{ $privacyUrl | safeHTML }}" title="{{ i18n "privacyPolicy" | safeHTML }}">{{ i18n "privacyPolicy" | safeHTML }}</a>
+      </p>
+    </div>
   </div>
 </div>
