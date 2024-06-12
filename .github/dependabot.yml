@@ -13,10 +13,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    groups:
-      npm:
-        patterns:
-          - '*'
+
   - package-ecosystem: "gitsubmodule"
     directory: "/"
     schedule:
