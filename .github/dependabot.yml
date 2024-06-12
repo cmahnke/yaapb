@@ -8,7 +8,7 @@ updates:
     groups:
       github-actions:
         patterns:
-        - '*'
+          - '*'
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -16,8 +16,12 @@ updates:
     groups:
       npm:
         patterns:
-        - '*'
+          - '*'
   - package-ecosystem: "gitsubmodule"
     directory: "/"
     schedule:
-      interval:  .github/dependabot.yml
+      interval: "daily"
+    groups:
+      themes:
+        patterns:
+          - '*'
