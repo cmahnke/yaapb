@@ -30,6 +30,7 @@ Camera sites
 *   [Deutsches Kameramuseum](http://www.kameramuseum.de/index.htm)
 *   [SovietCams](http://www.sovietcams.com/index.php)
 *   [Camera History Project](http://www.camerahistoryproject.com/)
+*   [Digitalkamera Museum](https://www.digitalkameramuseum.de/)
 *   [digicammuseum.de](https://www.digicammuseum.de/)
 
 Lenses
