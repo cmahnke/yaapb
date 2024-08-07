@@ -14,7 +14,7 @@
     "lightgallery": "^2.7.2",
     "masonry": "https://github.com/desandro/masonry.git#v2.0.8",
     "masonry-layout": "^4.2.2",
-    "modernizr": "^3.13.0",
+    "modernizr": "^3.13.1",
     "spin": "^0.0.1"
   },
   "devDependencies": {
