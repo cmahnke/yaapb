@@ -13,8 +13,550 @@
       <pubDate>Mon, 20 May 2024 21:33:00 +0200</pubDate>
       
       <guid>https://yaapb.projektemacher.org/cameras/</guid>
-      <description>These are my cameras, not all are working yet...
-Agfa Clack Agfa Isolette 4,5 (not working yet, focus ring jammed) Rebuild Agfa Unjamming a Focus Ring Agfa Optima 500 Sensor YouTube: Agfa Optima 500 sensor Agfa Optima Flash Sensor Wikipedia: Agfa Optima Flash Sensor In Christian Zahns Optiksammlung (German) Beier Beirette SL100N Beier Beirette vsn (broken) Canon Conodate E Manual Canon AE-1 Canon AE-1 Program Dacora Daci Diana De Luxe Load Your 120 Diana with 35mm Film without Using the Special 35mm Back Exa Ib Information about Exa cameras (german) Manual (german) FED 5b Manual (english) Hamaphot P56L (Luxus-Exportmodell) Deutsches Kameramuseum Ihagee Parvola 4 x 6,5 Ihagee Parvola at the Lippischey Kameramuseum Kiev 4 Manual (english) Kiev 19 Manual (english) Kodak Brownie 127 Kodak Brownie 127 Kodak Star 110 Manual (english) Konica C35 Manual Lomo LC-A Overview of LC-A variations Lomographic ActionSampler Mamiya Magazine 35 Manual Minox 35 GT Manual (German) Manual (English) Minox C (broken) Moskva-5 Moskva-5 Olympus Pen EE-2 Manual Pacini X-1 Penti II Manual (German) Polaroid Image System Polaroid Land Camera 1000 Manual Porst Happy Pouva Start Manual (german) Praktica BC-1 Manual (english) German Manual (scan / registration needed) Praktica BCA Manual Praktica MTL 3 Praktica Collector German Wikipedia Manual Revueflex 1000 S Revue Symbol 135 Ricoh Hi-Color 35 Rollei 35 Manual Sida (broken) Smena 8M Manual Smena SL Manual (Russian) Loading 35mm film to your Lomo Smena 8 (and other Smena-type cameras) Smena Symbol Sony MVC-FD81 Manual (PDF) Sony MVC-FD91 Manual (PDF) Vilia-Auto Also known as Belomo Vilia Voigtländer Vito IIa Manual (PDF, english) Voigtländer Vito IIa Werra 1 Manual (PDF, english) Werra 1 at Lippisches Kameramuseum Werra 1 at Wikipedia (German) History of Werra Cameras (German) Yashica Half 17 Rapid Manual Yashica Samurai X 3.</description>
+      <description>&lt;div class=&#34;included-html&#34;&gt;
+    
+        &lt;p&gt;These are my cameras, not all are working yet...&lt;/p&gt;
+        &lt;ul class=&#34;cameras&#34;&gt;
+            &lt;!-- Agfa Clack --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Agfa_Clack&#34; target=&#34;_blank&#34;&gt;Agfa
+                    Clack&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Agfa Isolette 4,5 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Isolette&#34; target=&#34;_blank&#34;&gt;Agfa Isolette 4,5&lt;/a&gt;
+                (not working yet, focus ring jammed) &lt;a class=&#34;fa cam-tag-link no-link&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;!-- &lt;li class=&#34;icon manual&#34;&gt;Manual (english)&lt;/li&gt; --&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;http://www.davidrichert.com/AGFA%20rebuild/agfa.htm&#34;
+                            target=&#34;_blank&#34;&gt;Rebuild Agfa&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;http://www.rolandandcaroline.co.uk/repair/frozenfix.html&#34;
+                            target=&#34;_blank&#34;&gt;Unjamming a Focus Ring&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Agfa Optima 500 Sensor --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Agfa_Optima_500_Sensor&#34; target=&#34;_blank&#34;
+                    &gt;Agfa Optima 500 Sensor&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34;
+                    href=&#34;http:https://yaapb.projektemacher.org/tags/Agfa-Optima-500-Sensor&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=rI5NxKUm0jw&#34;
+                            target=&#34;_blank&#34;&gt;YouTube: Agfa Optima 500 sensor&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Agfa Optima Flash Sensor --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Agfa_Optima_Flash_Sensor&#34; target=&#34;_blank&#34;
+                    &gt;Agfa Optima Flash Sensor&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Agfa_Optima_Flash_Sensor&#34;
+                            target=&#34;_blank&#34;&gt;Wikipedia: Agfa Optima Flash Sensor&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;http://www.optiksammlung.de/Agfa/OptimaFlash.html&#34;
+                            target=&#34;_blank&#34;&gt;In Christian Zahns Optiksammlung (German)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Beier Beirette SL100N --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://www.lippisches-kameramuseum.de/Beier/Beier_Beirette_SL100N.htm&#34;
+                    target=&#34;_blank&#34;&gt;Beier Beirette SL100N&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Beier Beirette vsn --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Beier_Beirette_vsn&#34; target=&#34;_blank&#34;&gt;Beier
+                    Beirette vsn&lt;/a&gt; (broken) &lt;a class=&#34;fa cam-tag-link no-link&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Canon Conodate E --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Canon_Canodate_E&#34; target=&#34;_blank&#34;&gt;Canon Conodate E&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                        href=&#34;https://www.cameraManuals.org/canon_pdf/canon_canodate_e.pdf&#34;
+                        target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Canon AE-1 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Canon_AE-1&#34; target=&#34;_blank&#34;&gt;Canon
+                    AE-1&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;http:https://yaapb.projektemacher.org/tags/Canon-AE-1&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Canon AE-1 Program --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Canon_AE-1_Program&#34; target=&#34;_blank&#34;&gt;Canon
+                    AE-1 Program&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; href=&#34;http:https://yaapb.projektemacher.org/tags/Canon-AE-1-Program&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Dacora Daci --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Dacora_Daci&#34; target=&#34;_blank&#34;&gt;Dacora
+                    Daci&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;http:https://yaapb.projektemacher.org/tags/Dacora-Daci&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Diana De Luxe --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Diana&#34; target=&#34;_blank&#34;&gt;Diana De Luxe&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;https://www.lomography.com/magazine/45491-load-your-120-diana-with-35mm-film-without-using-the-special-35mm-back&#34;
+                            target=&#34;_blank&#34;&gt;Load Your 120 Diana with 35mm Film without Using the
+                            Special 35mm Back&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Exa Ib --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Exa_1b&#34; target=&#34;_blank&#34;&gt;Exa Ib&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;http://www.dresdner-kameras.de/ihagee_exakta/exa/exa.html&#34;
+                            target=&#34;_blank&#34;&gt;Information about Exa cameras (german)&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;https://andreasbuchholz.jimdo.com/app/download/4274697356/EXA+1B.pdf?t=1450714777&#34;
+                            target=&#34;_blank&#34;&gt;Manual (german)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- FED 5b --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://camerapedia.fandom.com/wiki/FED-5&#34; target=&#34;_blank&#34;&gt;FED 5b&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                        href=&#34;http://www.cameraManuals.org/russian_pdf/fed_5b-02.pdf&#34;
+                        target=&#34;_blank&#34;&gt;Manual (english)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Hamaphot P56L --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Pouva_Start&#34; target=&#34;_blank&#34;&gt;Hamaphot P56L (Luxus-Exportmodell)&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                        href=&#34;https://kameramuseum.de/objekte/hamaphot-modell-p-56-l-luxus-exportmodell-2/&#34;
+                        target=&#34;_blank&#34;&gt;Deutsches Kameramuseum&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Ihagee Parvola 4 x 6,5 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Parvola&#34; target=&#34;_blank&#34;&gt;Ihagee Parvola 4 x 6,5&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                        href=&#34;http://lippisches-kameramuseum.de/Ihagee/Ihagee_Parvola_4_6.5.htm&#34;
+                        target=&#34;_blank&#34;&gt;Ihagee Parvola at the Lippischey Kameramuseum&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Kiev 4 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Kiev_4&#34; target=&#34;_blank&#34;&gt;Kiev 4&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;http://www.butkus.org/chinon/russian/kiev-4/kiev-4_kiev-4a.pdf&#34;
+                            target=&#34;_blank&#34;&gt;Manual (english)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Kiev 19 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Kiev-19&#34; target=&#34;_blank&#34;&gt;Kiev 19&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;https://yaapb.projektemacher.org/tags/Kiev-19&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;http://www.cameraManuals.org/russian_pdf/kiev_19m.pdf&#34;
+                            target=&#34;_blank&#34;&gt;Manual (english)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Kodak Brownie 127 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Kodak_Brownie_127&#34; target=&#34;_blank&#34;&gt;Kodak
+                    Brownie 127&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Kodak Disk 8000 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://www.jollinger.com/photo/cam-coll/cameras/Kodak_disc8000.html&#34; target=&#34;_blank&#34;&gt;Kodak
+                    Brownie 127&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Kodak Star 110 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Kodak_Star_110&#34; target=&#34;_blank&#34;&gt;Kodak Star
+                    110&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;http:https://yaapb.projektemacher.org/tags/Kodak-Star-110&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.kodak.com/global/en/service/110/star/ownerManual/toc.shtml&#34;
+                            target=&#34;_blank&#34;&gt;Manual (english)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Konica C35 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Konica_C35&#34; target=&#34;_blank&#34;&gt;Konica C35&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                        href=&#34;https://www.butkus.org/chinon/konica/konica_c35/konica_c35-splash.htm&#34;
+                        target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Lomo LC-A --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/LOMO_LC-A&#34; target=&#34;_blank&#34;&gt;Lomo LC-A&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;http:https://yaapb.projektemacher.org/tags/Lomo-LC-A&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;http://www.sovietcams.com/index.php?1813641338&#34;
+                            target=&#34;_blank&#34;&gt;Overview of LC-A variations&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Lomographic ActionSampler --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Lomographic_ActionSampler&#34;
+                    target=&#34;_blank&#34;&gt;Lomographic ActionSampler&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34;
+                    href=&#34;http:https://yaapb.projektemacher.org/tags/Lomographic-ActionSampler&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Mamiya Magazine 35 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Mamiya_Magazine_35&#34; target=&#34;_blank&#34;&gt;Mamiya
+                    Magazine 35&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.butkus.org/chinon/mamiya/mamiya_magazine-35/mamiya_magazine-35.htm&#34;
+                            target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Minox 35 GT --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://camerapedia.fandom.com/wiki/Minox_35_GT&#34; target=&#34;_blank&#34;&gt;Minox 35
+                    GT&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.minox.com/index.php?id=1156&amp;L=1&amp;file=fileadmin%2Fdownloads%2Fbedienungsanleitungen%2F35mm%2FMinox_35_GT_lang_d.pdf&#34;
+                            target=&#34;_blank&#34;&gt;Manual (German)&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.minox.com/index.php?id=1156&amp;L=1&amp;file=fileadmin%2Fdownloads%2Fbedienungsanleitungen%2F35mm%2FMinox_35_GT_lang_e.pdf&#34;
+                            target=&#34;_blank&#34;&gt;Manual (English)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Minox C --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Minox_C&#34; target=&#34;_blank&#34;&gt;Minox C&lt;/a&gt; (broken)
+                    &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;
+                &gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Moskva-5 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Moskva-5&#34; target=&#34;_blank&#34;&gt;Moskva-5&lt;/a&gt;
+                    &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;
+                &gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                  &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;https://camerapedia.fandom.com/wiki/Moskva-5&#34;
+                          target=&#34;_blank&#34;&gt;Moskva-5&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Olympus Pen EE --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://camerapedia.fandom.com/wiki/Moskva-5&#34; target=&#34;_blank&#34;
+                    &gt;Olympus Pen EE-2&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;https://yaapb.projektemacher.org/tags/Olympus-Pen-EE&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.butkus.org/chinon/olympus/olympus_pen_ee/olympus_pen_ee.htm&#34;
+                            target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Pacini X-1 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://www.flickr.com/photos/dailyaviator/6272697328&#34; target=&#34;_blank&#34;
+                    &gt;Pacini X-1&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;https://yaapb.projektemacher.org/tags/Pacini-X-1&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Penti II --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Penti&#34; target=&#34;_blank&#34;&gt;Penti II&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;http://www.butkus.org/chinon/welta/welta_penti_i/welta_penti_i.htm&#34;
+                            target=&#34;_blank&#34;&gt;Manual (German)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Polaroid Image System --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://www.lippisches-kameramuseum.de/Polaroid/Polaroid_Image_System_Elite.htm&#34; target=&#34;_blank&#34;
+                    &gt;Polaroid Image System&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; href=&#34;https://yaapb.projektemacher.org/tags/Polaroid-Image-System&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Polaroid Land Camera 1000 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://camerapedia.fandom.com/wiki/Polaroid_Land_Camera_1000&#34; target=&#34;_blank&#34;&gt;Polaroid Land Camera 1000&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                        href=&#34;https://www.Manualslib.com/Manual/1370966/Polaroid-1000.html&#34;
+                        target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Porst Happy --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://www.kamera-geschichte.de/porst-happy-d/&#34; target=&#34;_blank&#34;&gt;Porst Happy&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Pouva Start --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Pouva_Start&#34; target=&#34;_blank&#34;&gt;Pouva
+                    Start&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;http:https://yaapb.projektemacher.org/tags/Pouva-Start&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;http://www.corff.de/Klappkameras/Anleitungen/Pouva/Anleitung.html&#34;
+                            target=&#34;_blank&#34;&gt;Manual (german)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Praktica BC-1 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://de.wikipedia.org/wiki/Praktica_BC_1&#34; target=&#34;_blank&#34;&gt;Praktica
+                    BC-1&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;https://yaapb.projektemacher.org/tags/Praktica-BC-1&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;http://www.butkus.org/chinon/praktica/praktica_bc1/praktica_bc1-splash.htm&#34;
+                            target=&#34;_blank&#34;&gt;Manual (english)&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;http://www.praktica-b.org/index.php?option=com_docman&amp;amp;task=cat_view&amp;amp;gid=55&amp;amp;itemid=62&#34;
+                            target=&#34;_blank&#34;&gt;German Manual (scan / registration needed)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Praktica BCA --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Praktica_BCA&#34; target=&#34;_blank&#34;&gt;Praktica BCA&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                        href=&#34;https://www.butkus.org/chinon/praktica/praktica_bca/praktica_bca.htm&#34;
+                        target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Praktica MTL 3 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://camerapedia.fandom.com/wiki/Praktica_MTL_3&#34; target=&#34;_blank&#34;&gt;Praktica MTL 3&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                  &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                      href=&#34;http://www.praktica-collector.de/200_Praktica_MTL3.htm&#34;
+                      target=&#34;_blank&#34;&gt;Praktica Collector&lt;/a&gt;&lt;/li&gt;
+                  &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                      href=&#34;https://de.wikipedia.org/wiki/Praktica_MTL3&#34;
+                      target=&#34;_blank&#34;&gt;German Wikipedia&lt;/a&gt;&lt;/li&gt;
+                  &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                      href=&#34;https://www.butkus.org/chinon/praktica/praktica_mtl3/praktica_mtl3-splash.htm&#34;
+                      target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Revueflex 1000 S --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Revueflex_1000_S&#34; target=&#34;_blank&#34;
+                    &gt;Revueflex 1000 S&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Revue Symbol 135 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Foto-Quelle&#34; target=&#34;_blank&#34;
+                &gt;Revue Symbol 135&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Ricoh Hi-Color 35 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Ricoh_Hi-Color_35&#34; target=&#34;_blank&#34;&gt;Ricoh
+                    Hi-Color 35&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Rollei 35 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Rollei_35&#34; target=&#34;_blank&#34;&gt;Rollei 35&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.butkus.org/chinon/rollei/rollei_35/rollei_35-splash.htm&#34;
+                            target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Sida --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Sida&#34; target=&#34;_blank&#34;&gt;Sida&lt;/a&gt; (broken) &lt;a
+                    class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+
+            &lt;!-- Smena 8M --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://camerapedia.fandom.com/wiki/Smena_8M_(2)&#34; target=&#34;_blank&#34;&gt;Smena 8M&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                        href=&#34;http://kiev4.narod.ru/Manuals/man_smena8_e.html&#34;
+                        target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Smena SL --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Smena_SL&#34; target=&#34;_blank&#34;&gt;Smena SL&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a href=&#34;http://cameras.alfredklomp.com/smenasl/Manual/1.htm&#34;
+                            target=&#34;_blank&#34;&gt;Manual (Russian)&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=TAT8tl1M03s&#34;
+                            target=&#34;_blank&#34;&gt;Loading 35mm film to your Lomo Smena 8 (and other
+                            Smena-type cameras)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Smena Symbol --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Smena_Symbol&#34; target=&#34;_blank&#34;&gt;Smena
+                    Symbol&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;http:https://yaapb.projektemacher.org/tags/Smena-Symbol&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Sony MVC-FD81 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://www.digicammuseum.de/kameras/detailansicht/kamera/Kamera/show/mvc-fd81/&#34; target=&#34;_blank&#34;&gt;Sony MVC-FD81&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                  &lt;li class=&#34;icon manual&#34;&gt;&lt;a href=&#34;https://www.sony.com/electronics/support/res/manuals/W000/W0007219M.pdf&#34;
+                          target=&#34;_blank&#34;&gt;Manual (PDF)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Sony MVC-FD91 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;https://www.digicammuseum.de/kameras/detailansicht/kamera/Kamera/show/mvc-fd91/&#34; target=&#34;_blank&#34;&gt;Sony MVC-FD91&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                  &lt;li class=&#34;icon manual&#34;&gt;&lt;a href=&#34;https://www.sony.com/electronics/support/res/manuals/W000/W0007229M.pdf&#34;
+                          target=&#34;_blank&#34;&gt;Manual (PDF)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+
+            &lt;!-- Vilia-Auto --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Vilia-Auto&#34; target=&#34;_blank&#34;&gt;Vilia-Auto&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                  &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Vilia&#34;
+                          target=&#34;_blank&#34;&gt;Also known as Belomo Vilia&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Voigtländer Vito IIa --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Voigtl%C3%A4nder_Vito_IIa&#34;
+                    target=&#34;_blank&#34;&gt;Voigtländer Vito IIa&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;http://www.cameraManuals.org/voigtlander_pdf/voigtlander_vito_iia.pdf&#34;
+                            target=&#34;_blank&#34;&gt;Manual (PDF, english)&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;http://www.lausch.com/vito2a.htm&#34; target=&#34;_blank&#34;
+                            &gt;Voigtländer Vito IIa&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Werra 1 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://lippisches-kameramuseum.de/Zeiss_Carl_Jena/Zeiss_Jena_Werra_1.htm&#34; target=&#34;_blank&#34;&gt;Werra 1&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                  &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                          href=&#34;https://www.cameramanuals.org/pdf_files/werra_1-3.pdf&#34;
+                          target=&#34;_blank&#34;&gt;Manual (PDF, english)&lt;/a&gt;&lt;/li&gt;
+                  &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;http://lippisches-kameramuseum.de/Zeiss_Carl_Jena/Zeiss_Jena_Werra_1.htm&#34; target=&#34;_blank&#34;
+                          &gt;Werra 1 at Lippisches Kameramuseum&lt;/a&gt;&lt;/li&gt;
+                  &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;https://de.wikipedia.org/wiki/Werra_(Kamera)&#34; target=&#34;_blank&#34;
+                          &gt;Werra 1 at Wikipedia (German)&lt;/a&gt;&lt;/li&gt;
+                  &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;https://zeissikonveb.de/start/kameras/werra.html&#34; target=&#34;_blank&#34;
+                          &gt;History of Werra Cameras (German)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+
+              &lt;/li&gt;
+
+
+            &lt;!-- Yashica Half 17 EE Rapid --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Yashica_Half_17_Rapid&#34; target=&#34;_blank&#34;&gt;Yashica Half 17 Rapid&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                        href=&#34;https://www.butkus.org/chinon/yashica/yashica_17_half_rapid/yashica_17_half_rapid.htm&#34;
+                        target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Yashica Samurai X 3.0 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Yashica_Samurai_X3.0&#34; target=&#34;_blank&#34;&gt;Yashica Samurai X 3.0&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                        href=&#34;https://www.butkus.org/chinon/yashica/yashica_samurai/yashica_samurai.htm&#34;
+                        target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                      &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                          href=&#34;https://www.halfframeclub.com/yashicasamurai.html&#34;
+                          target=&#34;_blank&#34;&gt;Yashica Samurai X 3.0 Camera Review at the Half Frame Club&lt;/a&gt;&lt;/li&gt;
+                      &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                          href=&#34;https://www.halfframeclub.com/yashicasamurai.html&#34;
+                          target=&#34;_blank&#34;&gt;Yashica Samurai X 3.0 at Lippisches Kamera Museum (German)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Zenit E --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Zenit-E&#34; target=&#34;_blank&#34;&gt;Zenit E&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.butkus.org/chinon/russian/zenith-e/zenith-e.pdf&#34;
+                            target=&#34;_blank&#34;&gt;Manual (PDF, english)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Zenit EM --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Zenit_EM&#34; target=&#34;_blank&#34;&gt;Zenit EM&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;http://www.zenitcamera.com/mans/zenit-em/zenit-em-der.html&#34;
+                            target=&#34;_blank&#34;&gt;Zenit EM&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Zorki 4 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Zorki-4&#34; target=&#34;_blank&#34;&gt;Zorki 4&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.butkus.org/chinon/russian/zorki/zorki.htm&#34;
+                            target=&#34;_blank&#34;&gt;Manuals (english)&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=XDQMyTRScaA&#34;
+                            target=&#34;_blank&#34;&gt;YouTube: Zorki 4 (Operating)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
+            &lt;!-- Zorki 6 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Zorki_6&#34; target=&#34;_blank&#34;&gt;Zorki 6&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.manualslib.com/manual/1214538/Kmz-Zorki-6.html&#34;
+                            target=&#34;_blank&#34;&gt;Manual (english)&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a href=&#34;https://camerapedia.fandom.com/wiki/Zorki-6&#34;
+                            target=&#34;_blank&#34;&gt;Camerapedia: Zorki 6&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+
+
+&lt;date class=&#34;lastmod&#34;&gt;May 20, 2024&lt;/date&gt;</description>
       </item>
     
     <item>
@@ -86,9 +628,16 @@ Agfa Clack Agfa Isolette 4,5 (not working yet, focus ring jammed) Rebuild Agfa U
       <pubDate>Sat, 22 Aug 2020 08:26:19 +0200</pubDate>
       
       <guid>https://yaapb.projektemacher.org/post/moved-to-projektemacher/</guid>
-      <description>This blog has been moved to Projektemacher . It&amp;rsquo;s now powered by Hugo and GitHub .
-There have been a few updates during this process:
-Images are now available in highest possible resolution A new fullscreen view has been added JavaScript bugs have been fixed </description>
+      <description>&lt;p&gt;This blog has been moved to &lt;a href=&#34;https://projektemacher.org/&#34; target=&#34;_blank&#34;&gt;Projektemacher&lt;/a&gt;
+. It&amp;rsquo;s now powered by &lt;a href=&#34;https://gohugo.io/&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt;
+ and &lt;a href=&#34;https://github.com/&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;
+.&lt;/p&gt;
+&lt;p&gt;There have been a few updates during this process:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Images are now available in highest possible resolution&lt;/li&gt;
+&lt;li&gt;A new fullscreen view has been added&lt;/li&gt;
+&lt;li&gt;JavaScript bugs have been fixed&lt;/li&gt;
+&lt;/ul&gt;</description>
       </item>
     
     <item>
@@ -124,7 +673,7 @@ Images are now available in highest possible resolution A new fullscreen view ha
       <pubDate>Sat, 27 Apr 2019 15:11:58 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/post/goettingen-panorama-expired_film-agfa_hdc_plus_200-olympus_pen_ee/</guid>
-      <description>Composed from three images.</description>
+      <description>&lt;p&gt;Composed from three images.&lt;/p&gt;</description>
       </item>
     
     <item>
@@ -151,7 +700,7 @@ Images are now available in highest possible resolution A new fullscreen view ha
       <pubDate>Tue, 15 Jan 2019 10:26:48 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/post/found_film-expired_film-iso_100-lomo_lc-a/</guid>
-      <description>I’ve found a Lomo LC-A including a film on the flea market in autumn.</description>
+      <description>&lt;p&gt;I’ve found a Lomo LC-A including a film on the flea market in autumn.&lt;/p&gt;</description>
       </item>
     
     <item>
@@ -187,7 +736,7 @@ Images are now available in highest possible resolution A new fullscreen view ha
       <pubDate>Thu, 05 Oct 2017 19:48:38 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/post/found_film-kiev_19-expired_film/</guid>
-      <description>Again I found a old camera on the flea market, that contained a film, but most of the pictures aren’t identifiable.</description>
+      <description>&lt;p&gt;Again I found a old camera on the flea market, that contained a film, but most of the pictures aren’t identifiable.&lt;/p&gt;</description>
       </item>
     
     <item>
@@ -232,7 +781,7 @@ Images are now available in highest possible resolution A new fullscreen view ha
       <pubDate>Sat, 15 Jul 2017 14:15:14 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/post/found_film-smena_symbol-expired_film/</guid>
-      <description>This is from a film which i found inside te Smena Symbol I bought recently on a local flea market. According to the licence plate of one car on another picture, these have been made in the former GDR, in the area of Worbis.</description>
+      <description>&lt;p&gt;This is from a film which i found inside te Smena Symbol I bought recently on a local flea market. According to the licence plate of one car on another picture, these have been made in the former GDR, in the area of Worbis.&lt;/p&gt;</description>
       </item>
     
     <item>
@@ -250,7 +799,7 @@ Images are now available in highest possible resolution A new fullscreen view ha
       <pubDate>Mon, 03 Jul 2017 16:59:30 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/post/new_york-found_negative/</guid>
-      <description>A new category: Found negatives!</description>
+      <description>&lt;p&gt;A new category: Found negatives!&lt;/p&gt;</description>
       </item>
     
     <item>
@@ -439,9 +988,9 @@ Images are now available in highest possible resolution A new fullscreen view ha
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/about/</guid>
-      <description>In January 2016 I had too much free time and decided to try something new. I’ve bought some cheap analog cameras at the flea market and some film.
-This blog shows some of the results. Currently nine out of ten images are garbage. Playing with different cameras and cross processing doesn’t really help either.
-I pay about 5 € for a camera, so buying film and letting processing it, costs me usually three times more then a camera Each stack of images is tagged with film (cross processing, expired film), camera and location.</description>
+      <description>&lt;p&gt;In January 2016 I had too much free time and decided to try something new. I’ve bought some cheap analog cameras at the flea market and some film.&lt;/p&gt;
+&lt;p&gt;This blog shows some of the results. Currently nine out of ten images are garbage. Playing with different cameras and cross processing doesn’t really help either.&lt;/p&gt;
+&lt;p&gt;I pay about 5 € for a camera, so buying film and letting processing it, costs me usually three times more then a camera &lt;/p&gt;</description>
       </item>
     
     <item>
@@ -450,8 +999,11 @@ I pay about 5 € for a camera, so buying film and letting processing it, costs 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/expired-film/</guid>
-      <description>There are several sources for expired film, one can just wait for a few years but better look at your local flea market. It&amp;rsquo;s cheaper (don&amp;rsquo;t pay more then one Euro or a film) and often also older then just waiting until the expiry date is reached.
-All posts with expired film </description>
+      <description>&lt;p&gt;There are several sources for expired film, one can just wait for a few years but better look at your local flea market. It&amp;rsquo;s cheaper (don&amp;rsquo;t pay more then one Euro or a film) and often also older then just waiting until the expiry date is reached.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://yaapb.projektemacher.org/tags/Expired-Film/&#34;&gt;All posts with expired film&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       </item>
     
     <item>
@@ -460,9 +1012,14 @@ All posts with expired film </description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/found-something/</guid>
-      <description>I bought most of my cameras on flea markets and in junk shops. And sometimes they either have still a fit in them or are in a bag or box which also contains some negatives or slides. There can be other things in there as well like filters, manuals or other equipment.
-Sometimes I got those process and digitized, those are part of these categories:
-Found File Found Negative </description>
+      <description>&lt;p&gt;I bought most of my cameras on flea markets and in junk shops. And sometimes they either have still a fit in them or are in a bag or box which also contains some negatives or slides. There can be other things in there as well like filters, manuals or other equipment.&lt;/p&gt;
+&lt;p&gt;Sometimes I got those process and digitized, those are part of these categories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://yaapb.projektemacher.org/tags/Found-Film&#34;&gt;Found File&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://yaapb.projektemacher.org/tags/Found-Negative&#34;&gt;Found Negative&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       </item>
     
     <item>
@@ -471,8 +1028,63 @@ Found File Found Negative </description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/links/</guid>
-      <description>This page holds some links to external camera pages.
-Blogs / Collectors sites All My Cameras Classic cameras Matt’s Classic Cameras Die kleine Penti (German) John’s Cameras Links lists 49 Film Photography Blogs Worth Following Camera sites Alfred’s Camera Page Camera-wiki.org Camerapedia The Land List Deutsches Kameramuseum SovietCams Camera History Project Digitalkamera Museum digicammuseum.de Lenses Vintage Camera Lenses All About Photographic Lenses Manual sites OrphanCameras (Butkus) Other Links Belichtungstabellen, -rechner und -uhren by Photo but More (German) </description>
+      <description>&lt;p&gt;This page holds some links to external camera pages.&lt;/p&gt;
+&lt;h1 id=&#34;blogs--collectors-sites&#34;&gt;Blogs / Collectors sites&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://all-my-cameras.com/&#34; target=&#34;_blank&#34;&gt;All My Cameras&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://camarasclassicas.blogspot.com/&#34; target=&#34;_blank&#34;&gt;Classic cameras&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mattsclassiccameras.com/&#34; target=&#34;_blank&#34;&gt;Matt’s Classic Cameras&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.diekleinepenti.de/&#34; target=&#34;_blank&#34;&gt;Die kleine Penti (German)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://oldcamera.blog/&#34; target=&#34;_blank&#34;&gt;John’s Cameras&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;links-lists&#34;&gt;Links lists&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://petapixel.com/2017/05/17/49-film-photography-blogs-worth-following/&#34; target=&#34;_blank&#34;&gt;49 Film Photography Blogs Worth Following&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;camera-sites&#34;&gt;Camera sites&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://cameras.alfredklomp.com/&#34; target=&#34;_blank&#34;&gt;Alfred’s Camera Page&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://camera-wiki.org/&#34; target=&#34;_blank&#34;&gt;Camera-wiki.org&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Camerapedia&#34; target=&#34;_blank&#34;&gt;Camerapedia&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.rwhirled.com/landlist/landdcam-pack.htm&#34; target=&#34;_blank&#34;&gt;The Land List&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.kameramuseum.de/index.htm&#34; target=&#34;_blank&#34;&gt;Deutsches Kameramuseum&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.sovietcams.com/index.php&#34; target=&#34;_blank&#34;&gt;SovietCams&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.camerahistoryproject.com/&#34; target=&#34;_blank&#34;&gt;Camera History Project&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.digitalkameramuseum.de/&#34; target=&#34;_blank&#34;&gt;Digitalkamera Museum&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.digicammuseum.de/&#34; target=&#34;_blank&#34;&gt;digicammuseum.de&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;lenses&#34;&gt;Lenses&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://vintage-camera-lenses.com/&#34; target=&#34;_blank&#34;&gt;Vintage Camera Lenses&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://allphotolenses.com/&#34; target=&#34;_blank&#34;&gt;All About Photographic Lenses&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;manual-sites&#34;&gt;Manual sites&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.butkus.org/chinon/&#34; target=&#34;_blank&#34;&gt;OrphanCameras (Butkus)&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;other-links&#34;&gt;Other Links&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://photobutmore.de/vintagephoto/belichtungstabellen/&#34; target=&#34;_blank&#34;&gt;Belichtungstabellen, -rechner und -uhren by Photo but More (German)&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       </item>
     
     <item>
@@ -481,8 +1093,21 @@ Blogs / Collectors sites All My Cameras Classic cameras Matt’s Classic Cameras
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/privacy/</guid>
-      <description>Hosting The hoster collects the following data transmitted by your browser in log files:
-IP address The address of the previously visited website (Referer [sic!] request header) Date and time of the enquiry Time zone difference to Greenwich Mean Time Content of the request HTTP status code Amount of data transferred Website from which the request originates Information about the browser and operating system This is necessary to display the website and to ensure stability and security.</description>
+      <description>&lt;h2 id=&#34;hosting&#34;&gt;Hosting&lt;/h2&gt;
+&lt;p&gt;The hoster collects the following data transmitted by your browser in log files:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IP address&lt;/li&gt;
+&lt;li&gt;The address of the previously visited website (Referer [sic!] request header)&lt;/li&gt;
+&lt;li&gt;Date and time of the enquiry&lt;/li&gt;
+&lt;li&gt;Time zone difference to Greenwich Mean Time&lt;/li&gt;
+&lt;li&gt;Content of the request&lt;/li&gt;
+&lt;li&gt;HTTP status code&lt;/li&gt;
+&lt;li&gt;Amount of data transferred&lt;/li&gt;
+&lt;li&gt;Website from which the request originates&lt;/li&gt;
+&lt;li&gt;Information about the browser and operating system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is necessary to display the website and to ensure stability and security. This corresponds to a legitimate interest within the meaning of &lt;a href=&#34;https://gdpr-info.eu/art-6-gdpr/&#34; target=&#34;_blank&#34;&gt;Art. 6 para. 1 sentence 1 lit. f GDPR&lt;/a&gt;
+.&lt;/p&gt;</description>
       </item>
     
     <item>
@@ -491,8 +1116,13 @@ IP address The address of the previously visited website (Referer [sic!] request
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yaapb.projektemacher.org/special-categories/</guid>
-      <description>Usually posts are tagged with the used camera, location or film. But sometimes some posts also belong to a special category:
-Found something Expired film </description>
+      <description>&lt;p&gt;Usually posts are tagged with the used camera, location or film. But sometimes some posts also belong to a special category:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://yaapb.projektemacher.org/found-something&#34;&gt;Found something&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://yaapb.projektemacher.org/expired-film&#34;&gt;Expired film&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
       </item>
     
   </channel>
