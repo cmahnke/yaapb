@@ -135,6 +135,22 @@
                 &lt;/ul&gt;
             &lt;/li&gt;
 
+            &lt;!-- FED Stereo --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Fed_Stereo&#34; target=&#34;_blank&#34;&gt;FED Stereo&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                        href=&#34;https://www.butkus.org/chinon/russian/stereoscopic_camera/stereoscopic.pdf&#34;
+                        target=&#34;_blank&#34;&gt;Manual (english)&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;https://www.oddcameras.com/fed_stereo.htm&#34;
+                            target=&#34;_blank&#34;&gt;At OddCamerascom&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                            href=&#34;https://www.collection-appareils.fr/x/html/camera-10848.html&#34;
+                            target=&#34;_blank&#34;&gt;At Collection Appareils&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
             &lt;!-- Hamaphot P56L --&gt;
             &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Pouva_Start&#34; target=&#34;_blank&#34;&gt;Hamaphot P56L (Luxus-Exportmodell)&lt;/a&gt;
                 &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
