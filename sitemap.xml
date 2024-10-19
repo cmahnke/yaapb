@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://yaapb.projektemacher.org/cameras/</loc>
+    <lastmod>2024-05-20T21:33:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://yaapb.projektemacher.org/</loc>
     <lastmod>2024-07-22T10:40:09+02:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -194,7 +198,30 @@
     <lastmod>2021-06-13T12:25:01+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
+    <loc>https://yaapb.projektemacher.org/about/</loc>
+    <lastmod>2021-06-07T19:29:43+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://yaapb.projektemacher.org/categories/</loc>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://yaapb.projektemacher.org/expired-film/</loc>
+    <lastmod>2020-09-16T09:56:53+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://yaapb.projektemacher.org/found-something/</loc>
+    <lastmod>2020-09-16T09:56:53+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://yaapb.projektemacher.org/links/</loc>
+    <lastmod>2024-07-22T10:40:09+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://yaapb.projektemacher.org/privacy/</loc>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://yaapb.projektemacher.org/special-categories/</loc>
+    <lastmod>2020-09-16T09:56:53+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
