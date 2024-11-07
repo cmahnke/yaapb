@@ -31,6 +31,10 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Generate Files
         run: |
           ./scripts/setup.sh
