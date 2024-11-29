@@ -644,7 +644,7 @@ masonry/jquery.masonry.js:
 
 lightgallery/lightgallery.es5.js:
   (*!
-   * lightgallery | 2.8.1 | November 13th 2024
+   * lightgallery | 2.8.2 | November 28th 2024
    * http://www.lightgalleryjs.com/
    * Copyright (c) 2020 Sachin Neravath;
    * @license GPLv3
@@ -666,7 +666,7 @@ lightgallery/lightgallery.es5.js:
 
 lightgallery/plugins/fullscreen/lg-fullscreen.es5.js:
   (*!
-   * lightgallery | 2.8.1 | November 13th 2024
+   * lightgallery | 2.8.2 | November 28th 2024
    * http://www.lightgalleryjs.com/
    * Copyright (c) 2020 Sachin Neravath;
    * @license GPLv3
@@ -688,7 +688,7 @@ lightgallery/plugins/fullscreen/lg-fullscreen.es5.js:
 
 lightgallery/plugins/thumbnail/lg-thumbnail.es5.js:
   (*!
-   * lightgallery | 2.8.1 | November 13th 2024
+   * lightgallery | 2.8.2 | November 28th 2024
    * http://www.lightgalleryjs.com/
    * Copyright (c) 2020 Sachin Neravath;
    * @license GPLv3
