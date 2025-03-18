@@ -325,6 +325,21 @@
                 &lt;/ul&gt;
             &lt;/li&gt;
 
+            &lt;!-- Polaroid SX-70 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://lippisches-kameramuseum.de/Polaroid/Polaroid_SX-70_Model_2.htm&#34; target=&#34;_blank&#34;
+                    &gt;Polaroid SX-70 Model 2&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; href=&#34;https://yaapb.projektemacher.org/tags/Polaroid-Image-System&#34;
+                    title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                        href=&#34;https://en.wikipedia.org/wiki/Polaroid_SX-70&#34;
+                        target=&#34;_blank&#34;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                        href=&#34;https://butkus.org/chinon/polaroid_cameras/sx-70/sx-70.htm&#34;
+                        target=&#34;_blank&#34;&gt;Manual&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
             &lt;!-- Porst Happy --&gt;
             &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://www.kamera-geschichte.de/porst-happy-d/&#34; target=&#34;_blank&#34;&gt;Porst Happy&lt;/a&gt;
                 &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
