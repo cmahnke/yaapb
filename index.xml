@@ -548,6 +548,19 @@
                 &lt;/ul&gt;
             &lt;/li&gt;
 
+            &lt;!-- Zenit 122 --&gt;
+            &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camera-wiki.org/wiki/Zenit_122&#34; target=&#34;_blank&#34;&gt;Zenit 122&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                    &lt;li class=&#34;icon manual&#34;&gt;&lt;a
+                            href=&#34;https://www.cameramanuals.org/russian_pdf/zenit_122.pdf&#34;
+                            target=&#34;_blank&#34;&gt;Manual (PDF, english)&lt;/a&gt;&lt;/li&gt;
+                    &lt;li class=&#34;icon cam-link&#34;&gt;&lt;a
+                        href=&#34;https://kameramuseum.de/objekte/kmz-zenit-122/&#34;
+                        target=&#34;_blank&#34;&gt;Deutsches Kameramuseum: KMZ Zenit 122 (German)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+
             &lt;!-- Zenit E --&gt;
             &lt;li class=&#34;icon camera&#34;&gt;&lt;a href=&#34;http://camerapedia.wikia.com/wiki/Zenit-E&#34; target=&#34;_blank&#34;&gt;Zenit E&lt;/a&gt;
                 &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
