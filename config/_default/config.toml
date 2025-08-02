@@ -1,0 +1,6 @@
+[Params]
+  description = "Yet another analog photo blog - photograpy with cameras from the flea market."
+  disableScale = true
+  copyrightYears = "2016 - 2025"
+  linkTumblr = true
+  wikidata = true
