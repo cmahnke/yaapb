@@ -8,3 +8,4 @@ assets/js/modernizr.js
 .hugo_build.lock
 data/stats.json
 hugo_stats.json
+content/cameras/cameras.html
