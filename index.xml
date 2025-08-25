@@ -440,6 +440,15 @@
                 &lt;a class=&#34;fa cam-tag-link&#34; href=&#34;http:https://yaapb.projektemacher.org/tags/Smena-Symbol&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
             &lt;/li&gt;
 
+            &lt;!-- Sony MVC-FD7 --&gt;
+            &lt;li class=&#34;icon camera&#34; id=&#34;sony_mvc_fd7&#34;&gt;
+&lt;a href=&#34;https://www.digicammuseum.de/kameras/detailansicht/kamera/Kamera/show/mvc-fd7/&#34; target=&#34;_blank&#34;&gt;Sony MVC-FD7&lt;/a&gt;
+                &lt;a class=&#34;fa cam-tag-link no-link&#34; title=&#34;Images made with this camera&#34;&gt;&lt;i class=&#34;icon picture-icon&#34;&gt;&lt;/i&gt;&lt;i class=&#34;icon tag-icon&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;ul&gt;
+                  &lt;li class=&#34;icon manual&#34;&gt;&lt;a href=&#34;https://www.sony.com/electronics/support/res/manuals/W000/W0007206M.pdf&#34; target=&#34;_blank&#34;&gt;Manual (PDF)&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+            
             &lt;!-- Sony MVC-FD81 --&gt;
             &lt;li class=&#34;icon camera&#34; id=&#34;sony_mvc_fd81&#34;&gt;
 &lt;a href=&#34;https://www.digicammuseum.de/kameras/detailansicht/kamera/Kamera/show/mvc-fd81/&#34; target=&#34;_blank&#34;&gt;Sony MVC-FD81&lt;/a&gt;
