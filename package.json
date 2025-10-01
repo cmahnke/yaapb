@@ -11,7 +11,7 @@
     "jquery-pjax": "^2.0.1",
     "jquery-ui-dist": "^1.13.3",
     "lg-fullscreen": "^1.2.1",
-    "lightgallery": "^2.8.3",
+    "lightgallery": "^2.9.0",
     "masonry": "https://github.com/desandro/masonry.git#v2.0.8",
     "masonry-layout": "^4.2.2",
     "modernizr": "^3.13.1",
