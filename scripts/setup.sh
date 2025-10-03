@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ -z "$DEPENDENCY_MANAGER" ] ; then
+  DEPENDENCY_MANAGER=npm
+fi
+
 # You need `xmllint`, `tidy` and `xmlstarlet` installed
 
 ## Convert to xml
@@ -24,5 +28,5 @@ convert static/images/favicon-16.png static/images/favicon-32.png static/images/
 ./scripts/update_cameras.py -i content/cameras/cameras.html -o content/cameras/cameras.html
 
 # NPM dependencies
-yarn install
-yarn run modernizr
+$DEPENDENCY_MANAGER install
+$DEPENDENCY_MANAGER run modernizr
