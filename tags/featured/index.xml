@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Featured on Yet another analog photo blog</title>
-    <link>https://yaapb.projektemacher.org/tags/Featured/</link>
+    <link>https://yaapb.projektemacher.org/tags/featured/</link>
     <description>Recent content in Featured on Yet another analog photo blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 23 Feb 2024 08:22:11 +0100</lastBuildDate>
-    <atom:link href="https://yaapb.projektemacher.org/tags/Featured/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yaapb.projektemacher.org/tags/featured/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Westerland / Sylt / Disposable Camera / Fuji 400</title>
       <link>https://yaapb.projektemacher.org/post/sylt-fuji-disposable-camera-expired_film/</link>
