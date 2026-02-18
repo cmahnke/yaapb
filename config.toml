@@ -10,7 +10,6 @@ theme = ["projektemacher-base"]
 enableGitInfo = true
 
 [params]
-author = "Christian Mahnke"
 keywords = "analog, photography, lomography, old cameras"
 description = "Yet another analog photo blog - photograpy with cameras from the flea market."
 linkTumblr = true
