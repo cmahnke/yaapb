@@ -4,3 +4,8 @@
   copyrightYears = "2016 - 2026"
   linkTumblr = true
   wikidata = true
+
+[params.author]
+  email = 'mail@christianmahnke.de'
+  name = 'Christian Mahnke'
+  uri = 'http://www.wikidata.org/entity/Q137668638'
