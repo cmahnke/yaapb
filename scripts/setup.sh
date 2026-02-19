@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 if [ -z "$DEPENDENCY_MANAGER" ] ; then
   DEPENDENCY_MANAGER=npm
 fi
