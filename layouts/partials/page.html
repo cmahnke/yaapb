@@ -15,7 +15,9 @@
 
           <div class="post-meta">
             {{- if not .Params.metaPage -}}
-              {{ partial "post/date.html" . }}
+              <time itemprop="datePublished" datetime="{{ .Date.Format "2006-01-02" }}">
+                {{- .Date | time.Format ":date_full" -}}
+              </time>
               {{ partial "post/tags.html" . }}
               {{ if and .Site.Params.linkTumblr .Params.tumblr_url }}
                   <div class="tumblr">
