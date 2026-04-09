@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  HUGO_VERSION: 0.160.0
+  HUGO_VERSION: 0.160.1
   DEPENDENCY_MANAGER: yarn
   PYTHON_VERSION: '3.12'
 
@@ -46,11 +46,15 @@ jobs:
         run: |
           ./scripts/setup.sh
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: ${{ env.HUGO_VERSION }}
-          extended: true
+      # - name: Setup Hugo
+      #   uses: peaceiris/actions-hugo@v3
+      #   with:
+      #     hugo-version: ${{ env.HUGO_VERSION }}
+      #     extended: true
+
+      - name: Install Hugo
+        run: |
+          ./themes/projektemacher-base/scripts/github/setup-hugo.sh ${{ env.HUGO_VERSION }}
 
       - name: Generate stats
         run: |
