@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yashica Samurai on Yet another analog photo blog</title>
+    <link>https://yaapb.projektemacher.org/tags/Yashica-Samurai/</link>
+    <description>Recent content in Yashica Samurai on Yet another analog photo blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 30 Apr 2026 19:27:57 +0200</lastBuildDate>
+    <atom:link href="https://yaapb.projektemacher.org/tags/Yashica-Samurai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://yaapb.projektemacher.org/post/prague-yashica-samurai/</link>
+      <pubDate>Thu, 19 Mar 2026 15:00:44 +0000</pubDate>
+      <guid>https://yaapb.projektemacher.org/post/prague-yashica-samurai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://yaapb.projektemacher.org/post/luebeck-yahica-samurai/</link>
+      <pubDate>Sat, 30 Aug 2025 15:00:44 +0000</pubDate>
+      <guid>https://yaapb.projektemacher.org/post/luebeck-yahica-samurai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://yaapb.projektemacher.org/post/goettingen-yashica-samurai/</link>
+      <pubDate>Fri, 17 Jan 2025 17:00:44 +0000</pubDate>
+      <guid>https://yaapb.projektemacher.org/post/goettingen-yashica-samurai/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
