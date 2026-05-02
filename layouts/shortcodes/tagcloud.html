@@ -16,7 +16,8 @@
     <div class="tagcloud">
         {{- range $filtered -}}
             {{- if .Term -}}
-                {{- $tagURL := printf "tags/%s" .Term | relURL -}}
+                {{- $term := replace .Term " " "-" -}}
+                {{- $tagURL := printf "tags/%s" $term | relURL -}}
                 {{/* See http://www.johann-oberdorfer.eu/blog/2020/02/23/20-02-23_tag_cloud_for_hugo/ */}}
                 {{- $divisor := (sub (math.Log $highest) (math.Log $lowest)) -}}
                 {{- if not $divisor -}}
@@ -27,7 +28,6 @@
                 {{- $fontSize = math.Floor $fontSize -}}
                 <a href="{{ $tagURL }}" class="btn btn-default cloud-tag" role="button" style="font-size: {{ $fontSize }}px;">
                     {{ .Page.Title }} <span class="badge">({{ .Count }})</span>
-                {{/* {{ .Term | humanize}} */}}
                 </a>
             {{- end -}}
         {{- end -}}
