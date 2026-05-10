@@ -1,5 +1,3 @@
-require('./modernizr');
-
 window.$ = window.jQuery = require('jquery');
 require('jquery-ui-dist/jquery-ui');
 
@@ -12,16 +10,69 @@ Spinner = require('spin');
 
 bootstrap = require('bootstrap/dist/js/bootstrap');
 
-// Moderne Masonry Implementierung
 const Masonry = require('masonry-layout');
 const imagesLoaded = require('imagesloaded');
 const jQueryBridget = require('jquery-bridget');
 
-// Masonry und imagesLoaded als jQuery Plugin registrieren
 jQueryBridget('masonry', Masonry, $);
 imagesLoaded.makeJQueryPlugin($);
 
+// Modernizr Ersatz - native Browser APIs
+var supports = {
+    // CSS Transforms: alle modernen Browser unterstützen dies
+    csstransforms: (function() {
+        return typeof document.createElement('div').style.transform !== 'undefined';
+    })(),
+    // Touch: native Erkennung
+    touch: (function() {
+        return ('ontouchstart' in window) ||
+               (navigator.maxTouchPoints > 0) ||
+               (navigator.msMaxTouchPoints > 0);
+    })()
+};
+
 var tagURLPrefix = '/tags';
+
+// Globaler Fehler-Handler
+window.addEventListener('error', function(e) {
+    if (e.message && e.message.indexOf('nodeName') !== -1) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.warn('imagesLoaded nodeName Fehler abgefangen:', e.message);
+        return false;
+    }
+});
+
+// Sichere imagesLoaded Wrapper Funktion
+function safeImagesLoaded(element, callback) {
+    try {
+        if (!element) return callback && callback();
+
+        var $el = element instanceof $ ? element : $(element);
+        if (!$el || !$el.length) return callback && callback();
+
+        $el.find('img').each(function() {
+            if (!this || !this.src || this.src === '') {
+                $(this).remove();
+            }
+        });
+
+        if ($el.length) {
+            $el.imagesLoaded(function() {
+                try {
+                    callback && callback();
+                } catch(e) {
+                    console.warn('imagesLoaded callback Fehler:', e);
+                }
+            });
+        } else {
+            callback && callback();
+        }
+    } catch(e) {
+        console.warn('safeImagesLoaded Fehler:', e);
+        callback && callback();
+    }
+}
 
 var paper = {
     setup: function() {
@@ -34,52 +85,60 @@ var paper = {
         paper.features.load(),
         paper.$posts = $("#posts.index"),
 
-        paper.$posts.imagesLoaded(function() {
+        safeImagesLoaded(paper.$posts, function() {
             return paper.books.build();
         });
     },
 
-    // Prüft ob Masonry bereits initialisiert ist
     isMasonryInitialized: function() {
         return paper.$posts &&
                paper.$posts.length &&
                paper.$posts.data('masonry') !== undefined;
     },
 
-    // Masonry initialisieren
     initMasonry: function() {
         if (!paper.$posts || !paper.$posts.length) return;
 
-        paper.$posts.imagesLoaded(function() {
-            paper.$posts.masonry({
-                itemSelector: '.post',
-                columnWidth: '.post',
-                percentPosition: true,
-                gutter: 10,
-                transitionDuration: '0.2s'
-            });
+        safeImagesLoaded(paper.$posts, function() {
+            try {
+                paper.$posts.masonry({
+                    itemSelector: '.post',
+                    columnWidth: '.post',
+                    percentPosition: true,
+                    gutter: 10,
+                    transitionDuration: '0.2s'
+                });
+            } catch(e) {
+                console.warn('Masonry init Fehler:', e);
+            }
         });
     },
 
-    // Masonry sicher aufrufen - initialisiert falls nötig
     safeMasonry: function(method) {
         if (!paper.$posts || !paper.$posts.length) return;
 
-        if (paper.isMasonryInitialized()) {
-            paper.$posts.masonry(method || 'layout');
-        } else {
-            paper.initMasonry();
+        try {
+            if (paper.isMasonryInitialized()) {
+                paper.$posts.masonry(method || 'layout');
+            } else {
+                paper.initMasonry();
+            }
+        } catch(e) {
+            console.warn('safeMasonry Fehler:', e);
         }
     },
 
-    // Masonry nach dynamischen Änderungen neu laden
     reloadMasonry: function() {
-        if (!paper.isMasonryInitialized()) {
-            paper.initMasonry();
-            return;
+        try {
+            if (!paper.isMasonryInitialized()) {
+                paper.initMasonry();
+                return;
+            }
+            paper.$posts.masonry('reloadItems');
+            paper.$posts.masonry('layout');
+        } catch(e) {
+            console.warn('reloadMasonry Fehler:', e);
         }
-        paper.$posts.masonry('reloadItems');
-        paper.$posts.masonry('layout');
     },
 
     features: {
@@ -183,7 +242,6 @@ var paper = {
                     }
 
                     return f.find('em:first-child').addClass('on'),
-                        // Bootstrap 4/5: 'slid.bs.carousel' statt 'slid'
                         $('#features .carousel').on('slid.bs.carousel', function() {
                             return $('#features .navigation em').removeClass('on'),
                                 $('#features .navigation em')
@@ -191,14 +249,19 @@ var paper = {
                                     .addClass('on');
                         }),
                         a.div.append(a.arrows).append(f),
-                        a.div.imagesLoaded(function() {
-                            return a.verticallyAlignContent(),
-                                $('.carousel').carousel({ interval: false }),
-                                a.div.addClass('loaded'),
-                                a.spinner.stop(),
-                                $('#header .spinner').remove(),
-                                paper.books.build(),
+
+                        safeImagesLoaded(a.div, function() {
+                            try {
+                                a.verticallyAlignContent();
+                                $('.carousel').carousel({ interval: false });
+                                a.div.addClass('loaded');
+                                a.spinner.stop();
+                                $('#header .spinner').remove();
+                                paper.books.build();
                                 a.sizeImages();
+                            } catch(e) {
+                                console.warn('features.load callback Fehler:', e);
+                            }
                         });
                 }
             });
@@ -233,34 +296,40 @@ var paper = {
 
     books: {
         build: function() {
-            if (typeof Modernizr != "undefined" &&
-                Modernizr !== null &&
-                Modernizr.csstransforms) {
+            try {
+                // supports.csstransforms ersetzt Modernizr.csstransforms
+                if (supports.csstransforms) {
 
-                if ($(".photoset_wrap").length === 0) {
-                    // Keine Photosets -> Masonry direkt initialisieren
-                    paper.initMasonry();
-                }
-
-                $(".photoset_wrap").each(function(a) {
-                    var b, c, d, e, f, g;
-                    d = $(this),
-                    b = d.closest(".features-container"),
-                    e = d.data("notebook"),
-                    e == null && (
-                        f = (g = a + 1 === $(".photoset_wrap").length) != null ? g : {
-                            "true": false
-                        },
-                        d.data("notebook", new paper.Notebook(this, {
-                            parent: b,
-                            lastNotebook: f
-                        }))
-                    );
-
-                    if (d.data("notebook") != null) {
-                        return c = $(this).closest(".post").addClass("notebooked");
+                    if ($(".photoset_wrap").length === 0) {
+                        paper.initMasonry();
                     }
-                });
+
+                    $(".photoset_wrap").each(function(a) {
+                        try {
+                            var b, c, d, e, f, g;
+                            d = $(this),
+                            b = d.closest(".features-container"),
+                            e = d.data("notebook"),
+                            e == null && (
+                                f = (g = a + 1 === $(".photoset_wrap").length) != null ? g : {
+                                    "true": false
+                                },
+                                d.data("notebook", new paper.Notebook(this, {
+                                    parent: b,
+                                    lastNotebook: f
+                                }))
+                            );
+
+                            if (d.data("notebook") != null) {
+                                return c = $(this).closest(".post").addClass("notebooked");
+                            }
+                        } catch(e) {
+                            console.warn('books.build each Fehler:', e);
+                        }
+                    });
+                }
+            } catch(e) {
+                console.warn('books.build Fehler:', e);
             }
         }
     }
@@ -268,21 +337,25 @@ var paper = {
 
 
 paper.Notebook = function(a, b) {
-    this.container = a,
-    $(this.container).hide(),
-    this.pages = [],
-    this.currentPage = 0,
-    this.permalink = this.container.getAttribute("data-permalink"),
-    this.settings = b || {},
-    this.settings.useRotation !== false && (this.settings.useRotation = true),
-    this.settings.xMovement !== false && (this.settings.xMovement = true),
-    this.settings.xMovement !== false && (this.settings.yMovement = true),
-    this.setMaximumHeight(),
-    this.extractSourcesFromContainer(),
-    this.writeMarkup(),
-    this.appendElement(),
-    $(this.container).show();
-    $(this).trigger('notebook:initialized');
+    try {
+        this.container = a,
+        $(this.container).hide(),
+        this.pages = [],
+        this.currentPage = 0,
+        this.permalink = this.container.getAttribute("data-permalink"),
+        this.settings = b || {},
+        this.settings.useRotation !== false && (this.settings.useRotation = true),
+        this.settings.xMovement !== false && (this.settings.xMovement = true),
+        this.settings.xMovement !== false && (this.settings.yMovement = true),
+        this.setMaximumHeight(),
+        this.extractSourcesFromContainer(),
+        this.writeMarkup(),
+        this.appendElement(),
+        $(this.container).show();
+        $(this).trigger('notebook:initialized');
+    } catch(e) {
+        console.warn('Notebook init Fehler:', e);
+    }
 };
 
 paper.Notebook.prototype = {
@@ -300,57 +373,67 @@ paper.Notebook.prototype = {
         this.sources = [],
         a = b.length,
         c = [];
-        while (a--)
-            c.push(this.sources.push(b[a].src));
+        while (a--) {
+            if (b[a] && b[a].src && b[a].src !== '') {
+                c.push(this.sources.push(b[a].src));
+            }
+        }
         return c;
     },
 
     setImageHeights: function(a, b, c, d, e, f) {
-        return $("<img>").attr("src", a).on('load', function() {
-            var a, g, h, i;
-            g = Math.round($(b).width() * this.height / this.width),
-            h = $(b).width(),
-            a = (i = $(c).parents(".feature_content").length > 0) != null ? i : {
-                "true": false
-            },
-            g > f && (
-                g = f,
-                h = Math.round(this.width * g / this.height)
-            ),
-            $(b).css({
-                height: g,
-                width: h
-            }).attr("data-height", g).attr("data-width", h),
-            g > parseInt($(c).attr("data-height")) && $(c).attr("data-height", g),
-            h > parseInt($(c).attr("data-width")) && $(c).attr("data-width", h),
-            d && (
-                $(c).css("height", $(c).attr("data-height")),
-                $(c).width() > parseInt($(c).attr("data-width")) &&
-                    $(c).attr("data-width", $(c).width()),
-                a && $(c).css("width", $(c).attr("data-width")),
-                $(c).find("div").each(function() {
-                    var a, b;
-                    return b = Math.round(
-                        ($(c).attr("data-height") - $(this).attr("data-height")) / 2
-                    ),
-                    a = Math.round(
-                        ($(c).attr("data-width") - $(this).attr("data-width")) / 2
-                    ),
-                    $(this).css({ marginTop: b, marginLeft: a });
-                })
-            );
+        var img = new Image();
 
-            /*
-             * !$('#posts-wrap').hasClass('single') - deaktiviert Masonry für einzelne Seiten
-             * !$('body').hasClass('tag_page') - deaktiviert Masonry für Tag-Seiten
-             */
-            if (d && e &&
-                !$('#posts-wrap').hasClass('single') &&
-                !$('body').hasClass('tag_page')) {
-                // ✅ safeMasonry statt direktem masonry('layout') Aufruf
-                paper.safeMasonry('layout');
+        $(img).on('load', function() {
+            try {
+                var g, h, i, j;
+                g = Math.round($(b).width() * this.height / this.width),
+                h = $(b).width(),
+                i = (j = $(c).parents(".feature_content").length > 0) != null ? j : {
+                    "true": false
+                },
+                g > f && (
+                    g = f,
+                    h = Math.round(this.width * g / this.height)
+                ),
+                $(b).css({
+                    height: g,
+                    width: h
+                }).attr("data-height", g).attr("data-width", h),
+                g > parseInt($(c).attr("data-height")) && $(c).attr("data-height", g),
+                h > parseInt($(c).attr("data-width")) && $(c).attr("data-width", h),
+                d && (
+                    $(c).css("height", $(c).attr("data-height")),
+                    $(c).width() > parseInt($(c).attr("data-width")) &&
+                        $(c).attr("data-width", $(c).width()),
+                    i && $(c).css("width", $(c).attr("data-width")),
+                    $(c).find("div").each(function() {
+                        var a, b;
+                        return b = Math.round(
+                            ($(c).attr("data-height") - $(this).attr("data-height")) / 2
+                        ),
+                        a = Math.round(
+                            ($(c).attr("data-width") - $(this).attr("data-width")) / 2
+                        ),
+                        $(this).css({ marginTop: b, marginLeft: a });
+                    })
+                );
+
+                if (d && e &&
+                    !$('#posts-wrap').hasClass('single') &&
+                    !$('body').hasClass('tag_page')) {
+                    paper.safeMasonry('layout');
+                }
+            } catch(err) {
+                console.warn('setImageHeights load Fehler:', err);
             }
         });
+
+        $(img).on('error', function() {
+            console.warn('Bild konnte nicht geladen werden:', a);
+        });
+
+        img.src = a;
     },
 
     writeMarkup: function() {
@@ -366,15 +449,21 @@ paper.Notebook.prototype = {
         while (a--) {
             c = document.createElement("div"),
             c.style.backgroundImage = "url(" + this.sources[a] + ")",
-            b = (d = a === 0) != null ? d : { "true": false },
+            b = (d = a === 0) != null ? d : { "true": false };
+
+            var childEl   = this.container.children[a];
+            var imgEl     = childEl ? $(childEl).find('img') : $();
+            var dataSrc   = imgEl.data('src')   || this.sources[a];
+            var dataThumb = imgEl.data('thumb') || this.sources[a];
+
             this.setImageHeights(
                 this.sources[a], c, this.element, b,
                 this.settings.lastNotebook, this.max_height
-            ),
+            );
             c.className = "notebook-page page-style-" + parseInt(Math.random() * 5),
             c.setAttribute("data-page", this.sources.length - a),
-            c.setAttribute('data-src', $(this.container.children[a]).find('img').data('src')),
-            c.setAttribute('data-thumb', $(this.container.children[a]).find('img').data('thumb')),
+            c.setAttribute('data-src',   dataSrc),
+            c.setAttribute('data-thumb', dataThumb),
             c.style.zIndex = a + 1e3,
             this.pages.push(c),
             this.element.appendChild(c),
@@ -382,7 +471,8 @@ paper.Notebook.prototype = {
             c.addEventListener("touchmove", this, false),
             c.addEventListener("touchend", this, false),
             c.addEventListener("click", this, false),
-            Modernizr.touch ? e.push(void 0) : e.push(this.dragify(c));
+            // supports.touch ersetzt Modernizr.touch
+            supports.touch ? e.push(void 0) : e.push(this.dragify(c));
         }
         return e;
     },
@@ -513,31 +603,67 @@ paper.Notebook.prototype = {
         if (!$("body").hasClass("show")) {
             return window.location.href = this.permalink;
         } else {
-            // Lightgallery für einen Image-Stack
+
             var gallery = [];
             $(this.container).find('.notebook-page').each(function() {
-                gallery.push({
-                    src: $(this).data('src'),
-                    thumb: $(this).data('thumb')
-                });
+                var src   = $(this).attr('data-src');
+                var thumb = $(this).attr('data-thumb');
+                if (src) {
+                    gallery.push({ src: src, thumb: thumb || src });
+                }
             });
 
-            const options = {
-                plugins: [lgFullscreen, lgThumbnail],
-                share: false,
-                autoplay: false,
-                autoplayControls: false,
-                thumbnail: true,
-                dynamic: true,
-                dynamicEl: gallery
-            };
-
-            // Alte LightGallery-Instanz aufräumen falls vorhanden
-            if (this._lgInstance) {
-                this._lgInstance.destroy();
+            if (gallery.length === 0) {
+                console.warn('LightGallery: Keine Bilder gefunden');
+                return;
             }
 
-            this._lgInstance = lightGallery(this.container, options);
+            if (this._lgInstance) {
+                try {
+                    this._lgInstance.destroy();
+                } catch(e) {
+                    console.warn('LightGallery destroy Fehler:', e);
+                }
+                this._lgInstance = null;
+            }
+
+            var oldTmp = document.getElementById('lg-tmp-container');
+            if (oldTmp) oldTmp.parentNode.removeChild(oldTmp);
+
+            var tmpContainer = document.createElement('div');
+            tmpContainer.id = 'lg-tmp-container';
+            tmpContainer.style.display = 'none';
+            document.body.appendChild(tmpContainer);
+
+            var self = this;
+            setTimeout(function() {
+                try {
+                    self._lgInstance = lightGallery(tmpContainer, {
+                        plugins: [lgFullscreen, lgThumbnail],
+                        share: false,
+                        autoplay: false,
+                        autoplayControls: false,
+                        thumbnail: true,
+                        dynamic: true,
+                        dynamicEl: gallery,
+                        index: 0
+                    });
+
+                    tmpContainer.addEventListener('lgAfterClose', function() {
+                        if (self._lgInstance) {
+                            try {
+                                self._lgInstance.destroy();
+                            } catch(e) {}
+                            self._lgInstance = null;
+                        }
+                        var tmp = document.getElementById('lg-tmp-container');
+                        if (tmp) tmp.parentNode.removeChild(tmp);
+                    }, { once: true });
+
+                } catch(e) {
+                    console.error('LightGallery Init Fehler:', e);
+                }
+            }, 50);
         }
     },
 
@@ -554,7 +680,8 @@ paper.Notebook.prototype = {
             e.webkitTransitionDuration = e.MozTransitionDuration =
             e.msTransitionDuration = e.OTransitionDuration =
             e.transitionDuration = h + "s",
-            Modernizr.touch ?
+            // supports.touch ersetzt Modernizr.touch
+            supports.touch ?
                 e.webkitTransform = e.MozTransform = e.msTransform =
                 e.OTransform = e.transform = "translate(" + f + "px," + g + "px)" :
                 (e.left = f + "px", e.top = g + "px"),
@@ -768,18 +895,20 @@ $(document).ready(function() {
     }
 
     if ($('#post-wrap').hasClass('single')) {
-        // Lightgallery für einzelne Bilder
-        const options = {
-            plugins: [lgFullscreen],
-            share: false,
-            autoplay: false,
-            autoplayControls: false,
-            thumbnail: true
-        };
-
         const container = document.querySelector('.photo-permalink-container');
-        if (container) {
-            lightGallery(container, options);
+
+        if (container && container.children.length > 0) {
+            try {
+                lightGallery(container, {
+                    plugins: [lgFullscreen],
+                    share: false,
+                    autoplay: false,
+                    autoplayControls: false,
+                    thumbnail: true
+                });
+            } catch(e) {
+                console.error('LightGallery (single) Fehler:', e);
+            }
         }
     }
 });
