@@ -23,10 +23,14 @@
       <link rel="canonical" href="{{ .Permalink }}">
     {{- end -}}
 
-    {{- $defines := dict "process.env.NODE_ENV" `"production"` -}}
-    {{- $opts := dict "targetPath" "js/main.js" "defines" $defines "minify" true -}}
-    {{- $theme := resources.Get "js/main.js" | js.Build $opts -}}
 
+    {{- $defines := dict "process.env.NODE_ENV" `"production"` -}}
+    {{- $mainOpts := dict "targetPath" "js/main.js"
+                          "defines" $defines
+                          "minify" (cond hugo.IsDevelopment false true)
+                          "sourceMap" (cond hugo.IsDevelopment "linked" "none")
+    -}}
+    {{- $theme := resources.Get "js/main.js" | js.Build $mainOpts -}}
     {{- $js := slice $theme | resources.Concat "js/concated.js" | fingerprint -}}
 
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>

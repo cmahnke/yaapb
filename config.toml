@@ -108,6 +108,10 @@ defaultMarkdownHandler = 'goldmark'
         source = "node_modules/lightgallery/images"
         target = "static/images/lightgallery"
 
+    [[module.mounts]]
+        source = "node_modules/bootstrap/scss/"
+        target = "assets/scss/bootstrap"
+
 [build]
   writeStats = true
 

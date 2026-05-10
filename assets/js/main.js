@@ -1,125 +1,194 @@
-window.$ = window.jQuery = require('jquery');
-require('jquery-ui-dist/jquery-ui');
+import $ from 'jquery';
 
+window.$ = window.jQuery = $;
+
+require('jquery-ui-dist/jquery-ui');
+require('jquery-pjax');
+
+import * as bootstrap from 'bootstrap';
 import lightGallery from 'lightgallery';
 import lgFullscreen from 'lightgallery/plugins/fullscreen';
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import Spinner from 'spin';
+import Masonry from 'masonry-layout';
+import imagesLoaded from 'imagesloaded';
 
-require('jquery-pjax');
-Spinner = require('spin');
+// ─── Config ───────────────────────────────────────────────────────────────────
 
-bootstrap = require('bootstrap/dist/js/bootstrap');
-
-const Masonry = require('masonry-layout');
-const imagesLoaded = require('imagesloaded');
-const jQueryBridget = require('jquery-bridget');
-
-jQueryBridget('masonry', Masonry, $);
-imagesLoaded.makeJQueryPlugin($);
-
-// Modernizr Ersatz - native Browser APIs
-var supports = {
-    // CSS Transforms: alle modernen Browser unterstützen dies
-    csstransforms: (function() {
-        return typeof document.createElement('div').style.transform !== 'undefined';
-    })(),
-    // Touch: native Erkennung
-    touch: (function() {
-        return ('ontouchstart' in window) ||
-               (navigator.maxTouchPoints > 0) ||
-               (navigator.msMaxTouchPoints > 0);
-    })()
+const CONFIG = {
+    IMAGES_LOADED_TIMEOUT: 2000,
+    MASONRY: {
+        itemSelector: '.post',
+        columnWidth:  '.post',
+        percentPosition: true,
+        gutter: 10,
+        transitionDuration: '0.2s'
+    },
+    CAROUSEL: {
+        interval: false,
+        wrap: true,
+        touch: true
+    },
+    FEATURES_LIMIT: 6,
+    LIGHTGALLERY_DELAY: 50
 };
 
-var tagURLPrefix = '/tags';
+// ─── Fehler Handler ──────────────────────────────────────────────────────────
 
-// Globaler Fehler-Handler
 window.addEventListener('error', function(e) {
-    if (e.message && e.message.indexOf('nodeName') !== -1) {
+    if (!e) return;
+    const isImagesLoadedError =
+        (e.message && e.message.indexOf('nodeName') !== -1) ||
+        (e.filename && e.filename.indexOf('imagesloaded') !== -1);
+
+    if (isImagesLoadedError) {
         e.preventDefault();
-        e.stopPropagation();
-        console.warn('imagesLoaded nodeName Fehler abgefangen:', e.message);
+        e.stopImmediatePropagation();
+        console.warn('imagesLoaded race condition abgefangen');
         return false;
+    }
+}, true);
+
+window.addEventListener('unhandledrejection', function(e) {
+    if (e.reason && e.reason.message &&
+        e.reason.message.indexOf('nodeName') !== -1) {
+        e.preventDefault();
+        console.warn('imagesLoaded Promise Fehler abgefangen');
     }
 });
 
-// Sichere imagesLoaded Wrapper Funktion
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+const supports = {
+    csstransforms: typeof document.createElement('div').style.transform !== 'undefined',
+    touch: ('ontouchstart' in window) ||
+           (navigator.maxTouchPoints > 0) ||
+           (navigator.msMaxTouchPoints > 0)
+};
+
+const tagURLPrefix = '/tags';
+let masonryInstance = null;
+
 function safeImagesLoaded(element, callback) {
     try {
-        if (!element) return callback && callback();
+        const el = element instanceof $ ? element[0] : element;
 
-        var $el = element instanceof $ ? element : $(element);
-        if (!$el || !$el.length) return callback && callback();
+        if (!el || !el.nodeType || !document.body.contains(el)) {
+            return callback && callback();
+        }
 
-        $el.find('img').each(function() {
-            if (!this || !this.src || this.src === '') {
-                $(this).remove();
+        Array.from(el.querySelectorAll('img')).forEach(function(img) {
+            if (!img.src ||
+                img.src === '' ||
+                img.src === window.location.href ||
+                img.src === window.location.origin + '/') {
+                try { img.remove(); } catch(e) {}
             }
         });
 
-        if ($el.length) {
-            $el.imagesLoaded(function() {
-                try {
-                    callback && callback();
-                } catch(e) {
-                    console.warn('imagesLoaded callback Fehler:', e);
-                }
-            });
-        } else {
-            callback && callback();
+        if (!document.body.contains(el)) {
+            return callback && callback();
         }
+
+        if (el.querySelectorAll('img').length === 0) {
+            return callback && callback();
+        }
+
+        let done = false;
+        const finish = function() {
+            if (done) return;
+            done = true;
+            try { callback && callback(); }
+            catch(e) { console.warn('safeImagesLoaded callback Fehler:', e); }
+        };
+
+        const tid = setTimeout(function() {
+            console.warn('safeImagesLoaded: Timeout nach ' +
+                CONFIG.IMAGES_LOADED_TIMEOUT + 'ms, callback erzwungen');
+            finish();
+        }, CONFIG.IMAGES_LOADED_TIMEOUT);
+
+        try {
+            imagesLoaded(el, function() {
+                clearTimeout(tid);
+                finish();
+            });
+        } catch(e) {
+            clearTimeout(tid);
+            console.warn('imagesLoaded init Fehler:', e);
+            finish();
+        }
+
     } catch(e) {
         console.warn('safeImagesLoaded Fehler:', e);
         callback && callback();
     }
 }
 
-var paper = {
-    setup: function() {
-        paper.movablePage == null && (
-            paper.movablePage = new paper.MovablePage("#posts.show")
-        ),
-        $("body").hasClass("index") &&
-        !window.location.href.match(/post/i) &&
-        !$("body").hasClass("tag_page") &&
-        paper.features.load(),
-        paper.$posts = $("#posts.index"),
-
-        safeImagesLoaded(paper.$posts, function() {
-            return paper.books.build();
+function fetchHTML(url) {
+    return fetch(url)
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+            return new DOMParser().parseFromString(html, 'text/html');
         });
+}
+
+function setTransition(el, duration, property) {
+    const dur  = duration || '0s';
+    const prop = property || 'all';
+    el.style.transitionDuration = dur;
+    el.style.transitionProperty = prop;
+}
+
+// ─── paper ───────────────────────────────────────────────────────────────────
+
+const paper = {
+    setup: function() {
+        const postsEl = document.querySelector("#posts.show");
+        if (!paper.movablePage && postsEl) {
+            paper.movablePage = new paper.MovablePage(postsEl);
+        }
+
+        const body = document.body;
+        if (body.classList.contains("index") &&
+            !window.location.href.match(/post/i) &&
+            !body.classList.contains("tag_page")) {
+            paper.features.load();
+        }
+
+        paper.postsEl = document.querySelector("#posts.index");
+
+        if (paper.postsEl) {
+            safeImagesLoaded(paper.postsEl, function() {
+                paper.books.build();
+            });
+        }
     },
 
     isMasonryInitialized: function() {
-        return paper.$posts &&
-               paper.$posts.length &&
-               paper.$posts.data('masonry') !== undefined;
+        return masonryInstance !== null;
     },
 
     initMasonry: function() {
-        if (!paper.$posts || !paper.$posts.length) return;
+        if (!paper.postsEl) return;
 
-        safeImagesLoaded(paper.$posts, function() {
+        safeImagesLoaded(paper.postsEl, function() {
             try {
-                paper.$posts.masonry({
-                    itemSelector: '.post',
-                    columnWidth: '.post',
-                    percentPosition: true,
-                    gutter: 10,
-                    transitionDuration: '0.2s'
-                });
+                masonryInstance = new Masonry(
+                    paper.postsEl,
+                    CONFIG.MASONRY
+                );
             } catch(e) {
                 console.warn('Masonry init Fehler:', e);
             }
         });
     },
 
-    safeMasonry: function(method) {
-        if (!paper.$posts || !paper.$posts.length) return;
-
+    safeMasonry: function() {
+        if (!paper.postsEl) return;
         try {
             if (paper.isMasonryInitialized()) {
-                paper.$posts.masonry(method || 'layout');
+                masonryInstance.layout();
             } else {
                 paper.initMasonry();
             }
@@ -134,8 +203,8 @@ var paper = {
                 paper.initMasonry();
                 return;
             }
-            paper.$posts.masonry('reloadItems');
-            paper.$posts.masonry('layout');
+            masonryInstance.reloadItems();
+            masonryInstance.layout();
         } catch(e) {
             console.warn('reloadMasonry Fehler:', e);
         }
@@ -143,153 +212,254 @@ var paper = {
 
     features: {
         load: function() {
-            var a = this;
-            return $.ajax({
-                url: tagURLPrefix + '/featured',
-                success: function(b) {
-                    var c, d, e, f, g, h, i, j, k, l, m, n, o, p;
-                    a.div = $('<div id="features" />').append(
-                        '<div class="carousel slide" id="features-carousel" />'
-                    ),
-                    a.list = $('<div class="carousel-inner" />'),
-                    $('body').addClass('with-features'),
-                    a.div.find('.carousel').append(a.list),
-                    k = $('#header').after(a.div).get(0),
-                    a.spinner = (new Spinner).spin(k),
-                    a.posts = $(b).find('.post'),
+            const a = this;
 
-                    $('#header').find('#feature_bio').length > 0 && (
-                        i = $('<li />').attr("data-post-type", "bio").append(
-                            $("#feature_bio").html()
-                        ),
-                        a.posts = i.add(a.posts)
-                    ),
-                    l = 0;
+            fetchHTML(tagURLPrefix + '/featured')
+                .then(function(doc) {
+                    a.div = document.createElement('div');
+                    a.div.id = 'features';
 
-                    while (l < a.posts.length && l < 6) {
-                        g = $(a.posts.get(l)),
-                        p = g.attr('data-post-type'),
-                        e = $('<div class="item" />');
+                    const carouselEl = document.createElement('div');
+                    carouselEl.className = 'carousel slide';
+                    carouselEl.id = 'features-carousel';
+                    a.div.appendChild(carouselEl);
+
+                    a.list = document.createElement('div');
+                    a.list.className = 'carousel-inner';
+                    carouselEl.appendChild(a.list);
+
+                    document.body.classList.add('with-features');
+
+                    const header = document.getElementById('header');
+                    header.insertAdjacentElement('afterend', a.div);
+                    a.spinner = (new Spinner).spin(header);
+
+                    a.posts = Array.from(doc.querySelectorAll('.post'));
+
+                    const featureBio = header.querySelector('#feature_bio');
+                    if (featureBio) {
+                        const bioEl = document.createElement('li');
+                        bioEl.setAttribute('data-post-type', 'bio');
+                        bioEl.innerHTML = featureBio.innerHTML;
+                        a.posts.unshift(bioEl);
+                    }
+
+                    const limit = Math.min(a.posts.length, CONFIG.FEATURES_LIMIT);
+                    for (let l = 0; l < limit; l++) {
+                        const g = a.posts[l];
+                        const p = g.getAttribute('data-post-type');
+                        const e = document.createElement('div');
+                        e.className = 'carousel-item';
+
+                        let j;
 
                         if (p === 'bio') {
-                            j = g.html();
+                            const wrap = document.createElement('div');
+                            wrap.innerHTML = g.innerHTML;
+                            j = wrap;
                         } else if (p === 'photo') {
-                            d = g.find('img.post-image'),
-                            d.each(function() {
-                                return this.src = $(this).attr('data-highres');
-                            }),
-                            d.length > 1 ? (
-                                o = $('<div class="photoset_wrap" />'),
-                                o.attr('data-permalink', g.find('a').attr('href')),
-                                o.append(d),
-                                e.addClass('photoset'),
-                                j = o
-                            ) : d.length === 1 && (
-                                j = $("<a href='" + g.find("a").attr("href") +
-                                    "' class='photo-permalink' />").append(d)
-                            );
+                            const imgs = Array.from(g.querySelectorAll('img.post-image'));
+                            imgs.forEach(function(img) {
+                                img.src = img.getAttribute('data-highres');
+                            });
+                            if (imgs.length > 1) {
+                                const o = document.createElement('div');
+                                o.className = 'photoset_wrap';
+                                o.setAttribute('data-permalink',
+                                    g.querySelector('a') ? g.querySelector('a').href : '');
+                                imgs.forEach(function(img) { o.appendChild(img); });
+                                e.classList.add('photoset');
+                                j = o;
+                            } else if (imgs.length === 1) {
+                                const link = g.querySelector('a');
+                                const photoLink = document.createElement('a');
+                                photoLink.href = link ? link.href : '#';
+                                photoLink.className = 'photo-permalink';
+                                photoLink.appendChild(imgs[0]);
+                                j = photoLink;
+                            }
                         } else if (p === 'audio') {
-                            if (g.find('iframe').length > 0) {
-                                j = g.find('.post-content');
+                            if (g.querySelector('iframe')) {
+                                j = g.querySelector('.post-content');
                             } else {
-                                j = $('<a />').attr({
-                                    href: g.attr('data-permalink'),
-                                    'class': 'audio_link'
-                                }).append('<span class="audio_player_icon">&nbsp;</span>'),
-                                c = g.find('.audio-player');
-
-                                if (c.attr('data-artist') || c.attr('data-track') || c.attr('data-album')) {
-                                    m = $('<ul />'),
-                                    c.attr('data-artist') && m.append('<li>' + decodeURI(c.attr("data-artist")) + '</li>'),
-                                    c.attr('data-track') && m.append('<li>' + decodeURI(c.attr("data-track")) + '</li>'),
-                                    c.attr('data-album') && m.append('<li>' + decodeURI(c.attr("data-album")) + '</li>'),
-                                    m.appendTo(j);
+                                const audioPlayer = g.querySelector('.audio-player');
+                                const audioLink = document.createElement('a');
+                                audioLink.href = g.getAttribute('data-permalink');
+                                audioLink.className = 'audio_link';
+                                audioLink.innerHTML = '<span class="audio_player_icon">&nbsp;</span>';
+                                if (audioPlayer) {
+                                    const artist = audioPlayer.getAttribute('data-artist');
+                                    const track  = audioPlayer.getAttribute('data-track');
+                                    const album  = audioPlayer.getAttribute('data-album');
+                                    if (artist || track || album) {
+                                        const ul = document.createElement('ul');
+                                        if (artist) ul.innerHTML += '<li>' + decodeURI(artist) + '</li>';
+                                        if (track)  ul.innerHTML += '<li>' + decodeURI(track)  + '</li>';
+                                        if (album)  ul.innerHTML += '<li>' + decodeURI(album)  + '</li>';
+                                        audioLink.appendChild(ul);
+                                    }
+                                    const art = audioPlayer.getAttribute('data-art');
+                                    if (art) {
+                                        const artImg = document.createElement('img');
+                                        artImg.src = art;
+                                        audioLink.appendChild(artImg);
+                                    }
                                 }
-                                c.attr('data-art') && $('<img />').attr("src", c.attr('data-art')).appendTo(j);
+                                j = audioLink;
                             }
                         } else {
-                            p === 'answer' ? (
-                                n = $('<a />').attr('href', g.attr('data-permalink')),
-                                n.append(g.find('.post-content')),
-                                j = $('<div class="post-pad" />').append(n)
-                            ) : j = $('<div class="post-pad" />')
-                                .append(g.find('.post-title'))
-                                .append(g.find('.post-content'));
+                            const pad = document.createElement('div');
+                            pad.className = 'post-pad';
+                            if (p === 'answer') {
+                                const answerLink = document.createElement('a');
+                                answerLink.href = g.getAttribute('data-permalink');
+                                const content = g.querySelector('.post-content');
+                                if (content) answerLink.appendChild(content);
+                                pad.appendChild(answerLink);
+                            } else {
+                                const title   = g.querySelector('.post-title');
+                                const content = g.querySelector('.post-content');
+                                if (title)   pad.appendChild(title);
+                                if (content) pad.appendChild(content);
+                            }
+                            j = pad;
                         }
 
-                        j = $('<div class="feature_content" />').append(j),
-                        e.addClass(p).append(j).append(g.find('.source')).appendTo(a.list),
-                        l === 0 && e.addClass('active'),
-                        l += 1;
+                        const featureContent = document.createElement('div');
+                        featureContent.className = 'feature_content';
+                        if (j) featureContent.appendChild(j);
+                        e.classList.add(p);
+                        e.appendChild(featureContent);
+                        const source = g.querySelector('.source');
+                        if (source) e.appendChild(source);
+                        if (l === 0) e.classList.add('active');
+                        a.list.appendChild(e);
                     }
 
-                    a.prev = $('<a class="pagination-newer carousel-control-prev" href="#features-carousel" role="button" data-slide="prev">&#x25C0;</a>'),
-                    a.next = $('<a class="pagination-older carousel-control-next" href="#features-carousel" role="button" data-slide="next">&#x25B6;</a>'),
-                    a.arrows = $('<div class="pagination pagination-slideshow" />').append(a.prev).append(a.next),
-                    l = a.list.find('.item').length,
-                    f = $('<div class="navigation" />');
+                    // ── Buttons: getInstance() zur Laufzeit ────────────────
+                    const prevBtn = document.createElement('button');
+                    prevBtn.className = 'pagination-newer carousel-control-prev';
+                    prevBtn.setAttribute('type', 'button');
+                    prevBtn.setAttribute('aria-label', 'Previous');
+                    prevBtn.innerHTML = '&#x25C0;';
+                    prevBtn.addEventListener('click', function() {
+                        const instance = bootstrap.Carousel.getInstance(carouselEl);
+                        if (instance) {
+                            instance.prev();
+                        } else {
+                            console.warn('Carousel Instanz nicht gefunden');
+                        }
+                    });
 
-                    while (l--) {
-                        h = $('<em />').html('•')
-                            .attr('data-index', a.list.find('.item').length - l - 1)
-                            .attr('data-slide-to', a.list.find('.item').length - l - 1),
-                        h.on('click', function() {
-                            return $('#features .carousel').carousel(
-                                parseInt($(this).attr('data-index'))
-                            );
-                        }),
-                        f.append(h);
-                    }
+                    const nextBtn = document.createElement('button');
+                    nextBtn.className = 'pagination-older carousel-control-next';
+                    nextBtn.setAttribute('type', 'button');
+                    nextBtn.setAttribute('aria-label', 'Next');
+                    nextBtn.innerHTML = '&#x25B6;';
+                    nextBtn.addEventListener('click', function() {
+                        const instance = bootstrap.Carousel.getInstance(carouselEl);
+                        if (instance) {
+                            instance.next();
+                        } else {
+                            console.warn('Carousel Instanz nicht gefunden');
+                        }
+                    });
 
-                    return f.find('em:first-child').addClass('on'),
-                        $('#features .carousel').on('slid.bs.carousel', function() {
-                            return $('#features .navigation em').removeClass('on'),
-                                $('#features .navigation em')
-                                    .eq($(this).find('.active').index())
-                                    .addClass('on');
-                        }),
-                        a.div.append(a.arrows).append(f),
+                    const arrows = document.createElement('div');
+                    arrows.className = 'pagination pagination-slideshow';
+                    arrows.appendChild(prevBtn);
+                    arrows.appendChild(nextBtn);
 
-                        safeImagesLoaded(a.div, function() {
-                            try {
-                                a.verticallyAlignContent();
-                                $('.carousel').carousel({ interval: false });
-                                a.div.addClass('loaded');
-                                a.spinner.stop();
-                                $('#header .spinner').remove();
-                                paper.books.build();
-                                a.sizeImages();
-                            } catch(e) {
-                                console.warn('features.load callback Fehler:', e);
+                    // ── Dots Navigation ────────────────────────────────────
+                    const items = Array.from(a.list.querySelectorAll('.carousel-item'));
+                    const nav = document.createElement('div');
+                    nav.className = 'navigation';
+
+                    items.forEach(function(_, idx) {
+                        const dot = document.createElement('em');
+                        dot.innerHTML = '•';
+                        dot.setAttribute('data-index', idx);
+                        dot.addEventListener('click', function() {
+                            const instance = bootstrap.Carousel.getInstance(carouselEl);
+                            if (instance) {
+                                instance.to(idx);
+                            } else {
+                                console.warn('Carousel Instanz nicht gefunden');
                             }
                         });
-                }
-            });
+                        nav.appendChild(dot);
+                    });
+
+                    const firstDot = nav.querySelector('em:first-child');
+                    if (firstDot) firstDot.classList.add('on');
+
+                    // ── slid Event ─────────────────────────────────────────
+                    carouselEl.addEventListener('slid.bs.carousel', function(e) {
+                        nav.querySelectorAll('em').forEach(function(em) {
+                            em.classList.remove('on');
+                        });
+                        const dots = nav.querySelectorAll('em');
+                        if (dots[e.to] !== undefined) {
+                            dots[e.to].classList.add('on');
+                        }
+                    });
+
+                    a.div.appendChild(arrows);
+                    a.div.appendChild(nav);
+
+                    safeImagesLoaded(a.div, function() {
+                        try {
+                            a.verticallyAlignContent();
+
+                            // BS5: Instanz erstellen - getInstance() findet sie später
+                            new bootstrap.Carousel(carouselEl, CONFIG.CAROUSEL);
+
+                            a.div.classList.add('loaded');
+                            a.spinner.stop();
+                            const headerSpinner = header.querySelector('.spinner');
+                            if (headerSpinner) headerSpinner.remove();
+                            paper.books.build();
+                            a.sizeImages();
+                        } catch(e) {
+                            console.warn('features.load callback Fehler:', e);
+                        }
+                    });
+                })
+                .catch(function(e) {
+                    console.warn('features.load fetch Fehler:', e);
+                });
         },
 
         sizeImages: function() {
-            return this.div.find('.item.photo').each(function() {
-                var a, b;
-                return a = $(this),
-                    a.addClass('measure_height'),
-                    b = a.find("img").width(),
-                    a.removeClass('measure_height'),
-                    a.find('.post-pad, .photo-permalink, .source').width(b);
+            this.div.querySelectorAll('.carousel-item.photo').forEach(function(item) {
+                item.classList.add('measure_height');
+                const img = item.querySelector('img');
+                const w = img ? img.offsetWidth : 0;
+                item.classList.remove('measure_height');
+                item.querySelectorAll('.post-pad, .photo-permalink, .source').forEach(function(el) {
+                    el.style.width = w + 'px';
+                });
             });
         },
 
         verticallyAlignContent: function() {
-            var a;
-            return a = this.div.find('.carousel-inner').height(),
-                this.div.find('.item:not(.photoset):not(.video)').each(function() {
-                    var b, c;
-                    return b = $(this).find('.feature_content'),
-                        $(this).is(':visible') ?
-                            c = b.height() :
-                            ($(this).addClass('measure_height'),
-                            c = b.height(),
-                            $(this).removeClass('measure_height')),
-                        b.css('paddingTop', Math.floor((a - c) / 2));
+            const carouselInner = this.div.querySelector('.carousel-inner');
+            const totalHeight = carouselInner ? carouselInner.offsetHeight : 0;
+
+            this.div.querySelectorAll('.carousel-item:not(.photoset):not(.video)')
+                .forEach(function(item) {
+                    const content = item.querySelector('.feature_content');
+                    if (!content) return;
+                    let contentHeight;
+                    if (item.classList.contains('active')) {
+                        contentHeight = content.offsetHeight;
+                    } else {
+                        item.classList.add('measure_height');
+                        contentHeight = content.offsetHeight;
+                        item.classList.remove('measure_height');
+                    }
+                    content.style.paddingTop =
+                        Math.floor((totalHeight - contentHeight) / 2) + 'px';
                 });
         }
     },
@@ -297,37 +467,33 @@ var paper = {
     books: {
         build: function() {
             try {
-                // supports.csstransforms ersetzt Modernizr.csstransforms
-                if (supports.csstransforms) {
+                if (!supports.csstransforms) return;
 
-                    if ($(".photoset_wrap").length === 0) {
-                        paper.initMasonry();
-                    }
+                const photosets = document.querySelectorAll('.photoset_wrap');
 
-                    $(".photoset_wrap").each(function(a) {
-                        try {
-                            var b, c, d, e, f, g;
-                            d = $(this),
-                            b = d.closest(".features-container"),
-                            e = d.data("notebook"),
-                            e == null && (
-                                f = (g = a + 1 === $(".photoset_wrap").length) != null ? g : {
-                                    "true": false
-                                },
-                                d.data("notebook", new paper.Notebook(this, {
-                                    parent: b,
-                                    lastNotebook: f
-                                }))
-                            );
-
-                            if (d.data("notebook") != null) {
-                                return c = $(this).closest(".post").addClass("notebooked");
-                            }
-                        } catch(e) {
-                            console.warn('books.build each Fehler:', e);
-                        }
-                    });
+                if (photosets.length === 0) {
+                    paper.initMasonry();
+                    return;
                 }
+
+                photosets.forEach(function(el, a) {
+                    try {
+                        if (!el._notebook) {
+                            const isLast = (a + 1 === photosets.length);
+                            const parent = el.closest('.features-container');
+                            el._notebook = new paper.Notebook(el, {
+                                parent:       parent,
+                                lastNotebook: isLast
+                            });
+                        }
+                        if (el._notebook) {
+                            const post = el.closest('.post');
+                            if (post) post.classList.add('notebooked');
+                        }
+                    } catch(e) {
+                        console.warn('books.build each Fehler:', e);
+                    }
+                });
             } catch(e) {
                 console.warn('books.build Fehler:', e);
             }
@@ -335,24 +501,25 @@ var paper = {
     }
 };
 
+// ─── Notebook ─────────────────────────────────────────────────────────────────
 
 paper.Notebook = function(a, b) {
     try {
-        this.container = a,
-        $(this.container).hide(),
-        this.pages = [],
-        this.currentPage = 0,
-        this.permalink = this.container.getAttribute("data-permalink"),
-        this.settings = b || {},
-        this.settings.useRotation !== false && (this.settings.useRotation = true),
-        this.settings.xMovement !== false && (this.settings.xMovement = true),
-        this.settings.xMovement !== false && (this.settings.yMovement = true),
-        this.setMaximumHeight(),
-        this.extractSourcesFromContainer(),
-        this.writeMarkup(),
-        this.appendElement(),
-        $(this.container).show();
-        $(this).trigger('notebook:initialized');
+        this.container = a;
+        this.container.style.display = 'none';
+        this.pages = [];
+        this.currentPage = 0;
+        this.permalink = this.container.getAttribute("data-permalink");
+        this.settings = b || {};
+        this.settings.useRotation !== false && (this.settings.useRotation = true);
+        this.settings.xMovement  !== false && (this.settings.xMovement  = true);
+        this.settings.xMovement  !== false && (this.settings.yMovement  = true);
+        this.setMaximumHeight();
+        this.extractSourcesFromContainer();
+        this.writeMarkup();
+        this.appendElement();
+        this.container.style.display = '';
+        this.container.dispatchEvent(new CustomEvent('notebook:initialized'));
     } catch(e) {
         console.warn('Notebook init Fehler:', e);
     }
@@ -360,237 +527,232 @@ paper.Notebook = function(a, b) {
 
 paper.Notebook.prototype = {
     setMaximumHeight: function() {
-        return $("body").hasClass("show") ?
-            this.max_height = 475 :
-            $(this.container).parents("#features").length > 0 ?
-                this.max_height = 400 :
-                this.max_height = 400;
+        this.max_height = document.body.classList.contains("show") ? 475 : 400;
     },
 
     extractSourcesFromContainer: function() {
-        var a, b, c;
-        b = this.container.querySelectorAll("img"),
-        this.sources = [],
-        a = b.length,
-        c = [];
-        while (a--) {
-            if (b[a] && b[a].src && b[a].src !== '') {
-                c.push(this.sources.push(b[a].src));
+        const imgs = this.container.querySelectorAll("img");
+        this.sources = [];
+        for (let i = imgs.length - 1; i >= 0; i--) {
+            if (imgs[i] && imgs[i].src && imgs[i].src !== '') {
+                this.sources.push(imgs[i].src);
             }
         }
-        return c;
     },
 
-    setImageHeights: function(a, b, c, d, e, f) {
-        var img = new Image();
+    setImageHeights: function(src, pageEl, notebookEl, isFirst, isLast, maxHeight) {
+        const img = new Image();
 
-        $(img).on('load', function() {
+        img.addEventListener('load', function() {
             try {
-                var g, h, i, j;
-                g = Math.round($(b).width() * this.height / this.width),
-                h = $(b).width(),
-                i = (j = $(c).parents(".feature_content").length > 0) != null ? j : {
-                    "true": false
-                },
-                g > f && (
-                    g = f,
-                    h = Math.round(this.width * g / this.height)
-                ),
-                $(b).css({
-                    height: g,
-                    width: h
-                }).attr("data-height", g).attr("data-width", h),
-                g > parseInt($(c).attr("data-height")) && $(c).attr("data-height", g),
-                h > parseInt($(c).attr("data-width")) && $(c).attr("data-width", h),
-                d && (
-                    $(c).css("height", $(c).attr("data-height")),
-                    $(c).width() > parseInt($(c).attr("data-width")) &&
-                        $(c).attr("data-width", $(c).width()),
-                    i && $(c).css("width", $(c).attr("data-width")),
-                    $(c).find("div").each(function() {
-                        var a, b;
-                        return b = Math.round(
-                            ($(c).attr("data-height") - $(this).attr("data-height")) / 2
-                        ),
-                        a = Math.round(
-                            ($(c).attr("data-width") - $(this).attr("data-width")) / 2
-                        ),
-                        $(this).css({ marginTop: b, marginLeft: a });
-                    })
-                );
+                if (!document.body.contains(pageEl)) return;
 
-                if (d && e &&
-                    !$('#posts-wrap').hasClass('single') &&
-                    !$('body').hasClass('tag_page')) {
-                    paper.safeMasonry('layout');
+                let g = Math.round(pageEl.offsetWidth * img.height / img.width);
+                let h = pageEl.offsetWidth;
+                const inFeature = notebookEl.closest('.feature_content') !== null;
+
+                if (g > maxHeight) {
+                    g = maxHeight;
+                    h = Math.round(img.width * g / img.height);
+                }
+
+                pageEl.style.height = g + 'px';
+                pageEl.style.width  = h + 'px';
+                pageEl.setAttribute('data-height', g);
+                pageEl.setAttribute('data-width',  h);
+
+                const curH = parseInt(notebookEl.getAttribute('data-height')) || 0;
+                const curW = parseInt(notebookEl.getAttribute('data-width'))  || 0;
+                if (g > curH) notebookEl.setAttribute('data-height', g);
+                if (h > curW) notebookEl.setAttribute('data-width',  h);
+
+                if (isFirst) {
+                    notebookEl.style.height = notebookEl.getAttribute('data-height') + 'px';
+                    if (notebookEl.offsetWidth > parseInt(notebookEl.getAttribute('data-width'))) {
+                        notebookEl.setAttribute('data-width', notebookEl.offsetWidth);
+                    }
+                    if (inFeature) {
+                        notebookEl.style.width = notebookEl.getAttribute('data-width') + 'px';
+                    }
+                    notebookEl.querySelectorAll('div').forEach(function(div) {
+                        const mt = Math.round(
+                            (parseInt(notebookEl.getAttribute('data-height')) -
+                             parseInt(div.getAttribute('data-height') || 0)) / 2
+                        );
+                        const ml = Math.round(
+                            (parseInt(notebookEl.getAttribute('data-width')) -
+                             parseInt(div.getAttribute('data-width')  || 0)) / 2
+                        );
+                        div.style.marginTop  = mt + 'px';
+                        div.style.marginLeft = ml + 'px';
+                    });
+                }
+
+                if (isFirst && isLast &&
+                    !document.querySelector('#posts-wrap.single') &&
+                    !document.body.classList.contains('tag_page')) {
+                    paper.safeMasonry();
                 }
             } catch(err) {
                 console.warn('setImageHeights load Fehler:', err);
             }
         });
 
-        $(img).on('error', function() {
-            console.warn('Bild konnte nicht geladen werden:', a);
+        img.addEventListener('error', function() {
+            console.warn('Bild konnte nicht geladen werden:', src);
         });
 
-        img.src = a;
+        img.src = src;
     },
 
     writeMarkup: function() {
-        var a, b, c, d, e;
-        this.element = document.createElement("div"),
-        this.element.className = "notebook",
-        this.element.id = "notebook_" + parseInt(Math.random() * 1e5),
-        this.element.setAttribute("data-height", 0),
-        this.element.setAttribute("data-width", 0),
-        a = this.sources.length,
-        e = [];
+        this.element = document.createElement("div");
+        this.element.className = "notebook";
+        this.element.id = "notebook_" + parseInt(Math.random() * 1e5);
+        this.element.setAttribute("data-height", 0);
+        this.element.setAttribute("data-width",  0);
+
+        let a = this.sources.length;
 
         while (a--) {
-            c = document.createElement("div"),
-            c.style.backgroundImage = "url(" + this.sources[a] + ")",
-            b = (d = a === 0) != null ? d : { "true": false };
+            const c = document.createElement("div");
+            c.style.backgroundImage = "url(" + this.sources[a] + ")";
 
-            var childEl   = this.container.children[a];
-            var imgEl     = childEl ? $(childEl).find('img') : $();
-            var dataSrc   = imgEl.data('src')   || this.sources[a];
-            var dataThumb = imgEl.data('thumb') || this.sources[a];
+            const isFirst   = (a === 0);
+            const childEl   = this.container.children[a];
+            const imgEl     = childEl ? childEl.querySelector('img') : null;
+            const dataSrc   = (imgEl && imgEl.getAttribute('data-src'))   || this.sources[a];
+            const dataThumb = (imgEl && imgEl.getAttribute('data-thumb')) || this.sources[a];
 
             this.setImageHeights(
-                this.sources[a], c, this.element, b,
-                this.settings.lastNotebook, this.max_height
+                this.sources[a], c, this.element,
+                isFirst, this.settings.lastNotebook, this.max_height
             );
-            c.className = "notebook-page page-style-" + parseInt(Math.random() * 5),
-            c.setAttribute("data-page", this.sources.length - a),
-            c.setAttribute('data-src',   dataSrc),
-            c.setAttribute('data-thumb', dataThumb),
-            c.style.zIndex = a + 1e3,
-            this.pages.push(c),
-            this.element.appendChild(c),
-            c.addEventListener("touchstart", this, false),
-            c.addEventListener("touchmove", this, false),
-            c.addEventListener("touchend", this, false),
-            c.addEventListener("click", this, false),
-            // supports.touch ersetzt Modernizr.touch
-            supports.touch ? e.push(void 0) : e.push(this.dragify(c));
+
+            c.className = "notebook-page page-style-" + parseInt(Math.random() * 5);
+            c.setAttribute("data-page",  this.sources.length - a);
+            c.setAttribute("data-src",   dataSrc);
+            c.setAttribute("data-thumb", dataThumb);
+            c.style.zIndex = a + 1000;
+
+            this.pages.push(c);
+            this.element.appendChild(c);
+
+            c.addEventListener("touchstart", this, false);
+            c.addEventListener("touchmove",  this, false);
+            c.addEventListener("touchend",   this, false);
+            c.addEventListener("click",      this, false);
+
+            if (!supports.touch && typeof $.fn.draggable === 'function') {
+                this.dragify(c);
+            }
         }
-        return e;
     },
 
     appendElement: function() {
-        return this.container.innerHTML = "",
-            this.container.appendChild(this.element);
+        this.container.innerHTML = "";
+        this.container.appendChild(this.element);
     },
 
-    dragify: function(a) {
-        var b = this;
-        return $(a).draggable({
+    dragify: function(el) {
+        const b = this;
+        $(el).draggable({
             scroll: false,
             start: function(a) { return b.onDragStart(a); },
-            drag: function(a) { return b.onDragMove(a); },
-            stop: function(a) { return b.onDragEnd(a); }
+            drag:  function(a) { return b.onDragMove(a);  },
+            stop:  function(a) { return b.onDragEnd(a);   }
         });
     },
 
     handleEvent: function(a) {
         switch (a.type) {
             case "touchstart": return this.onTouchStart(a);
-            case "touchmove": return this.onTouchMove(a);
-            case "touchend": return this.onTouchEnd(a);
-            case "click": return this.onClick(a);
+            case "touchmove":  return this.onTouchMove(a);
+            case "touchend":   return this.onTouchEnd(a);
+            case "click":      return this.onClick(a);
         }
     },
 
     onTouchStart: function(a) {
-        var b;
-        a.preventDefault(),
-        this.target = a.target,
-        b = this.target.style,
-        b.webkitTransitionDuration = b.MozTransitionDuration =
-        b.msTransitionDuration = b.OTransitionDuration =
-        b.transitionDuration = "0s",
+        a.preventDefault();
+        this.target = a.target;
+        setTransition(this.target, '0s');
         this.start = {
             pageX: a.touches[0].pageX,
             pageY: a.touches[0].pageY,
-            time: Number(new Date)
-        },
-        this.deltaX = 0,
-        this.deltaY = 0,
-        this.originalTransform = $(this.target).css("-webkit-transform");
-
-        if (this.settings.parent != null)
-            return this.settings.parent.addClass("dragging");
+            time:  Number(new Date)
+        };
+        this.deltaX = 0;
+        this.deltaY = 0;
+        this.originalTransform = this.target.style.transform || '';
+        if (this.settings.parent) {
+            this.settings.parent.classList.add("dragging");
+        }
     },
 
     onTouchMove: function(a) {
-        var b;
-        return a.touches.length > 1 || a.scale && a.scale !== 1 ? true : (
-            a.preventDefault(),
-            a.stopPropagation(),
-            this.settings.xMovement && (this.deltaX = a.touches[0].pageX - this.start.pageX),
-            this.settings.yMovement && (this.deltaY = a.touches[0].pageY - this.start.pageY),
-            b = this.target.style,
-            b.webkitTransform = b.MozTransform = b.msTransform =
-            b.OTransform = b.transform = this.originalTransform +
-            (" translate(" + this.deltaX + "px, " + this.deltaY + "px)")
-        );
+        if (a.touches.length > 1 || (a.scale && a.scale !== 1)) return true;
+        a.preventDefault();
+        a.stopPropagation();
+        if (this.settings.xMovement) this.deltaX = a.touches[0].pageX - this.start.pageX;
+        if (this.settings.yMovement) this.deltaY = a.touches[0].pageY - this.start.pageY;
+        this.target.style.transform =
+            this.originalTransform + ' translate(' + this.deltaX + 'px, ' + this.deltaY + 'px)';
     },
 
     onTouchEnd: function(a) {
-        var b, c, d = this;
-        this.distance = Math.sqrt(this.deltaX * this.deltaX + this.deltaY * this.deltaY),
-        this.deltaT = Number(new Date) - this.start.time,
-        this.rect = this.element.getBoundingClientRect(),
-        this.width = this.rect.right - this.rect.left,
-        this.height = this.rect.bottom - this.rect.top,
-        c = this.target.style,
-        c.webkitTransitionProperty = c.MozTransitionProperty =
-        c.msTransitionProperty = c.OTransitionProperty =
-        c.transitionProperty = "all",
-        c.webkitTransitionDuration = c.MozTransitionDuration =
-        c.msTransitionDuration = c.OTransitionDuration =
-        c.transitionDuration = ".4s",
-        c.webkitTransform = c.MozTransform = c.msTransform =
-        c.OTransform = c.transform = "rotate(0deg)",
-        this.target.style.top = this.target.style.left = "",
-        window.setTimeout(function() {
-            if (d.settings.parent != null)
-                return d.settings.parent.removeClass("dragging");
-        }, 400),
-        b = Math.abs(this.deltaY) > this.height / 2 ||
-            Math.abs(this.deltaX) > this.width / 2 ||
-            this.distance > 20 && this.deltaT < 250;
+        const d = this;
+        this.distance = Math.sqrt(this.deltaX * this.deltaX + this.deltaY * this.deltaY);
+        this.deltaT   = Number(new Date) - this.start.time;
+        this.rect     = this.element.getBoundingClientRect();
+        this.width    = this.rect.right  - this.rect.left;
+        this.height   = this.rect.bottom - this.rect.top;
 
-        if (b) return this.flip();
-        if (this.deltaT < 500 && this.distance < 2 && !$("body").hasClass("show"))
-            return window.location.href = this.permalink;
+        setTransition(this.target, '.4s');
+        this.target.style.transform = 'rotate(0deg)';
+        this.target.style.top  = '';
+        this.target.style.left = '';
+
+        window.setTimeout(function() {
+            if (d.settings.parent) d.settings.parent.classList.remove("dragging");
+        }, 400);
+
+        const shouldFlip =
+            Math.abs(this.deltaY) > this.height / 2 ||
+            Math.abs(this.deltaX) > this.width  / 2 ||
+            (this.distance > 20 && this.deltaT < 250);
+
+        if (shouldFlip) return this.flip();
+
+        if (this.deltaT < 500 &&
+            this.distance < 2 &&
+            !document.body.classList.contains("show")) {
+            window.location.href = this.permalink;
+        }
     },
 
     onDragStart: function(a) {
-        var b;
-        this.dragged = true,
-        this.target = a.target,
-        b = this.target.style,
-        b.webkitTransitionDuration = b.MozTransitionDuration =
-        b.msTransitionDuration = b.OTransitionDuration =
-        b.transitionDuration = "0s",
+        this.dragged = true;
+        this.target  = a.target;
+        setTransition(this.target, '0s');
         this.start = {
             pageX: a.pageX,
             pageY: a.pageY,
-            time: Number(new Date)
-        },
-        this.deltaX = 0,
+            time:  Number(new Date)
+        };
+        this.deltaX = 0;
         this.deltaY = 0;
-
-        if (this.settings.parent != null)
-            return this.settings.parent.addClass("dragging");
+        if (this.settings.parent) {
+            this.settings.parent.classList.add("dragging");
+        }
     },
 
     onDragMove: function(a) {
-        return this.settings.parent != null &&
-            this.settings.parent.addClass("dragging"),
-            this.deltaX = a.pageX - this.start.pageX,
-            this.deltaY = a.pageY - this.start.pageY;
+        if (this.settings.parent) {
+            this.settings.parent.classList.add("dragging");
+        }
+        this.deltaX = a.pageX - this.start.pageX;
+        this.deltaY = a.pageY - this.start.pageY;
     },
 
     onDragEnd: function(a) {
@@ -598,305 +760,252 @@ paper.Notebook.prototype = {
     },
 
     onClick: function(a) {
-        if (this.dragged) return this.dragged = false, true;
+        if (this.dragged) { this.dragged = false; return true; }
 
-        if (!$("body").hasClass("show")) {
-            return window.location.href = this.permalink;
-        } else {
-
-            var gallery = [];
-            $(this.container).find('.notebook-page').each(function() {
-                var src   = $(this).attr('data-src');
-                var thumb = $(this).attr('data-thumb');
-                if (src) {
-                    gallery.push({ src: src, thumb: thumb || src });
-                }
-            });
-
-            if (gallery.length === 0) {
-                console.warn('LightGallery: Keine Bilder gefunden');
-                return;
-            }
-
-            if (this._lgInstance) {
-                try {
-                    this._lgInstance.destroy();
-                } catch(e) {
-                    console.warn('LightGallery destroy Fehler:', e);
-                }
-                this._lgInstance = null;
-            }
-
-            var oldTmp = document.getElementById('lg-tmp-container');
-            if (oldTmp) oldTmp.parentNode.removeChild(oldTmp);
-
-            var tmpContainer = document.createElement('div');
-            tmpContainer.id = 'lg-tmp-container';
-            tmpContainer.style.display = 'none';
-            document.body.appendChild(tmpContainer);
-
-            var self = this;
-            setTimeout(function() {
-                try {
-                    self._lgInstance = lightGallery(tmpContainer, {
-                        plugins: [lgFullscreen, lgThumbnail],
-                        share: false,
-                        autoplay: false,
-                        autoplayControls: false,
-                        thumbnail: true,
-                        dynamic: true,
-                        dynamicEl: gallery,
-                        index: 0
-                    });
-
-                    tmpContainer.addEventListener('lgAfterClose', function() {
-                        if (self._lgInstance) {
-                            try {
-                                self._lgInstance.destroy();
-                            } catch(e) {}
-                            self._lgInstance = null;
-                        }
-                        var tmp = document.getElementById('lg-tmp-container');
-                        if (tmp) tmp.parentNode.removeChild(tmp);
-                    }, { once: true });
-
-                } catch(e) {
-                    console.error('LightGallery Init Fehler:', e);
-                }
-            }, 50);
+        if (!document.body.classList.contains("show")) {
+            window.location.href = this.permalink;
+            return;
         }
+
+        const gallery = [];
+        this.container.querySelectorAll('.notebook-page').forEach(function(page) {
+            const src   = page.getAttribute('data-src');
+            const thumb = page.getAttribute('data-thumb');
+            if (src) gallery.push({ src: src, thumb: thumb || src });
+        });
+
+        if (gallery.length === 0) {
+            console.warn('LightGallery: Keine Bilder gefunden');
+            return;
+        }
+
+        if (this._lgInstance) {
+            try { this._lgInstance.destroy(); } catch(e) {}
+            this._lgInstance = null;
+        }
+
+        const oldTmp = document.getElementById('lg-tmp-container');
+        if (oldTmp) oldTmp.remove();
+
+        const tmpContainer = document.createElement('div');
+        tmpContainer.id = 'lg-tmp-container';
+        tmpContainer.style.display = 'none';
+        document.body.appendChild(tmpContainer);
+
+        const self = this;
+        setTimeout(function() {
+            try {
+                self._lgInstance = lightGallery(tmpContainer, {
+                    plugins: [lgFullscreen, lgThumbnail],
+                    share: false,
+                    autoplay: false,
+                    autoplayControls: false,
+                    thumbnail: true,
+                    dynamic: true,
+                    dynamicEl: gallery,
+                    index: 0
+                });
+
+                tmpContainer.addEventListener('lgAfterClose', function() {
+                    if (self._lgInstance) {
+                        try { self._lgInstance.destroy(); } catch(e) {}
+                        self._lgInstance = null;
+                    }
+                    const tmp = document.getElementById('lg-tmp-container');
+                    if (tmp) tmp.remove();
+                }, { once: true });
+
+            } catch(e) {
+                console.error('LightGallery Init Fehler:', e);
+            }
+        }, CONFIG.LIGHTGALLERY_DELAY);
     },
 
     flip: function() {
-        var a, b, c, d, e, f, g, h, i = this;
-        return d = this.deltaY / this.distance,
-            b = this.deltaX / this.distance,
-            c = this.distance,
-            a = (this.width > this.height ? this.width : this.height) * 1.2,
-            f = Math.floor(a * b),
-            g = Math.floor(a * d),
-            h = .2,
-            e = this.target.style,
-            e.webkitTransitionDuration = e.MozTransitionDuration =
-            e.msTransitionDuration = e.OTransitionDuration =
-            e.transitionDuration = h + "s",
-            // supports.touch ersetzt Modernizr.touch
-            supports.touch ?
-                e.webkitTransform = e.MozTransform = e.msTransform =
-                e.OTransform = e.transform = "translate(" + f + "px," + g + "px)" :
-                (e.left = f + "px", e.top = g + "px"),
-            window.setTimeout(function() {
-                return i.afterFlip();
-            }, h * 1e3);
+        const i   = this;
+        const d   = this.deltaY / this.distance;
+        const b   = this.deltaX / this.distance;
+        const max = (this.width > this.height ? this.width : this.height) * 1.2;
+        const f   = Math.floor(max * b);
+        const g   = Math.floor(max * d);
+        const dur = 0.2;
+
+        setTransition(this.target, dur + 's');
+
+        if (supports.touch) {
+            this.target.style.transform = 'translate(' + f + 'px,' + g + 'px)';
+        } else {
+            this.target.style.left = f + 'px';
+            this.target.style.top  = g + 'px';
+        }
+
+        window.setTimeout(function() { i.afterFlip(); }, dur * 1000);
     },
 
     afterFlip: function() {
-        var a, b, c, d, e;
-        a = this.pages.length,
-        this.currentPage += 1,
-        this.currentPage === a && (this.currentPage = 0),
-        e = [];
+        let a = this.pages.length;
+        this.currentPage += 1;
+        if (this.currentPage === a) this.currentPage = 0;
 
         while (a--) {
-            c = this.pages[a],
-            b = parseInt(c.style.zIndex) + 1,
-            d = c.style,
-            c.style.zIndex = b < this.pages.length + 1e3 ? b : 1e3,
-            e.push(
-                d.top = d.left = d.webkitTransform =
-                d.MozTransform = d.msTransform =
-                d.OTransform = d.transform = ""
-            );
+            const c = this.pages[a];
+            const b = parseInt(c.style.zIndex) + 1;
+            c.style.zIndex    = b < this.pages.length + 1000 ? b : 1000;
+            c.style.top       = '';
+            c.style.left      = '';
+            c.style.transform = '';
         }
-        return e;
     }
 };
 
+// ─── MovablePage ──────────────────────────────────────────────────────────────
 
-paper.MovablePage = function(a, b) {
-    switch (typeof a) {
-        case "string":
-            this.element = document.querySelector(a);
-            break;
-        case "object":
-            this.element = a;
-    }
+paper.MovablePage = function(element, b) {
+    this.element = typeof element === 'string'
+        ? document.querySelector(element)
+        : element;
 
     if (!this.element || !$.support.pjax) return null;
 
-    b || (b = {}),
-    this.nextSelector = b.nextSelector || "#features a.pagination-older",
-    this.prevSelector = b.prevSelector || "#features a.pagination-newer",
-    this.fragmentSelector = b.fragmentSelector || "#posts",
-    this.activateArrows(),
-    this.element.addEventListener("touchstart", this, false),
-    this.element.addEventListener("touchmove", this, false),
-    this.element.addEventListener("touchend", this, false);
+    b || (b = {});
+    this.nextSelector     = b.nextSelector     || "#features a.pagination-older";
+    this.prevSelector     = b.prevSelector     || "#features a.pagination-newer";
+    this.fragmentSelector = b.fragmentSelector || "#posts";
+    this.activateArrows();
+    this.element.addEventListener("touchstart", this, false);
+    this.element.addEventListener("touchmove",  this, false);
+    this.element.addEventListener("touchend",   this, false);
 };
 
 paper.MovablePage.prototype = {
     next: function() {
-        var a;
-        return a = this.element.style,
-            a.webkitTransitionDuration = a.MozTransitionDuration =
-            a.msTransitionDuration = a.OTransitionDuration =
-            a.transitionDuration = this.getVelocityAdjustedTransitionDuration() / 1e3 + "s",
-            a.webkitTransitionProperty = a.MozTransitionProperty =
-            a.msTransitionProperty = a.OTransitionProperty =
-            a.transitionProperty = "all",
-            a.webkitTransform = a.MozTransform = a.msTransform =
-            a.OTransform = a.transform = "translate3d(-100%,0,0)",
-            a.opacity = "0",
-            this.load(this.nextLink.href);
+        const dur = this.getVelocityAdjustedTransitionDuration() / 1000 + 's';
+        setTransition(this.element, dur);
+        this.element.style.transform = 'translate3d(-100%,0,0)';
+        this.element.style.opacity = '0';
+        this.load(this.nextLink.href);
     },
 
     prev: function() {
-        var a;
-        return a = this.element.style,
-            a.webkitTransitionDuration = a.MozTransitionDuration =
-            a.msTransitionDuration = a.OTransitionDuration =
-            a.transitionDuration = this.getVelocityAdjustedTransitionDuration() / 1e3 + "s",
-            a.webkitTransitionProperty = a.MozTransitionProperty =
-            a.msTransitionProperty = a.OTransitionProperty =
-            a.transitionProperty = "all",
-            a.webkitTransform = a.MozTransform = a.msTransform =
-            a.OTransform = a.transform = "translate3d(100%,0,0)",
-            a.opacity = "0",
-            this.load(this.prevLink.href);
+        const dur = this.getVelocityAdjustedTransitionDuration() / 1000 + 's';
+        setTransition(this.element, dur);
+        this.element.style.transform = 'translate3d(100%,0,0)';
+        this.element.style.opacity = '0';
+        this.load(this.prevLink.href);
     },
 
     getVelocityAdjustedTransitionDuration: function() {
-        var a, b, c;
-        return this.start == null ? 300 : (
-            this.deltaT = Number(new Date) - this.start.time,
-            c = Math.abs(this.deltaX / this.deltaT),
-            a = $(window).width() - Math.abs(this.deltaX),
-            b = Math.abs(this.deltaT * a / this.deltaX),
-            b > 500 && (b = 500),
-            b
-        );
+        if (!this.start) return 300;
+        this.deltaT = Number(new Date) - this.start.time;
+        const remaining = window.innerWidth - Math.abs(this.deltaX);
+        const duration  = Math.abs(this.deltaT * remaining / this.deltaX);
+        return Math.min(duration, 500);
     },
 
-    load: function(a) {
-        var b = this;
-        return window.setTimeout(function() {
-            return $ && $.support.pjax ? $.pjax({
-                container: b.fragmentSelector,
-                fragment: b.fragmentSelector,
-                url: a,
-                timeout: 2e3,
-                success: function(a) {
-                    var c, d, e;
-                    return e = b.element.style,
-                        e.webkitTransitionProperty = e.MozTransitionProperty =
-                        e.msTransitionProperty = e.OTransitionProperty =
-                        e.transitionProperty = "opacity",
-                        e.opacity = "1",
-                        e.webkitTransform = e.MozTransform = e.msTransform =
-                        e.OTransform = e.transform = "",
-                        d = $(a).find(".pagination"),
-                        c = $(a).find("ol.notes"),
-                        $(".note-wrap").html(c),
-                        $("#pagination-posts").replaceWith(d),
-                        b.activateArrows(),
+    load: function(url) {
+        const b = this;
+        window.setTimeout(function() {
+            if ($ && $.support.pjax) {
+                $.pjax({
+                    container: b.fragmentSelector,
+                    fragment:  b.fragmentSelector,
+                    url:       url,
+                    timeout:   2000,
+                    success: function(data) {
+                        setTransition(b.element, undefined, 'opacity');
+                        b.element.style.opacity   = '1';
+                        b.element.style.transform = '';
+
+                        const parsed     = new DOMParser().parseFromString(data, 'text/html');
+                        const pagination = parsed.querySelector('.pagination');
+                        const notes      = parsed.querySelector('ol.notes');
+                        const noteWrap   = document.querySelector('.note-wrap');
+                        const pagPosts   = document.getElementById('pagination-posts');
+
+                        if (noteWrap && notes) noteWrap.innerHTML = notes.outerHTML;
+                        if (pagPosts && pagination) pagPosts.replaceWith(pagination);
+
+                        b.activateArrows();
                         paper.setup();
-                }
-            }) : window.location.href = a;
+                    }
+                });
+            } else {
+                window.location.href = url;
+            }
         }, this.getVelocityAdjustedTransitionDuration());
     },
 
     activateArrows: function() {
-        var a = this;
-        this.nextLink = document.querySelector(this.nextSelector),
-        this.prevLink = document.querySelector(this.prevSelector),
-        this.nextLink != null && (
-            this.nextLink.onclick = function(b) {
-                return b.preventDefault(), a.next();
-            },
-            this.nextPost = $("<div />").hide().load(
-                this.nextLink.href + " " + this.fragmentSelector
-            )
-        );
+        const a = this;
+        this.nextLink = document.querySelector(this.nextSelector);
+        this.prevLink = document.querySelector(this.prevSelector);
 
-        if (this.prevLink != null)
-            return this.prevLink.onclick = function(b) {
-                return b.preventDefault(), a.prev();
-            },
-            this.prevPost = $("<div />").hide().load(
-                this.prevLink.href + " " + this.fragmentSelector
-            );
+        if (this.nextLink) {
+            this.nextLink.onclick = function(e) { e.preventDefault(); a.next(); };
+            fetch(this.nextLink.href).catch(function() {});
+        }
+        if (this.prevLink) {
+            this.prevLink.onclick = function(e) { e.preventDefault(); a.prev(); };
+            fetch(this.prevLink.href).catch(function() {});
+        }
     },
 
     handleEvent: function(a) {
         switch (a.type) {
             case "touchstart": return this.onTouchStart(a);
-            case "touchmove": return this.onTouchMove(a);
-            case "touchend": return this.onTouchEnd(a);
+            case "touchmove":  return this.onTouchMove(a);
+            case "touchend":   return this.onTouchEnd(a);
         }
     },
 
     onTouchStart: function(a) {
-        var b;
-        return b = this.element.style,
-            b.webkitTransitionProperty = b.MozTransitionProperty =
-            b.msTransitionProperty = b.OTransitionProperty =
-            b.transitionProperty = "all",
-            b.webkitTransitionDuration = b.MozTransitionDuration =
-            b.msTransitionDuration = b.OTransitionDuration =
-            b.transitionDuration = "0s",
-            this.start = {
-                pageX: a.touches[0].pageX,
-                pageY: a.touches[0].pageY,
-                time: Number(new Date)
-            },
-            this.deltaX = 0,
-            this.isScrolling = void 0;
+        setTransition(this.element, '0s');
+        this.start = {
+            pageX: a.touches[0].pageX,
+            pageY: a.touches[0].pageY,
+            time:  Number(new Date)
+        };
+        this.deltaX      = 0;
+        this.isScrolling = undefined;
     },
 
     onTouchMove: function(a) {
-        var b;
-        if (a.touches.length > 1 || a.scale && a.scale !== 1) return true;
-        this.deltaX = a.touches[0].pageX - this.start.pageX,
-        typeof this.isScrolling == "undefined" && (
-            this.isScrolling = !!(this.isScrolling ||
-                Math.abs(this.deltaX) < Math.abs(a.touches[0].pageY - this.start.pageY))
-        );
-
-        if (!this.isScrolling)
-            return a.preventDefault(),
-                b = this.element.style,
-                b.webkitTransform = b.MozTransform = b.msTransform =
-                b.OTransform = b.transform = "translate3d(" + this.deltaX + "px, 0, 0)";
+        if (a.touches.length > 1 || (a.scale && a.scale !== 1)) return true;
+        this.deltaX = a.touches[0].pageX - this.start.pageX;
+        if (typeof this.isScrolling === 'undefined') {
+            this.isScrolling = Math.abs(this.deltaX) <
+                Math.abs(a.touches[0].pageY - this.start.pageY);
+        }
+        if (!this.isScrolling) {
+            a.preventDefault();
+            this.element.style.transform = 'translate3d(' + this.deltaX + 'px, 0, 0)';
+        }
     },
 
     onTouchEnd: function(a) {
-        var b;
-        return this.isScrolling ? true :
-            (this.deltaX > 200 || this.deltaX > 20 &&
-                Number(new Date) - this.start.time < 250) && this.prevLink != null ?
-                this.prev() :
-            (this.deltaX < -200 || this.deltaX < -20 &&
-                Number(new Date) - this.start.time < 250) && this.nextLink != null ?
-                this.next() :
-            (b = this.element.style,
-            b.webkitTransitionDuration = b.MozTransitionDuration =
-            b.msTransitionDuration = b.OTransitionDuration =
-            b.transitionDuration = ".5s",
-            b.webkitTransform = b.MozTransform = b.msTransform =
-            b.OTransform = b.transform = "");
+        if (this.isScrolling) return true;
+        const elapsed = Number(new Date) - this.start.time;
+        if ((this.deltaX > 200 || (this.deltaX > 20 && elapsed < 250)) && this.prevLink) {
+            return this.prev();
+        }
+        if ((this.deltaX < -200 || (this.deltaX < -20 && elapsed < 250)) && this.nextLink) {
+            return this.next();
+        }
+        setTransition(this.element, '.5s');
+        this.element.style.transform = '';
     }
 };
 
+// ─── Init ─────────────────────────────────────────────────────────────────────
 
-$(document).ready(function() {
-    if (!$('body').hasClass('meta')) {
+document.addEventListener('DOMContentLoaded', function() {
+    if (!document.body.classList.contains('meta')) {
         window.paper = paper;
         paper.setup();
     }
 
-    if ($('#post-wrap').hasClass('single')) {
+    if (document.querySelector('#post-wrap.single')) {
         const container = document.querySelector('.photo-permalink-container');
-
         if (container && container.children.length > 0) {
             try {
                 lightGallery(container, {
