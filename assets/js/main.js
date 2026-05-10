@@ -16,20 +16,21 @@ import imagesLoaded from 'imagesloaded';
 // ─── Config ───────────────────────────────────────────────────────────────────
 
 const CONFIG = {
-    IMAGES_LOADED_TIMEOUT: 2000,
+    IMAGES_LOADED_TIMEOUT:      2000,
+    MAX_CAROUSEL_PADDING_EM:    1.6,
     MASONRY: {
-        itemSelector: '.post',
-        columnWidth:  '.post',
-        percentPosition: true,
-        gutter: 10,
+        itemSelector:       '.post',
+        columnWidth:        '.post',
+        percentPosition:    true,
+        gutter:             10,
         transitionDuration: '0.2s'
     },
     CAROUSEL: {
         interval: false,
-        wrap: true,
-        touch: true
+        wrap:     true,
+        touch:    true
     },
-    FEATURES_LIMIT: 6,
+    FEATURES_LIMIT:     6,
     LIGHTGALLERY_DELAY: 50
 };
 
@@ -250,6 +251,7 @@ const paper = {
                         const p = g.getAttribute('data-post-type');
                         const e = document.createElement('div');
                         e.className = 'carousel-item';
+                        if (l === 0) e.classList.add('active');
 
                         let j;
 
@@ -332,11 +334,10 @@ const paper = {
                         e.appendChild(featureContent);
                         const source = g.querySelector('.source');
                         if (source) e.appendChild(source);
-                        if (l === 0) e.classList.add('active');
                         a.list.appendChild(e);
                     }
 
-                    // ── Buttons: getInstance() zur Laufzeit ────────────────
+                    // ── Buttons ────────────────────────────────────────────
                     const prevBtn = document.createElement('button');
                     prevBtn.className = 'pagination-newer carousel-control-prev';
                     prevBtn.setAttribute('type', 'button');
@@ -370,7 +371,7 @@ const paper = {
                     arrows.appendChild(prevBtn);
                     arrows.appendChild(nextBtn);
 
-                    // ── Dots Navigation ────────────────────────────────────
+                    // ── Dots ───────────────────────────────────────────────
                     const items = Array.from(a.list.querySelectorAll('.carousel-item'));
                     const nav = document.createElement('div');
                     nav.className = 'navigation';
@@ -379,6 +380,7 @@ const paper = {
                         const dot = document.createElement('em');
                         dot.innerHTML = '•';
                         dot.setAttribute('data-index', idx);
+                        if (idx === 0) dot.classList.add('on');
                         dot.addEventListener('click', function() {
                             const instance = bootstrap.Carousel.getInstance(carouselEl);
                             if (instance) {
@@ -389,9 +391,6 @@ const paper = {
                         });
                         nav.appendChild(dot);
                     });
-
-                    const firstDot = nav.querySelector('em:first-child');
-                    if (firstDot) firstDot.classList.add('on');
 
                     // ── slid Event ─────────────────────────────────────────
                     carouselEl.addEventListener('slid.bs.carousel', function(e) {
@@ -411,7 +410,27 @@ const paper = {
                         try {
                             a.verticallyAlignContent();
 
-                            // BS5: Instanz erstellen - getInstance() findet sie später
+                            // Validierung vor Init
+                            const carouselItems = a.list.querySelectorAll('.carousel-item');
+                            if (carouselItems.length === 0) {
+                                console.error('Keine Carousel Items - Init abgebrochen');
+                                return;
+                            }
+
+                            // Genau ein active Item sicherstellen
+                            let hasActive = false;
+                            carouselItems.forEach(function(item) {
+                                if (item.classList.contains('active')) {
+                                    if (hasActive) {
+                                        item.classList.remove('active');
+                                    } else {
+                                        hasActive = true;
+                                    }
+                                }
+                            });
+                            if (!hasActive) carouselItems[0].classList.add('active');
+
+                            // BS5 Carousel initialisieren
                             new bootstrap.Carousel(carouselEl, CONFIG.CAROUSEL);
 
                             a.div.classList.add('loaded');
@@ -436,6 +455,9 @@ const paper = {
                 const img = item.querySelector('img');
                 const w = img ? img.offsetWidth : 0;
                 item.classList.remove('measure_height');
+
+                if (w <= 0) return;
+
                 item.querySelectorAll('.post-pad, .photo-permalink, .source').forEach(function(el) {
                     el.style.width = w + 'px';
                 });
@@ -444,13 +466,21 @@ const paper = {
 
         verticallyAlignContent: function() {
             const carouselInner = this.div.querySelector('.carousel-inner');
-            const totalHeight = carouselInner ? carouselInner.offsetHeight : 0;
+            const totalHeight   = carouselInner ? carouselInner.offsetHeight : 0;
+
+            // Max paddingTop: CONFIG.MAX_CAROUSEL_PADDING_EM em
+            const rootFontSize = parseFloat(
+                getComputedStyle(document.documentElement).fontSize
+            ) || 16;
+            const maxPaddingPx = CONFIG.MAX_CAROUSEL_PADDING_EM * rootFontSize;
 
             this.div.querySelectorAll('.carousel-item:not(.photoset):not(.video)')
                 .forEach(function(item) {
                     const content = item.querySelector('.feature_content');
                     if (!content) return;
-                    let contentHeight;
+
+                    let contentHeight = 0;
+
                     if (item.classList.contains('active')) {
                         contentHeight = content.offsetHeight;
                     } else {
@@ -458,8 +488,25 @@ const paper = {
                         contentHeight = content.offsetHeight;
                         item.classList.remove('measure_height');
                     }
-                    content.style.paddingTop =
-                        Math.floor((totalHeight - contentHeight) / 2) + 'px';
+
+                    // Ungültige Werte abfangen
+                    if (totalHeight <= 0 || contentHeight <= 0) {
+                        content.style.paddingTop = '0px';
+                        return;
+                    }
+
+                    // Content größer als Container
+                    if (contentHeight >= totalHeight) {
+                        content.style.paddingTop = '0px';
+                        return;
+                    }
+
+                    // Berechnen, auf max begrenzen, niemals negativ
+                    let paddingTop = Math.floor((totalHeight - contentHeight) / 2);
+                    paddingTop = Math.min(paddingTop, maxPaddingPx);
+                    paddingTop = Math.max(paddingTop, 0);
+
+                    content.style.paddingTop = paddingTop + 'px';
                 });
         }
     },
@@ -547,13 +594,45 @@ paper.Notebook.prototype = {
             try {
                 if (!document.body.contains(pageEl)) return;
 
-                let g = Math.round(pageEl.offsetWidth * img.height / img.width);
-                let h = pageEl.offsetWidth;
+                // ── Breite ermitteln mit Fallbacks ─────────────────────────
+                let containerWidth = pageEl.offsetWidth;
+
+                if (containerWidth === 0) {
+                    containerWidth = pageEl.parentElement
+                        ? pageEl.parentElement.offsetWidth : 0;
+                }
+                if (containerWidth === 0) {
+                    containerWidth = notebookEl.offsetWidth;
+                }
+                if (containerWidth === 0) {
+                    containerWidth = parseInt(notebookEl.getAttribute('data-width')) || 0;
+                }
+                if (containerWidth === 0) {
+                    containerWidth = Math.floor(window.innerWidth / 2);
+                    console.warn('setImageHeights: Fallback Breite verwendet:', containerWidth);
+                }
+
+                // ── Bild-Dimensionen validieren ────────────────────────────
+                if (!img.naturalWidth || !img.naturalHeight) {
+                    console.warn('setImageHeights: Bild ohne Dimensionen:', src);
+                    return;
+                }
+
+                // ── Höhe/Breite berechnen ──────────────────────────────────
+                let g = Math.round(containerWidth * img.naturalHeight / img.naturalWidth);
+                let h = containerWidth;
+
                 const inFeature = notebookEl.closest('.feature_content') !== null;
 
                 if (g > maxHeight) {
                     g = maxHeight;
-                    h = Math.round(img.width * g / img.height);
+                    h = Math.round(img.naturalWidth * g / img.naturalHeight);
+                }
+
+                // ── 0-Werte verhindern ─────────────────────────────────────
+                if (g <= 0 || h <= 0) {
+                    console.warn('setImageHeights: 0-Dimensionen verhindert:', { g, h, src });
+                    return;
                 }
 
                 pageEl.style.height = g + 'px';
@@ -567,24 +646,27 @@ paper.Notebook.prototype = {
                 if (h > curW) notebookEl.setAttribute('data-width',  h);
 
                 if (isFirst) {
-                    notebookEl.style.height = notebookEl.getAttribute('data-height') + 'px';
-                    if (notebookEl.offsetWidth > parseInt(notebookEl.getAttribute('data-width'))) {
+                    const nbHeight = parseInt(notebookEl.getAttribute('data-height')) || 0;
+                    const nbWidth  = parseInt(notebookEl.getAttribute('data-width'))  || 0;
+
+                    if (nbHeight > 0) notebookEl.style.height = nbHeight + 'px';
+
+                    if (notebookEl.offsetWidth > nbWidth) {
                         notebookEl.setAttribute('data-width', notebookEl.offsetWidth);
                     }
-                    if (inFeature) {
+
+                    if (inFeature && nbWidth > 0) {
                         notebookEl.style.width = notebookEl.getAttribute('data-width') + 'px';
                     }
+
                     notebookEl.querySelectorAll('div').forEach(function(div) {
-                        const mt = Math.round(
-                            (parseInt(notebookEl.getAttribute('data-height')) -
-                             parseInt(div.getAttribute('data-height') || 0)) / 2
-                        );
-                        const ml = Math.round(
-                            (parseInt(notebookEl.getAttribute('data-width')) -
-                             parseInt(div.getAttribute('data-width')  || 0)) / 2
-                        );
-                        div.style.marginTop  = mt + 'px';
-                        div.style.marginLeft = ml + 'px';
+                        const nbH  = parseInt(notebookEl.getAttribute('data-height')) || 0;
+                        const nbW  = parseInt(notebookEl.getAttribute('data-width'))  || 0;
+                        const divH = parseInt(div.getAttribute('data-height')) || 0;
+                        const divW = parseInt(div.getAttribute('data-width'))  || 0;
+
+                        if (nbH > 0) div.style.marginTop  = Math.round((nbH - divH) / 2) + 'px';
+                        if (nbW > 0) div.style.marginLeft = Math.round((nbW - divW) / 2) + 'px';
                     });
                 }
 
@@ -593,6 +675,7 @@ paper.Notebook.prototype = {
                     !document.body.classList.contains('tag_page')) {
                     paper.safeMasonry();
                 }
+
             } catch(err) {
                 console.warn('setImageHeights load Fehler:', err);
             }
@@ -624,15 +707,12 @@ paper.Notebook.prototype = {
             const dataSrc   = (imgEl && imgEl.getAttribute('data-src'))   || this.sources[a];
             const dataThumb = (imgEl && imgEl.getAttribute('data-thumb')) || this.sources[a];
 
-            this.setImageHeights(
-                this.sources[a], c, this.element,
-                isFirst, this.settings.lastNotebook, this.max_height
-            );
-
             c.className = "notebook-page page-style-" + parseInt(Math.random() * 5);
-            c.setAttribute("data-page",  this.sources.length - a);
-            c.setAttribute("data-src",   dataSrc);
-            c.setAttribute("data-thumb", dataThumb);
+            c.setAttribute("data-page",     this.sources.length - a);
+            c.setAttribute("data-src",      dataSrc);
+            c.setAttribute("data-thumb",    dataThumb);
+            c.setAttribute("data-source",   this.sources[a]);
+            c.setAttribute("data-is-first", isFirst ? "1" : "0");
             c.style.zIndex = a + 1000;
 
             this.pages.push(c);
@@ -649,9 +729,22 @@ paper.Notebook.prototype = {
         }
     },
 
+    // setImageHeights NACH DOM-Einfügung aufrufen
     appendElement: function() {
         this.container.innerHTML = "";
         this.container.appendChild(this.element);
+
+        const self = this;
+        this.pages.forEach(function(pageEl, idx) {
+            const src     = pageEl.getAttribute("data-source");
+            const isFirst = pageEl.getAttribute("data-is-first") === "1";
+            const isLast  = (idx === self.pages.length - 1) && self.settings.lastNotebook;
+
+            self.setImageHeights(
+                src, pageEl, self.element,
+                isFirst, isLast, self.max_height
+            );
+        });
     },
 
     dragify: function(el) {
@@ -882,7 +975,7 @@ paper.MovablePage.prototype = {
         const dur = this.getVelocityAdjustedTransitionDuration() / 1000 + 's';
         setTransition(this.element, dur);
         this.element.style.transform = 'translate3d(-100%,0,0)';
-        this.element.style.opacity = '0';
+        this.element.style.opacity   = '0';
         this.load(this.nextLink.href);
     },
 
@@ -890,7 +983,7 @@ paper.MovablePage.prototype = {
         const dur = this.getVelocityAdjustedTransitionDuration() / 1000 + 's';
         setTransition(this.element, dur);
         this.element.style.transform = 'translate3d(100%,0,0)';
-        this.element.style.opacity = '0';
+        this.element.style.opacity   = '0';
         this.load(this.prevLink.href);
     },
 
