@@ -1,8 +1,4 @@
 {
-  "scripts": {
-    "build": "hugo",
-    "start": "hugo server -D --debug --disableFastRender --buildFuture"
-  },
   "dependencies": {
     "bootstrap": "^5.3.8",
     "imagesloaded": "^5.0.0",

@@ -31,4 +31,3 @@ convert static/images/favicon-16.png static/images/favicon-32.png static/images/
 
 # NPM dependencies
 $DEPENDENCY_MANAGER install
-$DEPENDENCY_MANAGER run modernizr
