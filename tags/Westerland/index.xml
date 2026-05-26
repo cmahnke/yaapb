@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Westerland on Yet another analog photo blog</title>
-    <link>https://yaapb.projektemacher.org/tags/Westerland/</link>
-    <description>Recent content in Westerland on Yet another analog photo blog</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 23 Feb 2024 08:22:11 +0100</lastBuildDate>
-    <atom:link href="https://yaapb.projektemacher.org/tags/Westerland/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Westerland / Sylt / Disposable Camera / Fuji 400</title>
-      <link>https://yaapb.projektemacher.org/post/sylt-fuji-disposable-camera-expired_film/</link>
-      <pubDate>Mon, 20 Nov 2023 08:30:06 +0000</pubDate>
-      <guid>https://yaapb.projektemacher.org/post/sylt-fuji-disposable-camera-expired_film/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Westerland on Yet another analog photo blog</title>
+		<link>https://yaapb.projektemacher.org/tags/Westerland/</link>
+		<description>Recent content in Westerland on Yet another analog photo blog</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 23 Feb 2024 08:22:11 +0100</lastBuildDate>
+		
+			<atom:link href="https://yaapb.projektemacher.org/tags/Westerland/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Westerland / Sylt / Disposable Camera / Fuji 400</title>
+				<link>https://yaapb.projektemacher.org/post/sylt-fuji-disposable-camera-expired_film/</link>
+				<pubDate>Mon, 20 Nov 2023 08:30:06 +0000</pubDate>
+				<guid>https://yaapb.projektemacher.org/post/sylt-fuji-disposable-camera-expired_film/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

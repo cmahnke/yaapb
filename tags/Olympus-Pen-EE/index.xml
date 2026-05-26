@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Olympus Pen EE on Yet another analog photo blog</title>
-    <link>https://yaapb.projektemacher.org/tags/Olympus-Pen-EE/</link>
-    <description>Recent content in Olympus Pen EE on Yet another analog photo blog</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Fri, 23 Feb 2024 08:22:11 +0100</lastBuildDate>
-    <atom:link href="https://yaapb.projektemacher.org/tags/Olympus-Pen-EE/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Sigmaringen / Olympus Pen EE / Polaroid 200</title>
-      <link>https://yaapb.projektemacher.org/post/sigmaringen-olympus-pen-ee_polaroid-200/</link>
-      <pubDate>Mon, 26 Feb 2024 21:15:06 +0000</pubDate>
-      <guid>https://yaapb.projektemacher.org/post/sigmaringen-olympus-pen-ee_polaroid-200/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Göttingen / Opympus Pen EE / Polaroid 200</title>
-      <link>https://yaapb.projektemacher.org/post/goettingen-olympus-pen-ee_polaroid-200/</link>
-      <pubDate>Mon, 15 Jan 2024 21:15:06 +0000</pubDate>
-      <guid>https://yaapb.projektemacher.org/post/goettingen-olympus-pen-ee_polaroid-200/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Composed from three images</title>
-      <link>https://yaapb.projektemacher.org/post/goettingen-panorama-expired_film-agfa_hdc_plus_200-olympus_pen_ee/</link>
-      <pubDate>Sat, 27 Apr 2019 15:11:58 +0000</pubDate>
-      <guid>https://yaapb.projektemacher.org/post/goettingen-panorama-expired_film-agfa_hdc_plus_200-olympus_pen_ee/</guid>
-      <description>&lt;p&gt;Composed from three images.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://yaapb.projektemacher.org/post/goettingen-expired_film-agfa_hdc_plus_200-olympus_pen_ee-campus-cherry_blossom/</link>
-      <pubDate>Sat, 27 Apr 2019 15:01:22 +0000</pubDate>
-      <guid>https://yaapb.projektemacher.org/post/goettingen-expired_film-agfa_hdc_plus_200-olympus_pen_ee-campus-cherry_blossom/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://yaapb.projektemacher.org/post/goettingen-agfa_hdc_plus_200-expired_film-olympus_pen_ee/</link>
-      <pubDate>Sat, 27 Apr 2019 14:54:44 +0000</pubDate>
-      <guid>https://yaapb.projektemacher.org/post/goettingen-agfa_hdc_plus_200-expired_film-olympus_pen_ee/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Olympus Pen EE on Yet another analog photo blog</title>
+		<link>https://yaapb.projektemacher.org/tags/Olympus-Pen-EE/</link>
+		<description>Recent content in Olympus Pen EE on Yet another analog photo blog</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 23 Feb 2024 08:22:11 +0100</lastBuildDate>
+		
+			<atom:link href="https://yaapb.projektemacher.org/tags/Olympus-Pen-EE/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Sigmaringen / Olympus Pen EE / Polaroid 200</title>
+				<link>https://yaapb.projektemacher.org/post/sigmaringen-olympus-pen-ee_polaroid-200/</link>
+				<pubDate>Mon, 26 Feb 2024 21:15:06 +0000</pubDate>
+				<guid>https://yaapb.projektemacher.org/post/sigmaringen-olympus-pen-ee_polaroid-200/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Göttingen / Opympus Pen EE / Polaroid 200</title>
+				<link>https://yaapb.projektemacher.org/post/goettingen-olympus-pen-ee_polaroid-200/</link>
+				<pubDate>Mon, 15 Jan 2024 21:15:06 +0000</pubDate>
+				<guid>https://yaapb.projektemacher.org/post/goettingen-olympus-pen-ee_polaroid-200/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Composed from three images</title>
+				<link>https://yaapb.projektemacher.org/post/goettingen-panorama-expired_film-agfa_hdc_plus_200-olympus_pen_ee/</link>
+				<pubDate>Sat, 27 Apr 2019 15:11:58 +0000</pubDate>
+				<guid>https://yaapb.projektemacher.org/post/goettingen-panorama-expired_film-agfa_hdc_plus_200-olympus_pen_ee/</guid>
+				<description>&lt;p&gt;Composed from three images.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title></title>
+				<link>https://yaapb.projektemacher.org/post/goettingen-expired_film-agfa_hdc_plus_200-olympus_pen_ee-campus-cherry_blossom/</link>
+				<pubDate>Sat, 27 Apr 2019 15:01:22 +0000</pubDate>
+				<guid>https://yaapb.projektemacher.org/post/goettingen-expired_film-agfa_hdc_plus_200-olympus_pen_ee-campus-cherry_blossom/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title></title>
+				<link>https://yaapb.projektemacher.org/post/goettingen-agfa_hdc_plus_200-expired_film-olympus_pen_ee/</link>
+				<pubDate>Sat, 27 Apr 2019 14:54:44 +0000</pubDate>
+				<guid>https://yaapb.projektemacher.org/post/goettingen-agfa_hdc_plus_200-expired_film-olympus_pen_ee/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

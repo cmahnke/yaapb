@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>New York on Yet another analog photo blog</title>
-    <link>https://yaapb.projektemacher.org/tags/New-York/</link>
-    <description>Recent content in New York on Yet another analog photo blog</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <lastBuildDate>Sun, 13 Jun 2021 12:25:01 +0200</lastBuildDate>
-    <atom:link href="https://yaapb.projektemacher.org/tags/New-York/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>A new category: Found negatives</title>
-      <link>https://yaapb.projektemacher.org/post/new_york-found_negative/</link>
-      <pubDate>Mon, 03 Jul 2017 16:59:30 +0000</pubDate>
-      <guid>https://yaapb.projektemacher.org/post/new_york-found_negative/</guid>
-      <description>&lt;p&gt;A new category: Found negatives!&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>New York on Yet another analog photo blog</title>
+		<link>https://yaapb.projektemacher.org/tags/New-York/</link>
+		<description>Recent content in New York on Yet another analog photo blog</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 13 Jun 2021 12:25:01 +0200</lastBuildDate>
+		
+			<atom:link href="https://yaapb.projektemacher.org/tags/New-York/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>A new category: Found negatives</title>
+				<link>https://yaapb.projektemacher.org/post/new_york-found_negative/</link>
+				<pubDate>Mon, 03 Jul 2017 16:59:30 +0000</pubDate>
+				<guid>https://yaapb.projektemacher.org/post/new_york-found_negative/</guid>
+				<description>&lt;p&gt;A new category: Found negatives!&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>
