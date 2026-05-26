@@ -119,4 +119,4 @@ defaultMarkdownHandler = 'goldmark'
   lastmod = ['lastmod', ':git', 'modified', 'date', 'publishdate', 'pubdate', 'published']
 
 [security]
-  allowContent = ['^text/html$']
+  allowContent = ['^text/html$', '^text/markdown$']
