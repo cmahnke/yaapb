@@ -22,3 +22,6 @@ updates:
       themes:
         patterns:
           - '*'
+    cooldown:
+      exclude:
+        - projektemacher-base
