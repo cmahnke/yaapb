@@ -68,15 +68,20 @@ jobs:
           ./themes/projektemacher-base/scripts/init/package.json.sh
           ./themes/projektemacher-base/scripts/github/check-js-errors.sh
 
-      - name: Archive links
-        run: python ./themes/projektemacher-base/scripts/archive.py -d docs/ -e yaapb.projektemacher.org,projektemacher.org -o archived-urls.txt
-
-      - name: Save URL list
-        run: |
-          cp archived-urls.txt docs/
+      # - name: Archive links
+      #   run: python ./themes/projektemacher-base/scripts/archive.py -d docs/ -e yaapb.projektemacher.org,projektemacher.org -o archived-urls.txt
+      #
+      # - name: Save URL list
+      #   run: |
+      #     cp archived-urls.txt docs/
 
       - name: Deploy site
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+
+  archive:
+    needs: deploy
+    uses: ./.github/workflows/archive.yml
+    secrets: inherit
