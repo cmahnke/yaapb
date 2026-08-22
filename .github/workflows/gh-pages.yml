@@ -46,19 +46,13 @@ jobs:
         run: |
           ./scripts/setup.sh
 
-      # - name: Setup Hugo
-      #   uses: peaceiris/actions-hugo@v3
-      #   with:
-      #     hugo-version: ${{ env.HUGO_VERSION }}
-      #     extended: true
-
       - name: Install Hugo
         run: |
           ./themes/projektemacher-base/scripts/github/setup-hugo.sh ${{ env.HUGO_VERSION }}
 
       - name: Generate stats
         run: |
-          ./themes/projektemacher-base/scripts/stat.sh
+          ./themes/projektemacher-base/scripts/stat.py
 
       - name: Build Hugo site
         run: hugo
@@ -67,13 +61,6 @@ jobs:
         run: |
           ./themes/projektemacher-base/scripts/init/package.json.sh
           ./themes/projektemacher-base/scripts/github/check-js-errors.sh
-
-      # - name: Archive links
-      #   run: python ./themes/projektemacher-base/scripts/archive.py -d docs/ -e yaapb.projektemacher.org,projektemacher.org -o archived-urls.txt
-      #
-      # - name: Save URL list
-      #   run: |
-      #     cp archived-urls.txt docs/
 
       - name: Deploy site
         uses: peaceiris/actions-gh-pages@v4
