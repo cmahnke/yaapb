@@ -1,9 +1,8 @@
 baseURL = "https://yaapb.projektemacher.org/"
 title = "Yet another analog photo blog"
-languageCode = "en"
+locale = "en"
 publishDir = "docs"
 canonifyurls = true
-languagecode = "en"
 defaultcontentlanguage = "en"
 disablePathToLower = true
 theme = ["projektemacher-base"]
