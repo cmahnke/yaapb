@@ -137,6 +137,7 @@ $lg-image-path: /images/lightgallery !default;
 
 .pagination.pagination-slideshow {
   overflow: unset;
+  z-index: 1100;
 
   button.pagination-newer,
   button.pagination-newer,
@@ -1448,6 +1449,86 @@ body.with-features #header {
 
 #features .carousel-inner {
     overflow: visible;
+}
+@media screen and (max-width: 1023px) {
+    #posts-wrap,
+    body.show #posts-wrap,
+    #nav_wrap,
+    #pagination-pages,
+    #pagination-posts,
+    #nav-bottom {
+        width: auto;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    #nav-top ul,
+    #nav-bottom ul,
+    body.show #posts,
+    #posts {
+        float: none;
+        clear: both;
+        width: auto;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #nav-top ul,
+    #nav-bottom ul {
+        overflow-x: auto;
+        scrollbar-width: none;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    #nav-top ul::-webkit-scrollbar,
+    #nav-bottom ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    #nav-top li,
+    #nav-bottom li {
+        display: inline-block;
+        float: none;
+    }
+
+    #nav-bottom #footerInfo {
+        width: auto;
+        max-width: 100%;
+    }
+
+    body.show .post,
+    body.show .post .photo-permalink-container,
+    body.show .post .photoset_wrap,
+    body.show .photoset .notebook,
+    body.show .photoset .notebook .notebook-page {
+        width: 100%;
+        max-width: 581px;
+    }
+
+    body.show .post .tags,
+    body.show .post .date-top,
+    body.show .post .social {
+        position: static;
+        width: auto;
+        text-align: left;
+    }
+
+    #features .photoset_wrap {
+        width: auto;
+        max-width: 581px;
+    }
+
+    #features img {
+        max-width: 100%;
+    }
+
+    #features {
+        overflow-x: hidden;
+    }
 }
 @media screen and (min-width: 1024px) {
     #page > * {

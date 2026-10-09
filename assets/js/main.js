@@ -70,7 +70,7 @@ function safeImagesLoaded(element, callback) {
                 img.src === '' ||
                 img.src === window.location.href ||
                 img.src === window.location.origin + '/') {
-                try { img.remove(); } catch(e) {}
+                try { img.remove(); } catch(e) { /* unremovable node */ }
             }
         });
 
@@ -518,12 +518,8 @@ class Notebook {
                     containerWidth = parseInt(notebookEl.getAttribute('data-width')) || 0;
                 }
                 if (containerWidth === 0) {
-                    const hiddenItem = pageEl.closest('.carousel-item');
-                    if (hiddenItem) {
-                        hiddenItem.classList.add('measure_height');
-                        containerWidth = pageEl.offsetWidth;
-                        hiddenItem.classList.remove('measure_height');
-                    }
+                    const features = document.querySelector('#features');
+                    if (features) containerWidth = Math.min(581, features.offsetWidth);
                 }
                 if (containerWidth === 0) {
                     containerWidth = Math.floor(window.innerWidth / 2);
@@ -742,7 +738,7 @@ class Notebook {
         }, 400);
     }
 
-    onDragEnd(a) {
+    onDragEnd() {
         this.distance = Math.sqrt(this.deltaX * this.deltaX + this.deltaY * this.deltaY);
         this.deltaT   = Number(new Date) - this.start.time;
         this.rect     = this.element.getBoundingClientRect();
@@ -772,7 +768,7 @@ class Notebook {
         }
     }
 
-    onClick(a) {
+    onClick() {
         if (this.dragged) { this.dragged = false; return true; }
 
         if (!document.body.classList.contains("show")) {
@@ -793,7 +789,7 @@ class Notebook {
         }
 
         if (this.lgInstance) {
-            try { this.lgInstance.destroy(); } catch(e) {}
+            try { this.lgInstance.destroy(); } catch(e) { /* not yet initialized */ }
             this.lgInstance = null;
         }
 
@@ -821,7 +817,7 @@ class Notebook {
 
                 tmpContainer.addEventListener('lgAfterClose', () => {
                     if (this.lgInstance) {
-                        try { this.lgInstance.destroy(); } catch(e) {}
+                        try { this.lgInstance.destroy(); } catch(e) { /* already destroyed */ }
                         this.lgInstance = null;
                     }
                     const tmp = document.getElementById('lg-tmp-container');
@@ -1003,7 +999,7 @@ class MovablePage {
         }
     }
 
-    onTouchEnd(a) {
+    onTouchEnd() {
         if (this.isScrolling) return true;
         const elapsed = Number(new Date) - this.start.time;
         if ((this.deltaX > 200 || (this.deltaX > 20 && elapsed < 250)) && this.prevLink) {
@@ -1132,6 +1128,12 @@ class Paper {
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
 const paper = new Paper();
+
+let resizeTimer = null;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() { paper.reloadMasonry(); }, 200);
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     if (!document.body.classList.contains('meta')) {
