@@ -1,11 +1,9 @@
 $color-header-foreground: #211f1f !default;
 $font-body-font: Inconsolata, Helvetica, Arial, sans-serif !default;
 
-// lightGallery settings
+// lightGallery settings
 $lg-font-path: /fonts/lightgallery !default;
 $lg-image-path: /images/lightgallery !default;
-
-@import "lightgallery";
 
 @import "bootstrap/functions";
 @import "bootstrap/variables";

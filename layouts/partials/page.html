@@ -49,7 +49,7 @@
                 {{- $class = "photoset_wrap" -}}
                 {{- $linkClass = "photoset_photo" -}}
             {{- end -}}
-            {{- $maxWidth := 1280 -}}
+            {{- $displayWidth := 800 -}}
             {{- $thumbsWidth := 400 -}}
 
             {{- range .Params.resources -}}
@@ -57,15 +57,10 @@
                     {{- $src := .RelPermalink -}}
                     {{- $image := $.Resources.GetMatch .src -}}
                     {{- if $image -}}
-                        {{- $imageDisplay := $image -}}
-                        {{- if gt $imageDisplay.Width $maxWidth }}
-                            {{- $image = $imageDisplay.Resize (printf "%dx" $maxWidth) -}}
-                        {{- end -}}
-                        {{- if eq $image.MediaType.SubType "png" -}}
-                          {{ $image = $imageDisplay.Resize (printf "%dx %s" $imageDisplay.Width "jpg") -}}
-                        {{- end -}}
-                        {{- $thumb := $imageDisplay.Resize (printf "%dx jpg" $thumbsWidth) -}}
-                        {{- $images = $images | append (dict "orig" $image "front" $imageDisplay "thumb" $thumb) -}}
+                        {{- $w := int $image.Width -}}
+                        {{- $display := $image.Resize (printf "%dx webp q80" (math.Min $displayWidth $w | int)) -}}
+                        {{- $thumb := $image.Resize (printf "%dx webp q80" (math.Min $thumbsWidth $w | int)) -}}
+                        {{- $images = $images | append (dict "orig" $image "display" $display "thumb" $thumb) -}}
                     {{- else -}}
                         <div class="image-viewer-error">Couldn't load image "{{ $src }}"</div>
                     {{ end -}}
@@ -80,13 +75,13 @@
             {{- else if eq $class "photo-permalink-container" -}}
                 <a href="{{ $link }}">
                     {{ with index $images 0 }}
-                        <img src="{{ (index . "front").RelPermalink }}" alt="" data-src="{{ (index . "orig").RelPermalink }}" data-highres="{{ (index . "orig").RelPermalink }}" class="post-image">
+                        <img src="{{ (index . "display").RelPermalink }}" alt="" data-src="{{ (index . "orig").RelPermalink }}" class="post-image">
                     {{ end }}
                 </a>
             {{- else if eq $class "photoset_wrap" -}}
                 {{- range $images -}}
                      <a class="photoset_photo" href="{{ $link }}">
-                          <img src="{{ (index . "front").RelPermalink }}" data-src="{{ (index . "orig").Permalink }}" data-thumb="{{ (index . "thumb").Permalink }}" data-highres="{{ (index . "orig").Permalink }}" class="post-image" />
+                          <img src="{{ (index . "display").RelPermalink }}" data-src="{{ (index . "orig").RelPermalink }}" data-thumb="{{ (index . "thumb").RelPermalink }}" class="post-image" />
                      </a>
                 {{- end -}}
             {{- end -}}

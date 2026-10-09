@@ -35,10 +35,12 @@
 
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 
-    {{ $options := (dict "targetPath" "base.css" "outputStyle" "compressed" "includePaths" (slice "node_modules/lightgallery/dist/css")) -}}
+    {{ $options := (dict "targetPath" "base.css" "outputStyle" "compressed") -}}
+    {{/* TODO: Remove this and include via SCSS */}}
+    {{- $lgCss := resources.Get "js/lightgallery/css/lightgallery-bundle.min.css" -}}
     {{- $ourTemplate := resources.Get "scss/base.scss" -}}
     {{- $ourStyle := $ourTemplate | resources.ExecuteAsTemplate "scss/base.scss" . | toCSS $options -}}
-    {{- $style := slice $ourStyle | resources.Concat "css/concated.css" | minify | fingerprint -}}
+    {{- $style := slice $lgCss $ourStyle | resources.Concat "css/concated.css" | minify | fingerprint -}}
     <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}">
 
     {{/* External Styles - Fonts etc */}}

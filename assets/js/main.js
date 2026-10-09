@@ -192,9 +192,6 @@ class Features {
                         j = wrap;
                     } else if (p === 'photo') {
                         const imgs = Array.from(g.querySelectorAll('img.post-image'));
-                        imgs.forEach(function(img) {
-                            img.src = img.getAttribute('data-highres');
-                        });
                         if (imgs.length > 1) {
                             const o = document.createElement('div');
                             o.className = 'photoset_wrap';
@@ -820,6 +817,7 @@ class Notebook {
                     dynamicEl: gallery,
                     index: 0
                 });
+                this.lgInstance.openGallery(0);
 
                 tmpContainer.addEventListener('lgAfterClose', () => {
                     if (this.lgInstance) {
