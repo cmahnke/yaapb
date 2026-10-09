@@ -115,7 +115,10 @@ function safeImagesLoaded(element, callback) {
 
 function fetchHTML(url) {
     return fetch(url)
-        .then(function(r) { return r.text(); })
+        .then(function(response) {
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            return response.text();
+        })
         .then(function(html) {
             return new DOMParser().parseFromString(html, 'text/html');
         });
@@ -140,7 +143,10 @@ class Features {
     }
 
     load() {
-        fetchHTML(tagURLPrefix + '/featured')
+        fetchHTML(tagURLPrefix + '/Featured/')
+            .catch(function() {
+                return fetchHTML(tagURLPrefix + '/featured/');
+            })
             .then((doc) => {
                 this.div = document.createElement('div');
                 this.div.id = 'features';
