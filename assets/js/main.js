@@ -1,10 +1,7 @@
-import $ from 'jquery';
-
-window.$ = window.jQuery = $;
-
-require('jquery-ui-dist/jquery-ui');
-require('jquery-pjax');
-
+import $ from './jquery-globals.js';
+import './jquery-compat.js';
+import 'jquery-ui-dist/jquery-ui';
+import 'jquery-pjax/jquery.pjax';
 import * as bootstrap from 'bootstrap';
 import lightGallery from 'lightgallery';
 import lgFullscreen from 'lightgallery/plugins/fullscreen';
@@ -21,8 +18,6 @@ const CONFIG = {
     MASONRY: {
         itemSelector:       '.post',
         columnWidth:        '.post',
-        percentPosition:    true,
-        gutter:             10,
         transitionDuration: '0.2s'
     },
     CAROUSEL: {
@@ -152,18 +147,16 @@ const paper = {
 
         const body = document.body;
         if (body.classList.contains("index") &&
-            !window.location.href.match(/post/i) &&
+            !window.location.href.match(/page/i) &&
             !body.classList.contains("tag_page")) {
             paper.features.load();
         }
 
         paper.postsEl = document.querySelector("#posts.index");
 
-        if (paper.postsEl) {
-            safeImagesLoaded(paper.postsEl, function() {
-                paper.books.build();
-            });
-        }
+        safeImagesLoaded(paper.postsEl, function() {
+            paper.books.build();
+        });
     },
 
     isMasonryInitialized: function() {
@@ -199,6 +192,7 @@ const paper = {
     },
 
     reloadMasonry: function() {
+        if (!paper.postsEl) return;
         try {
             if (!paper.isMasonryInitialized()) {
                 paper.initMasonry();
@@ -606,6 +600,14 @@ paper.Notebook.prototype = {
                 }
                 if (containerWidth === 0) {
                     containerWidth = parseInt(notebookEl.getAttribute('data-width')) || 0;
+                }
+                if (containerWidth === 0) {
+                    const hiddenItem = pageEl.closest('.carousel-item');
+                    if (hiddenItem) {
+                        hiddenItem.classList.add('measure_height');
+                        containerWidth = pageEl.offsetWidth;
+                        hiddenItem.classList.remove('measure_height');
+                    }
                 }
                 if (containerWidth === 0) {
                     containerWidth = Math.floor(window.innerWidth / 2);
@@ -1097,16 +1099,18 @@ document.addEventListener('DOMContentLoaded', function() {
         paper.setup();
     }
 
-    if (document.querySelector('#post-wrap.single')) {
+    if (document.querySelector('#posts-wrap.single')) {
         const container = document.querySelector('.photo-permalink-container');
-        if (container && container.children.length > 0) {
+        const galleryImg = container ? container.querySelector('img.post-image[data-src]') : null;
+        if (container && galleryImg) {
             try {
                 lightGallery(container, {
                     plugins: [lgFullscreen],
                     share: false,
                     autoplay: false,
                     autoplayControls: false,
-                    thumbnail: true
+                    thumbnail: true,
+                    selector: 'img'
                 });
             } catch(e) {
                 console.error('LightGallery (single) Fehler:', e);

@@ -57,8 +57,11 @@
     {{ hugo.Generator }}
   </head>
   {{- $class := "show " -}}
-  {{ if .IsHome }}
+  {{ if or .IsHome (eq .Kind "term") }}
       {{- $class = "index" -}}
+  {{ end }}
+  {{- if eq .Kind "term" -}}
+      {{- $class = printf "%s %s" $class "tag_page" -}}
   {{ end }}
   {{- if or .Params.metaPage (hasPrefix .Page.Name "404") -}}
       {{- $class = printf "%s %s" $class "meta" -}}
@@ -70,9 +73,6 @@
   {{- with .Page.File -}}
     {{- if hasPrefix .Path "about" -}}
         {{- $class = printf "%s %s" $class "about" -}}
-    {{- end -}}
-    {{- if hasPrefix .Path "tags" -}}
-        {{- $class = printf "%s %s" $class "tag_page" -}}
     {{- end -}}
   {{- end -}}
 
