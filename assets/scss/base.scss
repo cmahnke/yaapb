@@ -685,6 +685,7 @@ strong {
     background-size: cover;
     box-shadow: 1px 3px 10px rgba(0,0,0,0.4);
     box-sizing: border-box;
+    touch-action: none;
     transition: all,0.4s;
 }
 

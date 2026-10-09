@@ -1,5 +1,3 @@
-import $ from './jquery-globals.js';
-import 'jquery-ui-dist/jquery-ui';
 import * as bootstrap from 'bootstrap';
 import lightGallery from 'lightgallery';
 import lgFullscreen from 'lightgallery/plugins/fullscreen';
@@ -54,17 +52,14 @@ window.addEventListener('unhandledrejection', function(e) {
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 const supports = {
-    csstransforms: typeof document.createElement('div').style.transform !== 'undefined',
-    touch: ('ontouchstart' in window) ||
-           (navigator.maxTouchPoints > 0) ||
-           (navigator.msMaxTouchPoints > 0)
+    csstransforms: typeof document.createElement('div').style.transform !== 'undefined'
 };
 
 const tagURLPrefix = '/tags';
 
 function safeImagesLoaded(element, callback) {
     try {
-        const el = element instanceof $ ? element[0] : element;
+        const el = element;
 
         if (!el || !el.nodeType || !document.body.contains(el)) {
             return callback && callback();
@@ -458,6 +453,8 @@ class Notebook {
         this.height = 0;
         this.originalTransform = '';
         this.dragged = false;
+        this.pointerId = null;
+        this.started = false;
         this.element = null;
         this.sources = [];
         this.max_height = 0;
@@ -636,14 +633,9 @@ class Notebook {
             this.pages.push(c);
             this.element.appendChild(c);
 
-            c.addEventListener("touchstart", this, false);
-            c.addEventListener("touchmove",  this, false);
-            c.addEventListener("touchend",   this, false);
-            c.addEventListener("click",      this, false);
+            c.addEventListener("click", this, false);
 
-            if (!supports.touch && typeof $.fn.draggable === 'function') {
-                this.dragify(c);
-            }
+            this.dragify(c);
         }
     }
 
@@ -665,30 +657,37 @@ class Notebook {
     }
 
     dragify(el) {
-        $(el).draggable({
-            scroll: false,
-            start:  (a) => { return this.onDragStart(a); },
-            drag:   (a) => { return this.onDragMove(a);  },
-            stop:   (a) => { return this.onDragEnd(a);   }
-        });
+        el.addEventListener("pointerdown",   this, false);
+        el.addEventListener("pointermove",   this, false);
+        el.addEventListener("pointerup",     this, false);
+        el.addEventListener("pointercancel", this, false);
     }
 
     handleEvent(a) {
         switch (a.type) {
-            case "touchstart": return this.onTouchStart(a);
-            case "touchmove":  return this.onTouchMove(a);
-            case "touchend":   return this.onTouchEnd(a);
-            case "click":      return this.onClick(a);
+            case "pointerdown":   return this.onPointerDown(a, a.currentTarget);
+            case "pointermove":   return this.onPointerMove(a);
+            case "pointerup":     return this.onPointerUp(a);
+            case "pointercancel": return this.onPointerCancel(a);
+            case "click":         return this.onClick(a);
         }
     }
 
-    onTouchStart(a) {
-        a.preventDefault();
-        this.target = a.target;
+    onPointerDown(a, el) {
+        if (a.pointerType === 'mouse' && a.button !== 0) return;
+        if (!a.isPrimary) return;
+        if (a.pointerType === 'mouse') a.preventDefault();
+
+        try { el.setPointerCapture(a.pointerId); } catch(e) { /* pointer already gone */ }
+
+        this.pointerId = a.pointerId;
+        this.target = el;
+        this.started = false;
+        this.dragged = false;
         setTransition(this.target, '0s');
         this.start = {
-            pageX: a.touches[0].pageX,
-            pageY: a.touches[0].pageY,
+            pageX: a.pageX,
+            pageY: a.pageY,
             time:  Number(new Date)
         };
         this.deltaX = 0;
@@ -699,17 +698,48 @@ class Notebook {
         }
     }
 
-    onTouchMove(a) {
-        if (a.touches.length > 1 || (a.scale && a.scale !== 1)) return true;
+    onPointerMove(a) {
+        if (a.pointerId !== this.pointerId || !a.isPrimary) return true;
+        if (a.pointerType === 'mouse' && a.buttons === 0) return this.onPointerUp(a);
+
+        const dx = a.pageX - this.start.pageX;
+        const dy = a.pageY - this.start.pageY;
+
+        if (!this.started) {
+            if (Math.max(Math.abs(dx), Math.abs(dy)) < 1) return true;
+            this.started = true;
+            this.dragged = true;
+        }
+
         a.preventDefault();
-        a.stopPropagation();
-        if (this.settings.xMovement) this.deltaX = a.touches[0].pageX - this.start.pageX;
-        if (this.settings.yMovement) this.deltaY = a.touches[0].pageY - this.start.pageY;
+        if (this.settings.xMovement) this.deltaX = dx;
+        if (this.settings.yMovement) this.deltaY = dy;
         this.target.style.transform =
             this.originalTransform + ' translate(' + this.deltaX + 'px, ' + this.deltaY + 'px)';
     }
 
-    onTouchEnd(a) {
+    onPointerUp(a) {
+        if (a.pointerId !== this.pointerId) return;
+        this.pointerId = null;
+        if (!this.started) return;
+        this.onDragEnd(a);
+    }
+
+    onPointerCancel(a) {
+        if (a.pointerId !== this.pointerId) return;
+        this.pointerId = null;
+        this.started = false;
+        this.dragged = false;
+        setTransition(this.target, '.4s');
+        this.target.style.transform = 'rotate(0deg)';
+        this.target.style.top  = '';
+        this.target.style.left = '';
+        window.setTimeout(() => {
+            if (this.settings.parent) this.settings.parent.classList.remove("dragging");
+        }, 400);
+    }
+
+    onDragEnd(a) {
         this.distance = Math.sqrt(this.deltaX * this.deltaX + this.deltaY * this.deltaY);
         this.deltaT   = Number(new Date) - this.start.time;
         this.rect     = this.element.getBoundingClientRect();
@@ -737,34 +767,6 @@ class Notebook {
             !document.body.classList.contains("show")) {
             window.location.href = this.permalink;
         }
-    }
-
-    onDragStart(a) {
-        this.dragged = true;
-        this.target  = a.target;
-        setTransition(this.target, '0s');
-        this.start = {
-            pageX: a.pageX,
-            pageY: a.pageY,
-            time:  Number(new Date)
-        };
-        this.deltaX = 0;
-        this.deltaY = 0;
-        if (this.settings.parent) {
-            this.settings.parent.classList.add("dragging");
-        }
-    }
-
-    onDragMove(a) {
-        if (this.settings.parent) {
-            this.settings.parent.classList.add("dragging");
-        }
-        this.deltaX = a.pageX - this.start.pageX;
-        this.deltaY = a.pageY - this.start.pageY;
-    }
-
-    onDragEnd(a) {
-        return this.onTouchEnd(a);
     }
 
     onClick(a) {
@@ -837,13 +839,7 @@ class Notebook {
         const dur = 0.2;
 
         setTransition(this.target, dur + 's');
-
-        if (supports.touch) {
-            this.target.style.transform = 'translate(' + f + 'px,' + g + 'px)';
-        } else {
-            this.target.style.left = f + 'px';
-            this.target.style.top  = g + 'px';
-        }
+        this.target.style.transform = 'translate(' + f + 'px,' + g + 'px)';
 
         window.setTimeout(() => { this.afterFlip(); }, dur * 1000);
     }
