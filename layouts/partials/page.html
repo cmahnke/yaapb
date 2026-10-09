@@ -57,9 +57,10 @@
                     {{- $src := .RelPermalink -}}
                     {{- $image := $.Resources.GetMatch .src -}}
                     {{- if $image -}}
-                        {{- $w := int $image.Width -}}
-                        {{- $display := $image.Resize (printf "%dx webp q80" (math.Min $displayWidth $w | int)) -}}
-                        {{- $thumb := $image.Resize (printf "%dx webp q80" (math.Min $thumbsWidth $w | int)) -}}
+                        {{- $oriented := $image.Filter (images.AutoOrient) -}}
+                        {{- $w := int $oriented.Width -}}
+                        {{- $display := $oriented.Resize (printf "%dx webp q80" (math.Min $displayWidth $w | int)) -}}
+                        {{- $thumb := $oriented.Resize (printf "%dx webp q80" (math.Min $thumbsWidth $w | int)) -}}
                         {{- $images = $images | append (dict "orig" $image "display" $display "thumb" $thumb) -}}
                     {{- else -}}
                         <div class="image-viewer-error">Couldn't load image "{{ $src }}"</div>
