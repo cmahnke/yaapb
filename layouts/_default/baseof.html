@@ -35,7 +35,7 @@
 
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 
-    {{ $options := (dict "targetPath" "base.css" "outputStyle" "compressed") -}}
+    {{ $options := (dict "transpiler" "dartsass" "targetPath" "base.css" "outputStyle" "compressed") -}}
     {{/* TODO: Remove this and include via SCSS */}}
     {{- $lgCss := resources.Get "js/lightgallery/css/lightgallery-bundle.min.css" -}}
     {{- $ourTemplate := resources.Get "scss/base.scss" -}}
