@@ -4,6 +4,7 @@
   copyrightYears = "2016 - 2026"
   linkTumblr = true
   wikidata = true
+  schemaPerson = "https://christianmahnke.de/person.jsonld"
 
 [params.author]
   email = 'mail@christianmahnke.de'
