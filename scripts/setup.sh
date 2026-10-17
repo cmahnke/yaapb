@@ -18,6 +18,9 @@ fi
 
 $PWD/themes/projektemacher-base/scripts/init/i18n.sh
 
+# Fonts (Fontsource npm packages -> static/fonts, assets/css/fonts, assets/scss/npm-fonts)
+$PWD/themes/projektemacher-base/scripts/init/get-fonts.sh
+
 # Favicons
 # See https://gist.github.com/pfig/1808188
 convert "Source Files/Logo/logo.jpg" -resize 256x256 -transparent white static/images/favicon-256.png

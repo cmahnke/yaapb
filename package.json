@@ -5,5 +5,10 @@
     "lightgallery": "^3.0.0",
     "masonry-layout": "^4.2.2",
     "spin": "^0.0.1"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.30",
+    "postcss-cli": "^12.0.0",
+    "postcss-discard-duplicates": "^7.0.4"
   }
 }
