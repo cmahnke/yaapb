@@ -36,6 +36,7 @@
     "vis-timeline": "8.5.4",
     "yargs": "^18.2.0",
     "bootstrap": "^5.3.8",
+    "@popperjs/core": "^2.11.8",
     "imagesloaded": "^5.0.0",
     "lightgallery": "^3.0.0",
     "masonry-layout": "^4.2.2",
