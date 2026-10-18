@@ -3,7 +3,7 @@
 {{ $caption := "View more images" }}
 {{ $images := slice }}
 {{ $postTitle := replace (lower .Title) " " "_" }}
-{{ $id := printf "%s-%s" $postTitle (delimit (shuffle (seq 1 9)) "") }}
+{{ $id := printf "%s-%s" $postTitle (strings.Substr (md5 $postTitle) 0 8) }}
 {{ $id = $id | replaceRE "[.!:?\"'()\\[\\]\\\\]" "" }}
 
 {{/* create variants */}}

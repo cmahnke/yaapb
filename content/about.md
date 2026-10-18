@@ -36,9 +36,9 @@ This page(s) have been generated with [Hugo](https://gohugo.io/).
 
 The theme is based on the [Tumblr](https://www.tumblr.com/) theme [Paper Stacks](https://www.tumblr.com/theme/36202), a collaboration by [FiftyThree](https://www.fiftythree.com/tumblr/via/theme) and [ALLDAYEVERYDAY](https://www.alldayeveryday.com/).
 
-[Inconsolata](https://github.com/googlefonts/inconsolata) and [Playfair Display](https://github.com/clauseggers/Playfair-Display) are used as fonts - if installed on your computer.
+[Inconsolata](https://github.com/googlefonts/inconsolata) and [Playfair Display](https://github.com/clauseggers/Playfair-Display) are used as webfonts, generated from the [Fontsource](https://fontsource.org/) npm packages.
 
-The [Tagcloud](http://www.johann-oberdorfer.eu/blog/2020/02/23/20-02-23_tag_cloud_for_hugo/) and the [lightGallery](https://sachinchoolur.github.io/lightGallery/) are taken from the provided links.
+The layout of the image stacks uses [Masonry](https://masonry.desandro.com/) with [imagesLoaded](https://imagesloaded.desandro.com/), galleries and fullscreen views are handled by [lightGallery](https://sachinchoolur.github.io/lightGallery/), the photo carousels use [Bootstrap](https://getbootstrap.com/). The [Tagcloud](http://www.johann-oberdorfer.eu/blog/2020/02/23/20-02-23_tag_cloud_for_hugo/) is taken from the provided link.
 
 The page is hosted by [GitHub](https://github.com/).
 

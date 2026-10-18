@@ -70,7 +70,7 @@ function safeImagesLoaded(element, callback) {
                 img.src === '' ||
                 img.src === window.location.href ||
                 img.src === window.location.origin + '/') {
-                try { img.remove(); } catch(e) { /* unremovable node */ }
+                try { img.remove(); } catch { /* unremovable node */ }
             }
         });
 
@@ -86,7 +86,7 @@ function safeImagesLoaded(element, callback) {
         const finish = function() {
             if (done) return;
             done = true;
-            try { callback && callback(); }
+            try { if (callback) callback(); }
             catch(e) { console.warn('safeImagesLoaded callback error:', e); }
         };
 
@@ -109,7 +109,7 @@ function safeImagesLoaded(element, callback) {
 
     } catch(e) {
         console.warn('safeImagesLoaded error:', e);
-        callback && callback();
+        if (callback) callback();
     }
 }
 
@@ -407,7 +407,7 @@ class Features {
                 const content = item.querySelector('.feature_content');
                 if (!content) return;
 
-                let contentHeight = 0;
+                let contentHeight;
 
                 if (item.classList.contains('active')) {
                     contentHeight = content.offsetHeight;
@@ -469,9 +469,9 @@ class Notebook {
             this.container.style.display = 'none';
             this.permalink = this.container.getAttribute("data-permalink");
             this.settings = settings || {};
-            this.settings.useRotation !== false && (this.settings.useRotation = true);
-            this.settings.xMovement  !== false && (this.settings.xMovement  = true);
-            this.settings.xMovement  !== false && (this.settings.yMovement  = true);
+            if (this.settings.useRotation !== false) this.settings.useRotation = true;
+            if (this.settings.xMovement  !== false) this.settings.xMovement  = true;
+            if (this.settings.xMovement  !== false) this.settings.yMovement  = true;
             this.setMaximumHeight();
             this.extractSourcesFromContainer();
             this.writeMarkup();
@@ -677,7 +677,7 @@ class Notebook {
         if (!a.isPrimary) return;
         if (a.pointerType === 'mouse') a.preventDefault();
 
-        try { el.setPointerCapture(a.pointerId); } catch(e) { /* pointer already gone */ }
+        try { el.setPointerCapture(a.pointerId); } catch { /* pointer already gone */ }
 
         this.pointerId = a.pointerId;
         this.target = el;
@@ -789,7 +789,7 @@ class Notebook {
         }
 
         if (this.lgInstance) {
-            try { this.lgInstance.destroy(); } catch(e) { /* not yet initialized */ }
+            try { this.lgInstance.destroy(); } catch { /* not yet initialized */ }
             this.lgInstance = null;
         }
 
@@ -817,7 +817,7 @@ class Notebook {
 
                 tmpContainer.addEventListener('lgAfterClose', () => {
                     if (this.lgInstance) {
-                        try { this.lgInstance.destroy(); } catch(e) { /* already destroyed */ }
+                        try { this.lgInstance.destroy(); } catch { /* already destroyed */ }
                         this.lgInstance = null;
                     }
                     const tmp = document.getElementById('lg-tmp-container');

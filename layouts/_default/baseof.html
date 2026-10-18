@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang }}">
+<html lang="{{ site.Language.Lang }}">
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="{{ .Site.Language.Lang }}">
+    <meta http-equiv="Content-Language" content="{{ site.Language.Lang }}">
     {{ if hasPrefix .Page.Name "404" }}
-        <meta http-equiv="refresh" content="15; URL={{ .Site.BaseURL }}">
+        <meta http-equiv="refresh" content="15; URL={{ site.BaseURL }}">
     {{- end -}}
-    {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
-    <meta name="description" content="{{ .Description | default (.Summary | default .Site.Params.description ) }}">
-    <meta name="keywords" content="{{ (delimit .Keywords ",") | default .Site.Params.keywords }}">
+    {{ with site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+    <meta name="description" content="{{ .Description | default (.Summary | default site.Params.description ) }}">
+    <meta name="keywords" content="{{ (delimit .Keywords ",") | default site.Params.keywords }}">
 
     {{ partial "html/head/build-time.html" . }}
 
     {{ if .Permalink }}
        <base href="{{ .Permalink }}">
     {{ end }}
-    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    <title>{{ block "title" . }}{{ site.Title }}{{ end }}</title>
 
     {{- if .Permalink -}}
       <link rel="canonical" href="{{ .Permalink }}">
@@ -44,18 +44,18 @@
     <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}">
 
     {{/* External Styles - Fonts etc */}}
-    {{ range .Site.Params.stylesheets -}}
+    {{ range site.Params.stylesheets -}}
     <link href="{{ . }}" rel="stylesheet">
     {{- end -}}
 
     {{ $faviconRelPrefix := "" }}
-    {{ if .Site.Params.svgIcon }}
-        <link rel="icon" type="image/svg+xml" href="{{ .Site.Params.svgIcon }}">
+    {{ if site.Params.svgIcon }}
+        <link rel="icon" type="image/svg+xml" href="{{ site.Params.svgIcon }}">
         {{ $faviconRelPrefix = "alternate " }}
     {{ end }}
 
 
-    <link rel="{{- $faviconRelPrefix }}icon" href="{{ .Site.Params.icon | default "/images/favicon.ico" | absURL }}">
+    <link rel="{{- $faviconRelPrefix }}icon" href="{{ site.Params.icon | default "/images/favicon.ico" | absURL }}">
     {{ hugo.Generator }}
     {{- partial "metadata/schema.org/schema.org.html" . -}}
   </head>

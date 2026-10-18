@@ -1,5 +1,5 @@
 <ul class="menu">
-  {{ with .Site.Menus.main}}
+  {{ with site.Menus.main}}
       {{ range sort . }}
         <li class="page {{ .Name }}">
           <a title="{{ .Name }}" href="{{ .URL | absLangURL }}">{{ .Name }}</a>

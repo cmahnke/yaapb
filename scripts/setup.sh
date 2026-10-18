@@ -33,4 +33,6 @@ convert static/images/favicon-16.png static/images/favicon-32.png static/images/
 ./scripts/update_cameras.py -i content/cameras/cameras.html -o content/cameras/cameras.html
 
 # NPM dependencies
-$DEPENDENCY_MANAGER install
+# Merge the theme's package.json (scripts + dependencies) into the site's,
+# then install - must run before the build, see the theme's Upgrade.md
+$PWD/themes/projektemacher-base/scripts/init/package.json.sh

@@ -25,7 +25,7 @@
                 </a>
               </div>
               {{ partial "post/tags.html" . }}
-              {{ if and .Site.Params.linkTumblr .Params.tumblr_url }}
+              {{ if and site.Params.linkTumblr .Params.tumblr_url }}
                   <div class="tumblr">
                       <h4>Original entry</h4>
                       <a href="{{ .Params.tumblr_url }}">Original on Tumblr</a>
