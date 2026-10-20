@@ -29,11 +29,12 @@
                           "defines" $defines
                           "minify" (cond hugo.IsDevelopment false true)
                           "sourceMap" (cond hugo.IsDevelopment "linked" "none")
+                          "format" "esm"
     -}}
     {{- $theme := resources.Get "js/main.js" | js.Build $mainOpts -}}
     {{- $js := slice $theme | resources.Concat "js/concated.js" | fingerprint -}}
 
-    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+    <script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 
     {{ $options := (dict "transpiler" "dartsass" "targetPath" "base.css" "outputStyle" "compressed") -}}
     {{/* TODO: Remove this and include via SCSS */}}
