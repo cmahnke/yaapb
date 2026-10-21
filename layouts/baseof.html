@@ -31,7 +31,7 @@
                           "sourceMap" (cond hugo.IsDevelopment "linked" "none")
                           "format" "esm"
     -}}
-    {{- $theme := resources.Get "js/main.js" | js.Build $mainOpts -}}
+    {{- $theme := resources.Get "ts/main.ts" | js.Build $mainOpts -}}
     {{- $js := slice $theme | resources.Concat "js/concated.js" | fingerprint -}}
 
     <script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
