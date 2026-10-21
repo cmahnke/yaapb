@@ -65,7 +65,7 @@ function safeImagesLoaded(element, callback) {
             return callback && callback();
         }
 
-        Array.from(el.querySelectorAll('img')).forEach(function(img) {
+        Array.from(el.querySelectorAll('img') as NodeListOf<HTMLImageElement>).forEach(function(img) {
             if (!img.src ||
                 img.src === '' ||
                 img.src === window.location.href ||
@@ -124,7 +124,7 @@ function fetchHTML(url) {
         });
 }
 
-function setTransition(el, duration, property) {
+function setTransition(el, duration, property?) {
     const dur  = duration || '0s';
     const prop = property || 'all';
     el.style.transitionDuration = dur;
@@ -134,6 +134,12 @@ function setTransition(el, duration, property) {
 // ─── Features ────────────────────────────────────────────────────────────────
 
 class Features {
+    paper;
+    div;
+    list;
+    spinner;
+    posts;
+
     constructor(paper) {
         this.paper = paper;
         this.div = null;
@@ -191,7 +197,7 @@ class Features {
                         wrap.innerHTML = g.innerHTML;
                         j = wrap;
                     } else if (p === 'photo') {
-                        const imgs = Array.from(g.querySelectorAll('img.post-image'));
+                            const imgs = Array.from(g.querySelectorAll('img.post-image') as NodeListOf<HTMLImageElement>);
                         if (imgs.length > 1) {
                             const o = document.createElement('div');
                             o.className = 'photoset_wrap';
@@ -307,7 +313,7 @@ class Features {
                 items.forEach(function(_, idx) {
                     const dot = document.createElement('em');
                     dot.innerHTML = '•';
-                    dot.setAttribute('data-index', idx);
+                    dot.setAttribute('data-index', String(idx));
                     if (idx === 0) dot.classList.add('on');
                     dot.addEventListener('click', function() {
                         const instance = bootstrap.Carousel.getInstance(carouselEl);
@@ -321,7 +327,7 @@ class Features {
                 });
 
                 // ── slid Event ─────────────────────────────────────────
-                carouselEl.addEventListener('slid.bs.carousel', function(e) {
+                carouselEl.addEventListener('slid.bs.carousel', function(e: any) {
                     nav.querySelectorAll('em').forEach(function(em) {
                         em.classList.remove('on');
                     });
@@ -442,6 +448,31 @@ class Features {
 // ─── Notebook ─────────────────────────────────────────────────────────────────
 
 class Notebook {
+    paper;
+    lgInstance;
+    target;
+    container;
+    element;
+    settings;
+    sources;
+    notebooks;
+    pages;
+    permalink;
+    dragged;
+    started;
+    pointerId;
+    deltaX;
+    deltaY;
+    distance;
+    deltaT;
+    rect;
+    width;
+    height;
+    currentPage;
+    start;
+    originalTransform;
+    max_height;
+
     constructor(paper, container, settings) {
         this.paper = paper;
         this.lgInstance = null;
@@ -518,7 +549,7 @@ class Notebook {
                     containerWidth = parseInt(notebookEl.getAttribute('data-width')) || 0;
                 }
                 if (containerWidth === 0) {
-                    const features = document.querySelector('#features');
+                    const features = document.querySelector<HTMLElement>('#features');
                     if (features) containerWidth = Math.min(581, features.offsetWidth);
                 }
                 if (containerWidth === 0) {
@@ -605,9 +636,9 @@ class Notebook {
     writeMarkup() {
         this.element = document.createElement("div");
         this.element.className = "notebook";
-        this.element.id = "notebook_" + parseInt(Math.random() * 1e5);
-        this.element.setAttribute("data-height", 0);
-        this.element.setAttribute("data-width",  0);
+        this.element.id = "notebook_" + Math.floor(Math.random() * 1e5);
+        this.element.setAttribute("data-height", "0");
+        this.element.setAttribute("data-width",  "0");
 
         let a = this.sources.length;
 
@@ -621,8 +652,8 @@ class Notebook {
             const dataSrc   = (imgEl && imgEl.getAttribute('data-src'))   || this.sources[a];
             const dataThumb = (imgEl && imgEl.getAttribute('data-thumb')) || this.sources[a];
 
-            c.className = "notebook-page page-style-" + parseInt(Math.random() * 5);
-            c.setAttribute("data-page",     this.sources.length - a);
+            c.className = "notebook-page page-style-" + Math.floor(Math.random() * 5);
+            c.setAttribute("data-page",     String(this.sources.length - a));
             c.setAttribute("data-src",      dataSrc);
             c.setAttribute("data-thumb",    dataThumb);
             c.setAttribute("data-source",   this.sources[a]);
@@ -738,7 +769,7 @@ class Notebook {
         }, 400);
     }
 
-    onDragEnd() {
+    onDragEnd(a) {
         this.distance = Math.sqrt(this.deltaX * this.deltaX + this.deltaY * this.deltaY);
         this.deltaT   = Number(new Date) - this.start.time;
         this.rect     = this.element.getBoundingClientRect();
@@ -768,7 +799,7 @@ class Notebook {
         }
     }
 
-    onClick() {
+    onClick(a) {
         if (this.dragged) { this.dragged = false; return true; }
 
         if (!document.body.classList.contains("show")) {
@@ -863,7 +894,20 @@ class Notebook {
 // ─── MovablePage ──────────────────────────────────────────────────────────────
 
 class MovablePage {
-    constructor(paper, element, options) {
+    paper;
+    element;
+    fragmentSelector;
+    nextSelector;
+    prevSelector;
+    nextLink;
+    prevLink;
+    start;
+    dragged;
+    deltaX;
+    deltaT;
+    isScrolling;
+
+    constructor(paper, element, options?) {
         this.paper = paper;
         this.element = typeof element === 'string'
             ? document.querySelector(element)
@@ -878,9 +922,9 @@ class MovablePage {
         if (!this.element) return;
 
         options = options || {};
-        this.nextSelector     = options.nextSelector     || "#features a.pagination-older";
-        this.prevSelector     = options.prevSelector     || "#features a.pagination-newer";
-        this.fragmentSelector = options.fragmentSelector || "#posts";
+        this.nextSelector     = options?.nextSelector     || "#features a.pagination-older";
+        this.prevSelector     = options?.prevSelector     || "#features a.pagination-newer";
+        this.fragmentSelector = options?.fragmentSelector || "#posts";
         this.activateArrows();
         this.element.addEventListener("touchstart", this, false);
         this.element.addEventListener("touchmove",  this, false);
@@ -999,7 +1043,7 @@ class MovablePage {
         }
     }
 
-    onTouchEnd() {
+    onTouchEnd(a) {
         if (this.isScrolling) return true;
         const elapsed = Number(new Date) - this.start.time;
         if ((this.deltaX > 200 || (this.deltaX > 20 && elapsed < 250)) && this.prevLink) {
@@ -1016,6 +1060,12 @@ class MovablePage {
 // ─── Paper ────────────────────────────────────────────────────────────────────
 
 class Paper {
+    masonryInstance;
+    notebooks;
+    movablePage;
+    features;
+    postsEl;
+
     constructor() {
         this.masonryInstance = null;
         this.postsEl = null;
@@ -1142,7 +1192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (document.querySelector('#posts-wrap.single')) {
-        const container = document.querySelector('.photo-permalink-container');
+        const container = document.querySelector<HTMLElement>('.photo-permalink-container');
         const galleryImg = container ? container.querySelector('img.post-image[data-src]') : null;
         if (container && galleryImg) {
             try {
@@ -1160,3 +1210,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+declare global {
+    interface Window {
+        paper: unknown;
+    }
+}
