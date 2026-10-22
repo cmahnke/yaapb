@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.Lang }}">
+<html lang="{{ site.Language.Name }}">
 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Language" content="{{ site.Language.Lang }}">
+    <meta http-equiv="Content-Language" content="{{ site.Language.Name }}">
     {{ if hasPrefix .Page.Name "404" }}
         <meta http-equiv="refresh" content="15; URL={{ site.BaseURL }}">
     {{- end -}}
