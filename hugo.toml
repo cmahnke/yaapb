@@ -8,6 +8,8 @@ disablePathToLower = true
 theme = ["projektemacher-base"]
 enableGitInfo = true
 
+enableRobotsTXT = true
+
 [params]
 keywords = "analog, photography, lomography, old cameras"
 description = "Yet another analog photo blog - photograpy with cameras from the flea market."
@@ -123,3 +125,6 @@ defaultMarkdownHandler = 'goldmark'
 
 [security]
   allowContent = ['^text/html$', '^text/markdown$']
+
+[params.robots]
+  llmsTXT = true

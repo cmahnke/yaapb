@@ -59,6 +59,7 @@
     <link rel="{{- $faviconRelPrefix }}icon" href="{{ site.Params.icon | default "/images/favicon.ico" | absURL }}">
     {{ hugo.Generator }}
     {{- partial "metadata/schema.org/schema.org.html" . -}}
+    {{- partialCached "html/head/webmention.html" . "webmentions" -}}
   </head>
   {{- $class := "show " -}}
   {{ if or .IsHome (eq .Kind "term") }}
