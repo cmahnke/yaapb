@@ -5,10 +5,11 @@ tags:
 - Agfa Optima 500 Sensor
 - Kodak Gold 200
 - featured
-alias:
-- 142523892076
-source: Film 8
-tumblr_url: https://yaapb.tumblr.com/post/142523892076
+aliases:
+  - 142523892076
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/142523892076
+  source: Film 8
 resources:
 - src: "imm024_6A.jpg"
 - src: "imm023_5A.jpg"

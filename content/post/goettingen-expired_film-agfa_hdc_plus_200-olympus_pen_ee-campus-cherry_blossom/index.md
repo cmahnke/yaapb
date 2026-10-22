@@ -7,10 +7,11 @@ tags:
 - Olympus Pen EE
 - Campus
 - Cherry blossom
-alias:
-- 184479856016
-source: Film 17
 resources:
 - src: "012_3A.JPG"
-tumblr_url: https://yaapb.tumblr.com/post/184479856016
+aliases:
+  - 184479856016
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/184479856016
+  source: Film 17
 ---

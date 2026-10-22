@@ -5,10 +5,11 @@ tags:
 - Göttingen
 - Lomographic ActionSampler
 - AGFA Vista Plus 200
-source: Film 12 edited
-alias:
-- 162326618626
 resources:
 - src: "img14.jpg"
-tumblr_url: https://yaapb.tumblr.com/post/162326618626
+aliases:
+  - 162326618626
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/162326618626
+  source: Film 12 edited
 ---

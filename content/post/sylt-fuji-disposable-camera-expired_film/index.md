@@ -7,9 +7,10 @@ tags:
 - Disposable Camera
 - Fuji 400
 - featured
-source: unedited
 resources:
 - src: "08.jpg"
 - src: "06.jpg"
 - src: "12.jpg"
+params:
+  source: unedited
 ---

@@ -7,10 +7,11 @@ tags:
 - Kodak Gold 200
 - Night
 - featured
-source: Film 4
-alias:
-- 139870747756
-tumblr_url: https://yaapb.tumblr.com/post/139870747756
+aliases:
+  - 139870747756
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/139870747756
+  source: Film 4
 resources:
 - src: "006_3a.jpg"
 - src: "009_6a.jpg"

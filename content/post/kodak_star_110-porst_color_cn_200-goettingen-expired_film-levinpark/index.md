@@ -6,10 +6,11 @@ tags:
 - Göttingen
 - Expired Film
 - Levinpark
-source: Film 13
-alias:
-- 163215111016
-tumblr_url: https://yaapb.tumblr.com/post/163215111016
+aliases:
+  - 163215111016
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/163215111016
+  source: Film 13
 resources:
 - src: "13.jpg"
 - src: "08.jpg"

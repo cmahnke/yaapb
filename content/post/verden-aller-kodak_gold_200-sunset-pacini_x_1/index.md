@@ -6,10 +6,11 @@ tags:
 - Kodak Gold 200
 - Sunset
 - Pacini X 1
-source: Film 3
-alias:
-- 139870831081
-tumblr_url: https://yaapb.tumblr.com/post/139870831081
+aliases:
+  - 139870831081
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/139870831081
+  source: Film 3
 resources:
 - src: "017_14a.jpg"
 - src: "016_13a.jpg"

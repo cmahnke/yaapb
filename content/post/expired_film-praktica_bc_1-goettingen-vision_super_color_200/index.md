@@ -5,10 +5,11 @@ tags:
 - Praktica BC 1
 - Göttingen
 - Vision Super Color 200
-alias:
-- 170876240196
-tumblr_url: https://yaapb.tumblr.com/post/170876240196
-source: Film 16
+aliases:
+  - 170876240196
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/170876240196
+  source: Film 16
 resources:
 - src: "image0029_32A.jpg"
 ---

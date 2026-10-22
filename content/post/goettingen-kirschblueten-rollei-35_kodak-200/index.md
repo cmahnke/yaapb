@@ -5,8 +5,9 @@ tags:
 - Göttingen
 - Rollei 35
 - Kodak Gold 200
-source: unedited
 resources:
 - src: "26.jpg"
 - src: "27.jpg"
+params:
+  source: unedited
 ---

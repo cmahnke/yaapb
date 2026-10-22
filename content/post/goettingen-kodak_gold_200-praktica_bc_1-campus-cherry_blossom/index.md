@@ -6,10 +6,11 @@ tags:
 - Praktica BC 1
 - Campus
 - Cherry blossom
-source: Film 10
-alias:
-- 161550329376
 resources:
 - src: "015_11A.jpg"
-tumblr_url: https://yaapb.tumblr.com/post/161550329376
+aliases:
+  - 161550329376
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/161550329376
+  source: Film 10
 ---

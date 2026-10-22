@@ -5,10 +5,11 @@ tags:
 - Kiev 19
 - Expired Film
 title: Again I found a old camera on the flea market
-source: Found Film 2
-alias:
-- 166081149111
-tumblr_url: https://yaapb.tumblr.com/post/166081149111/again-i-found-a-old-camera-on-the-flea-market
+aliases:
+  - 166081149111
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/166081149111/again-i-found-a-old-camera-on-the-flea-market
+  source: Found Film 2
 resources:
 - src: "image0002_N2.jpg"
 ---

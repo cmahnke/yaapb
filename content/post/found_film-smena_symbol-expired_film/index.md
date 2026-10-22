@@ -5,10 +5,11 @@ tags:
 - Smena Symbol
 - Expired Film
 title: This is from a film which I found inside the Smena Symbol
-source: Found Film 1
-alias:
-- 163014280011
-tumblr_url: https://yaapb.tumblr.com/post/163014280011/this-is-from-a-film-which-i-found-inside-te-smena
+aliases:
+  - 163014280011
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/163014280011/this-is-from-a-film-which-i-found-inside-te-smena
+  source: Found Film 1
 resources:
 - src: "image0016_N16.jpg"
 - src: "image0017_N17.jpg"

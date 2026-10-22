@@ -5,7 +5,6 @@ tags:
 - Sigmaringen
 - Olympus Pen EE
 - Polaroid 200
-source: edited
 resources:
 - src: "Brücke.jpg"
 - src: "Schloss.jpg"
@@ -18,4 +17,6 @@ resources:
 - src: "imm011_N11.jpg"
 - src: "imm012_N12.jpg"
 - src: "imm013_N13.jpg"
+params:
+  source: edited
 ---

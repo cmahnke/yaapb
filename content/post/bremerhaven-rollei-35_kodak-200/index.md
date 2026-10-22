@@ -5,7 +5,8 @@ tags:
 - Bremerhaven
 - Rollei 35
 - Kodak Gold 200
-source: unedited
 resources:
 - src: "07.jpg"
+params:
+  source: unedited
 ---

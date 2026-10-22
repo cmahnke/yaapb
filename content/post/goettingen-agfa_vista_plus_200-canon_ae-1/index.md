@@ -4,10 +4,11 @@ tags:
 - Göttingen
 - Agfa Vista Plus 200
 - Canon AE-1
-alias:
-- 184937513586
-source: Film 18
 resources:
 - src: "0010.jpg"
-tumblr_url: https://yaapb.tumblr.com/post/184937513586
+aliases:
+  - 184937513586
+params:
+  tumblr_url: https://yaapb.tumblr.com/post/184937513586
+  source: Film 18
 ---

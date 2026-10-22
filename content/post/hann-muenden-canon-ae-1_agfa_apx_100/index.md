@@ -6,9 +6,10 @@ tags:
 - Canon AE-1
 - Agfa APX 100
 - featured
-source: unedited
 resources:
 - src: "19.jpg"
 - src: "17.jpg"
 - src: "21.jpg"
+params:
+  source: unedited
 ---
