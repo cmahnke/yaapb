@@ -1,0 +1,27 @@
+User-agent: *
+
+Disallow: /meta/linked-art/index.json
+
+Disallow: /meta/
+
+Disallow: /meta/posts/index.json
+
+Disallow: /privacy/
+
+Disallow: /meta/schema.org/index.json
+
+Disallow: /meta/tags/index.json
+
+Disallow: /meta/wikidata/index.json
+
+
+Disallow: /*.bib$
+
+Disallow: /*.json$
+
+Disallow: /*.xml$
+
+Sitemap: https://yaapb.projektemacher.org/sitemap.xml
+
+
+llms-txt: https://yaapb.projektemacher.org/llms.txt
