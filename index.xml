@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Yet another analog photo blog</title>
+  <channel><title>Yet another analog photo blog</title>
     <link>https://yaapb.projektemacher.org/</link>
     <description>Recent content on Yet another analog photo blog</description>
     <generator>Hugo -- gohugo.io</generator>
