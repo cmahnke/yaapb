@@ -9,7 +9,6 @@ tags:
 - featured
 params:
   source: Film Bad Driburg
-draft: true
 resources:
   - src: "004_N3.jpg"
   - src: "009_N8.jpg"
