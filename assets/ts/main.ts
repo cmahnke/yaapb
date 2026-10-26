@@ -276,7 +276,7 @@ class Features {
                 prevBtn.className = 'pagination-newer carousel-control-prev';
                 prevBtn.setAttribute('type', 'button');
                 prevBtn.setAttribute('aria-label', 'Previous');
-                prevBtn.innerHTML = '&#x25C0;';
+                prevBtn.innerHTML = '&#x25C4;';
                 prevBtn.addEventListener('click', function() {
                     const instance = bootstrap.Carousel.getInstance(carouselEl);
                     if (instance) {
@@ -290,7 +290,7 @@ class Features {
                 nextBtn.className = 'pagination-older carousel-control-next';
                 nextBtn.setAttribute('type', 'button');
                 nextBtn.setAttribute('aria-label', 'Next');
-                nextBtn.innerHTML = '&#x25B6;';
+                nextBtn.innerHTML = '&#x25BA;';
                 nextBtn.addEventListener('click', function() {
                     const instance = bootstrap.Carousel.getInstance(carouselEl);
                     if (instance) {
