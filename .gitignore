@@ -21,3 +21,4 @@ static/fonts/
 /pnpm-lock.yaml
 
 /yarn.lock
+package.json
