@@ -1,4 +1,8 @@
 ---
+title: "Bassum / Agfa Optima 500 Sensor / Kodak Gold 200"
+outputs:
+  - html
+  - iiif-manifest
 date: 2016-04-09T19:58:44Z
 tags:
 - Bassum

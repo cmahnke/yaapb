@@ -1,4 +1,8 @@
 ---
+title: "Cherry blossom on campus, Göttingen (Praktica BC 1 / Kodak Gold 200)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-06-07T19:13:37Z
 tags:
 - Göttingen

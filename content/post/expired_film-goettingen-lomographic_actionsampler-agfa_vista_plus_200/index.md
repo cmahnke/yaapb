@@ -1,4 +1,8 @@
 ---
+title: "Göttingen / Lomographic ActionSampler / AGFA Vista Plus 200 (expired)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-06-27T21:13:47Z
 tags:
 - Expired Film

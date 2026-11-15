@@ -1,4 +1,7 @@
 ---
+outputs:
+  - html
+  - iiif-manifest
 date: 2024-02-26T21:15:06Z
 title: Sigmaringen / Olympus Pen EE / Polaroid 200
 tags:

@@ -1,4 +1,8 @@
 ---
+title: "Hoher Meißner / Lomographic ActionSampler / AGFA Vista Plus 200 (expired)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-06-27T21:17:07Z
 tags:
 - Lomographic ActionSampler

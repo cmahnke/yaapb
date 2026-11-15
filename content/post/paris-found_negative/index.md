@@ -1,4 +1,8 @@
 ---
+title: "Found negative (Paris)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-07-03T16:59:50Z
 tags:
 - Paris

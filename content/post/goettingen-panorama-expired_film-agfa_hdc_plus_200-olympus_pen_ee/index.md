@@ -1,4 +1,7 @@
 ---
+outputs:
+  - html
+  - iiif-manifest
 date: 2019-04-27T15:11:58Z
 tags:
 - Göttingen

@@ -1,4 +1,7 @@
 ---
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-07-03T16:59:30Z
 tags:
 - New York

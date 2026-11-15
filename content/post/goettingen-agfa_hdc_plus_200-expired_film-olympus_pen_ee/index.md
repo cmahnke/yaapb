@@ -1,4 +1,8 @@
 ---
+title: "Göttingen / Olympus Pen EE / Agfa HDC Plus 200 (expired)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2019-04-27T14:54:44Z
 tags:
 - Göttingen

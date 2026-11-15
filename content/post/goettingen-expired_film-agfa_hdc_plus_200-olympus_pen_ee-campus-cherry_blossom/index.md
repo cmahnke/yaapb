@@ -1,4 +1,8 @@
 ---
+title: "Cherry blossom on campus, Göttingen (Olympus Pen EE / Agfa HDC Plus 200, expired)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2019-04-27T15:01:22Z
 tags:
 - Göttingen

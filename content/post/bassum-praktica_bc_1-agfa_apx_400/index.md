@@ -1,4 +1,8 @@
 ---
+title: "Bassum / Praktica BC 1 / Agfa APX 400"
+outputs:
+  - html
+  - iiif-manifest
 date: 2016-03-26T18:48:17Z
 tags:
 - Bassum

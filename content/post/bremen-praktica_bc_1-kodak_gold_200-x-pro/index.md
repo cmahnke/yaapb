@@ -1,4 +1,8 @@
 ---
+title: "Bremen / Praktica BC 1 / Kodak Gold 200 (X-Pro)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2016-03-22T09:59:31Z
 tags:
 - Bremen

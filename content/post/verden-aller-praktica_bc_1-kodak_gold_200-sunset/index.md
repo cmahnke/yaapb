@@ -1,4 +1,8 @@
 ---
+title: "Sunset at the Aller, Verden (Praktica BC 1 / Kodak Gold 200)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2016-02-23T22:54:03Z
 tags:
 - Verden

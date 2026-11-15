@@ -1,4 +1,8 @@
 ---
+title: "Sunset at the Aller, Verden (Pacini X 1 / Kodak Gold 200)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2016-02-23T22:57:52Z
 tags:
 - Verden

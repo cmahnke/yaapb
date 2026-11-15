@@ -1,4 +1,8 @@
 ---
+title: "Prague / Yashica Samurai"
+outputs:
+  - html
+  - iiif-manifest
 date: 2026-03-19T15:00:44Z
 tags:
 - Yashica Samurai

@@ -1,4 +1,8 @@
 ---
+title: "Bahnhof Bassum at night (Praktica BC 1 / Kodak Gold 200)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2016-02-23T22:56:27Z
 tags:
 - Bahnhof

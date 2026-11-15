@@ -1,4 +1,8 @@
 ---
+title: "Göttingen / Yashica Samurai"
+outputs:
+  - html
+  - iiif-manifest
 date: 2025-01-17T17:00:44Z
 tags:
 - Yashica Samurai

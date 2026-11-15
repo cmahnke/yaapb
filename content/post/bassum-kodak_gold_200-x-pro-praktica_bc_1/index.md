@@ -1,4 +1,8 @@
 ---
+title: "Bassum / Praktica BC 1 / Kodak Gold 200 (X-Pro)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2016-03-22T09:51:36Z
 tags:
 - Bassum

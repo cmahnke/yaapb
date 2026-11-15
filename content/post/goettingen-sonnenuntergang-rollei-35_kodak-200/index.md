@@ -1,4 +1,8 @@
 ---
+title: "Sunset in Göttingen (Rollei 35 / Kodak Gold 200)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2023-09-23T08:30:06Z
 tags:
 - Göttingen

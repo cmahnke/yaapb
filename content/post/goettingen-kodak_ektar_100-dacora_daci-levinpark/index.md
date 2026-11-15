@@ -1,4 +1,8 @@
 ---
+title: "Levinpark, Göttingen (Dacora Daci / Kodak Ektar 100)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-07-03T16:57:28Z
 tags:
 - Göttingen

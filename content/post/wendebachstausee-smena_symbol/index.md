@@ -1,4 +1,8 @@
 ---
+title: "Wendebachstausee / Smena Symbol"
+outputs:
+  - html
+  - iiif-manifest
 date: 2019-05-17T09:36:17Z
 tags:
 - Wendebachstausee

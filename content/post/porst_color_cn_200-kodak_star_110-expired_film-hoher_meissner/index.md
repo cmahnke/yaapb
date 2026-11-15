@@ -1,4 +1,8 @@
 ---
+title: "Hoher Meißner / Kodak Star 110 / Porst Color CN 200 (expired)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-07-20T17:20:37Z
 tags:
 - Porst Color CN 200

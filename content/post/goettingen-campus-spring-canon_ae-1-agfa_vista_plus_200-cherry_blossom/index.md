@@ -1,4 +1,8 @@
 ---
+title: "Cherry blossom on campus, Göttingen (Canon AE-1 / Agfa Vista Plus 200)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2019-05-17T09:38:12Z
 tags:
 - Göttingen

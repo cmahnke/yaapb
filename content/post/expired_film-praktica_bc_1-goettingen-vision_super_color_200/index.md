@@ -1,4 +1,8 @@
 ---
+title: "Göttingen / Praktica BC 1 / Vision Super Color 200 (expired)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2018-02-14T18:54:57Z
 tags:
 - Expired Film

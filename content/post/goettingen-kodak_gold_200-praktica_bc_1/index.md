@@ -1,4 +1,8 @@
 ---
+title: "Göttingen / Praktica BC 1 / Kodak Gold 200"
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-06-07T19:21:46Z
 tags:
 - Göttingen

@@ -1,4 +1,8 @@
 ---
+title: "Göttingen / Pouva Start (expired film)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2016-11-01T18:58:10Z
 tags:
 - Göttingen

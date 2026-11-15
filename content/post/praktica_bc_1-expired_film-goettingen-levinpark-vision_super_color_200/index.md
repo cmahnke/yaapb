@@ -1,4 +1,8 @@
 ---
+title: "Levinpark, Göttingen (Praktica BC 1 / Vision Super Color 200, expired)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2018-02-15T12:00:44Z
 tags:
 - Praktica BC 1

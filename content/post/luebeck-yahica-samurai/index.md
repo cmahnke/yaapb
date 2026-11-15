@@ -1,4 +1,8 @@
 ---
+title: "Lübeck / Yashica Samurai"
+outputs:
+  - html
+  - iiif-manifest
 date: 2025-08-30T15:00:44Z
 tags:
 - Yashica Samurai

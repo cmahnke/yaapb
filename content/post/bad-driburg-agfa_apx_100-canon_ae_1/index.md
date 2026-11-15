@@ -1,4 +1,8 @@
 ---
+title: "Hotel (Bad Driburg / Canon AE-1 / Agfa APX 100)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2026-10-20T18:52:22+02:00
 tags:
 - Hotel

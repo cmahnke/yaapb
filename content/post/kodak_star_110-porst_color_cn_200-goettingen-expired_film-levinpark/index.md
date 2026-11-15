@@ -1,4 +1,8 @@
 ---
+title: "Levinpark, Göttingen (Kodak Star 110 / Porst Color CN 200, expired)"
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-07-20T17:20:28Z
 tags:
 - Kodak Star 110

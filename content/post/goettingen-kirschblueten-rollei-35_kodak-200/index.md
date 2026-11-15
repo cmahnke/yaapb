@@ -1,4 +1,7 @@
 ---
+outputs:
+  - html
+  - iiif-manifest
 date: 2023-12-26T21:15:06Z
 title: Kirschblüten (Göttingen / Rollei 35/ Kodak Gold 200)
 tags:

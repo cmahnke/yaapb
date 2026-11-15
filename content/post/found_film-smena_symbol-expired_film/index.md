@@ -1,4 +1,7 @@
 ---
+outputs:
+  - html
+  - iiif-manifest
 date: 2017-07-15T14:15:14Z
 tags:
 - Found Film
