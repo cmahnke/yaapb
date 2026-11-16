@@ -9,3 +9,6 @@
   email = 'mail@christianmahnke.de'
   name = 'Christian Mahnke'
   uri = 'http://www.wikidata.org/entity/Q137668638'
+
+[params.iiif]
+  defaultBehavior = "individuals"
