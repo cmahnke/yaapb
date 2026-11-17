@@ -17,6 +17,8 @@ aliases:
 params:
   tumblr_url: https://yaapb.tumblr.com/post/184480008451/composed-from-three-images
   source: Film 17
+  geojson:
+    coordinates: [9.935181, 51.532833]
 ---
 
 Composed from three images.

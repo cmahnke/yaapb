@@ -11,6 +11,8 @@ aliases:
   - 162551930266
 params:
   tumblr_url: https://yaapb.tumblr.com/post/162551930266/ill-introduce-a-new-category-found-negatives
+  geojson:
+    coordinates: [-74.006015, 40.712728]
 resources:
 - src: "16.jpg"
 - src: "12.jpg"

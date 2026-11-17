@@ -22,4 +22,6 @@ resources:
 - src: "imm013_N13.jpg"
 params:
   source: edited
+  geojson:
+    coordinates: [9.216504, 48.086914]
 ---

@@ -14,6 +14,8 @@ aliases:
 params:
   tumblr_url: https://yaapb.tumblr.com/post/162551876031
   source: Scan
+  geojson:
+    coordinates: [9.910037, 51.543367]
 resources:
 - src: "07.jpg"
 - src: "09.jpg"

@@ -11,4 +11,6 @@ resources:
 - src: "imm002_N2.jpg"
 params:
   source: Film 19
+  geojson:
+    coordinates: [14.421254, 50.087465]
 ---

@@ -13,6 +13,8 @@ tags:
 - featured
 params:
   source: Film Bad Driburg
+  geojson:
+    coordinates: [9.017501, 51.736643]
 resources:
   - src: "004_N3.jpg"
   - src: "009_N8.jpg"

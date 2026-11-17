@@ -13,4 +13,6 @@ resources:
 - src: "32.jpg"
 params:
   source: edited
+  geojson:
+    coordinates: [9.935181, 51.532833]
 ---

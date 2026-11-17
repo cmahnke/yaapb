@@ -19,4 +19,6 @@ aliases:
 params:
   tumblr_url: https://yaapb.tumblr.com/post/184937536991
   source: Film 18
+  geojson:
+    coordinates: [9.935181, 51.532833]
 ---

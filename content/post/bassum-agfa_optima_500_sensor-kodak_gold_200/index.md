@@ -14,6 +14,8 @@ aliases:
 params:
   tumblr_url: https://yaapb.tumblr.com/post/142523892076
   source: Film 8
+  geojson:
+    coordinates: [8.728382, 52.849588]
 resources:
 - src: "imm024_6A.jpg"
 - src: "imm023_5A.jpg"

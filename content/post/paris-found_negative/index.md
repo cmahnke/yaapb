@@ -11,6 +11,8 @@ aliases:
   - 162551939491
 params:
   tumblr_url: https://yaapb.tumblr.com/post/162551939491
+  geojson:
+    coordinates: [2.320041, 48.858890]
 resources:
 - src: "02.jpg"
 - src: "01.jpg"

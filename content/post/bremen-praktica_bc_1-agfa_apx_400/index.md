@@ -13,6 +13,8 @@ aliases:
 params:
   tumblr_url: https://yaapb.tumblr.com/post/141728390306
   source: Film 6
+  geojson:
+    coordinates: [8.807165, 53.075820]
 resources:
 - src: "0027.jpg"
 ---

@@ -12,4 +12,6 @@ resources:
 - src: "23.jpg"
 params:
   source: unedited
+  geojson:
+    coordinates: [9.935181, 51.532833]
 ---
